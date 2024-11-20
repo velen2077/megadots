@@ -77,6 +77,7 @@
 
   megadots = {
     audio.enable = true;
+    bluetooth.enable = true;
     gaming.enable = true;
     gnome.enable = false;
     kde.enable = true;
