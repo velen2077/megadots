@@ -76,6 +76,7 @@
   };
 
   megadots = {
+    audio.enable = true;
     gaming.enable = true;
     gnome.enable = false;
     kde.enable = true;

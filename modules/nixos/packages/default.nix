@@ -8,7 +8,6 @@
 with lib; let
   cfg = config.megadots.packages;
 in {
-  #imports = [inputs.chaotic.nixosModules.default];
   options.megadots.packages = {
     enable = mkEnableOption "Enable packages to be included.";
   };
@@ -20,7 +19,6 @@ in {
       bat
       brightnessctl
       btop
-      cava
       curl
       eza
       fastfetch

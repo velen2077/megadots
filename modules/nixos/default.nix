@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./audio
     ./gaming
     ./gnome
     ./kde
