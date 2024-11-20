@@ -1,4 +1,9 @@
-{osConfig, ...}: {
+{
+  config,
+  lib,
+  osConfig,
+  ...
+}: {
   imports =
     [
       ./alacritty
