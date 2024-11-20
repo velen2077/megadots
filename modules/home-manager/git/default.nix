@@ -10,7 +10,7 @@ in {
   # Create the options for git.
   options.megadots.git = with types; {
     # Enablement option.
-    enable = mkOpt bool true "Enable git.";
+    enable = mkEnableOption "Enable git.";
     # Username option for git user.name.
     username = mkOption {
       description = "Username for git.";

@@ -27,6 +27,7 @@
   programs.home-manager.enable = true;
 
   megadots = {
+    alacritty.enable = true;
     git = {
       enable = true;
       username = "velen2077";
