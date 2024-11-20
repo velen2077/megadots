@@ -28,6 +28,7 @@
 
   megadots = {
     alacritty.enable = true;
+    firefox.enable = true;
     git = {
       enable = true;
       username = "velen2077";

@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  username,
   ...
 }:
 with lib; let
@@ -13,10 +12,11 @@ in {
   };
 
   config = mkIf cfg.enable {
-    programs.alacritty.package = pkgs.alacritty-ligatures;
     programs.alacritty.enable = true;
     programs.alacritty.settings = {
-      working_directory = config.home.homeDirectory;
+      general = {
+        working_directory = config.home.homeDirectory;
+      };
     };
   };
 }

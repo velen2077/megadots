@@ -27,8 +27,8 @@
     audio.enable = true;
     bluetooth.enable = true;
     gaming.enable = true;
-    gnome.enable = false;
-    kde.enable = true;
+    gnome.enable = true;
+    kde.enable = false;
     kernel.cachy.enable = true;
     nvidia.enable = true;
     packages.enable = true;
