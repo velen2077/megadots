@@ -68,6 +68,13 @@
     useDHCP = lib.mkForce true;
   };
 
+  # Needed for GPG signing.
+  services.pcscd.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
   environment.shells = with pkgs; [zsh];
   programs.zsh.enable = true;
 

@@ -18,7 +18,7 @@
 
   inputs = {
     # Nix ecosystem.
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Common hardware.
     hardware.url = "github:nixos/nixos-hardware";
@@ -31,7 +31,7 @@
 
     # Home Manager.
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -67,7 +67,7 @@
       endgame = let
         username = "velen2077";
         hostname = "endgame";
-        stateVersion = "24.11";
+        stateVersion = "25.05";
         specialArgs = {inherit inputs username hostname stateVersion;};
       in
         nixpkgs.lib.nixosSystem {
