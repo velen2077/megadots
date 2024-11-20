@@ -27,6 +27,12 @@
   programs.home-manager.enable = true;
 
   megadots = {
+    git = {
+      enable = true;
+      username = "velen2077";
+      email = "velen2077@proton.me";
+      key = "8F1B8CFF76C80581";
+    };
     zsh.enable = true;
   };
 }
