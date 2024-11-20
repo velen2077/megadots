@@ -1,10 +1,11 @@
 {
   config,
+  hostname,
   inputs,
   lib,
   outputs,
   pkgs,
-  hostname,
+  username,
   stateVersion,
   ...
 }: {
@@ -15,7 +16,6 @@
     inputs.hardware.nixosModules.common-pc-ssd
     # My additional host-specific imports.
     ./hardware-configuration.nix
-    ./users.nix
     # NixOS module imports.
     ../../modules/nixos
   ];
@@ -50,7 +50,7 @@
     isNormalUser = true;
     hashedPassword = "$6$SpG3sYsUt3IxXQLv$1v6tnDzULI4mM6bO.jXbJGuO/7rXcfdKJet4xBcylTG88dDyJrGdNpsKH9/eGwVIFSmQD6lIWWWE4CTUAMI820";
     shell = pkgs.zsh;
-    extraGroups = ifTheyExist [
+    extraGroups = [
       "audio"
       "git"
       "libvirtd"
@@ -80,6 +80,7 @@
     gnome.enable = false;
     kde.enable = true;
     cachyKernel.enable = true;
+    packages.enable = true;
   };
 
   system.stateVersion = stateVersion;

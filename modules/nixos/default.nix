@@ -4,5 +4,6 @@
     ./gnome
     ./kde
     ./kernel
+    ./packages
   ];
 }
