@@ -6,7 +6,7 @@
   ...
 }:
 with lib; let
-  cfg = config.megadots.pacakges;
+  cfg = config.megadots.packages;
 in {
   #imports = [inputs.chaotic.nixosModules.default];
   options.megadots.packages = {
