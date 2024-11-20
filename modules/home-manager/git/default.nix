@@ -41,7 +41,6 @@ in {
         init.defaultBranch = "main";
         pull.rebase = "true";
         commit.gpgsign = true;
-        gpg.format = "gpg";
         user.signing.key = cfg.key;
       };
       signing = {

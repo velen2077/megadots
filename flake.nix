@@ -1,24 +1,24 @@
 {
-  description = "NixOS configuration of Ryan Yin";
+  description = "megadots by velen2077.";
 
   nixConfig = {
     extra-substituters = [
-      "https://cache.m7.rs"
+      #"https://cache.m7.rs"
       "https://chaotic-nyx.cachix.org/"
-      "https://nix-community.cachix.org"
-      "https://nix-gaming.cachix.org"
+      #"https://nix-community.cachix.org"
+      #"https://nix-gaming.cachix.org"
     ];
     extra-trusted-public-keys = [
-      "cache.m7.rs:kszZ/NSwE/TjhOcPPQ16IuUiuRSisdiIwhKZCxguaWg="
+      #"cache.m7.rs:kszZ/NSwE/TjhOcPPQ16IuUiuRSisdiIwhKZCxguaWg="
       "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+      #"nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      #"nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
     ];
   };
 
   inputs = {
     # Nix ecosystem.
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
 
     # Common hardware.
     hardware.url = "github:nixos/nixos-hardware";
@@ -31,7 +31,7 @@
 
     # Home Manager.
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

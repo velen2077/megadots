@@ -11,8 +11,8 @@
 }: {
   imports = [
     # Common hardware imports.
-    inputs.hardware.nixosModules.common-cpu-amd
-    inputs.hardware.nixosModules.common-pc-ssd
+    # inputs.hardware.nixosModules.common-cpu-amd
+    # inputs.hardware.nixosModules.common-pc-ssd
     # My host-specific hardware configuration.
     ./hardware-configuration.nix
     # NixOS module imports.
@@ -26,9 +26,9 @@
     audio.enable = true;
     bluetooth.enable = true;
     gaming.enable = true;
-    gnome.enable = false;
-    kde.enable = true;
-    kernel.cachy.enable = true;
+    gnome.enable = true;
+    kde.enable = false;
+    kernel.cachy.enable = false;
     nvidia.enable = true;
     packages.enable = true;
   };
@@ -125,16 +125,16 @@
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
     loader.systemd-boot.editor = false;
-    plymouth = {
-      enable = true;
-      theme = "hexagon_dots";
-      themePackages = with pkgs; [
-        # By default we would install all themes
-        (adi1090x-plymouth-themes.override {
-          selected_themes = ["hexagon_dots"];
-        })
-      ];
-    };
+    # plymouth = {
+    #   enable = true;
+    #   theme = "hexagon_dots";
+    #   themePackages = with pkgs; [
+    #     # By default we would install all themes
+    #     (adi1090x-plymouth-themes.override {
+    #       selected_themes = ["hexagon_dots"];
+    #     })
+    #   ];
+    # };
   };
 
   # This is only used when building and running a test
