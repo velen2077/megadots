@@ -56,7 +56,7 @@ in {
 
       # Optionally, you may need to select the appropriate driver version for your specific GPU.
       # .latest or .beta for options here.
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
   };
 }

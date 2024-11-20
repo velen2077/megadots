@@ -12,7 +12,6 @@
   imports = [
     # Common hardware imports.
     inputs.hardware.nixosModules.common-cpu-amd
-    inputs.hardware.nixosModules.common-gpu-nvidia
     inputs.hardware.nixosModules.common-pc-ssd
     # My host-specific hardware configuration.
     ./hardware-configuration.nix
