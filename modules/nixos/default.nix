@@ -11,6 +11,7 @@
     ./gnome
     ./kde
     ./kernel
+    ./nvidia
     ./packages
   ];
 }

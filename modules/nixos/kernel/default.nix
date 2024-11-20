@@ -6,10 +6,10 @@
   ...
 }:
 with lib; let
-  cfg = config.megadots.cachyKernel;
+  cfg = config.megadots.kernel.cachy;
 in {
   #imports = [inputs.chaotic.nixosModules.default];
-  options.megadots.cachyKernel = {
+  options.megadots.kernel.cachy = {
     enable = mkEnableOption "Enable CachyOS kernel.";
   };
   config = mkIf cfg.enable {

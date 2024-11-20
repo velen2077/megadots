@@ -81,7 +81,8 @@
     gaming.enable = true;
     gnome.enable = false;
     kde.enable = true;
-    cachyKernel.enable = true;
+    kernel.cachy.enable = true;
+    nvidia.enable = true;
     packages.enable = true;
   };
 
