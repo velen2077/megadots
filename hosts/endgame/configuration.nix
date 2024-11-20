@@ -14,11 +14,25 @@
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-nvidia
     inputs.hardware.nixosModules.common-pc-ssd
-    # My additional host-specific imports.
+    # My host-specific hardware configuration.
     ./hardware-configuration.nix
     # NixOS module imports.
     ../../modules/nixos
   ];
+
+  # Here is where the fun happens. All the modules should
+  # be loaded at build time, and they can be toggled on or
+  # off using the appropriate option.
+  megadots = {
+    audio.enable = true;
+    bluetooth.enable = true;
+    gaming.enable = true;
+    gnome.enable = false;
+    kde.enable = true;
+    kernel.cachy.enable = true;
+    nvidia.enable = true;
+    packages.enable = true;
+  };
 
   home-manager.useGlobalPkgs = true;
   home-manager.extraSpecialArgs = {
@@ -29,6 +43,19 @@
     config = {
       allowUnfree = true;
     };
+  };
+
+  # Optimize storage and automatic scheduled Garbage Collection.
+  # If you want to run GC manually, use commands:
+  # `nix-store --optimize` for finding and eliminating redundant copies of identical store paths.
+  # `nix-store --gc` for optimizing the nix store and removing unreferenced and obsolete store paths.
+  # `nix-collect-garbage -d` for deleting old generations of user profiles.
+  nix.settings.auto-optimise-store = true;
+  nix.optimise.automatic = true;
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
   };
 
   hardware.enableRedistributableFirmware = true;
@@ -66,6 +93,38 @@
     packages = [pkgs.home-manager];
   };
 
+  # Set the time zone.
+  time.timeZone = "Europe/London";
+
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_GB.UTF-8";
+
+  # Configure additional locales.
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "en_GB.UTF-8";
+    LC_IDENTIFICATION = "en_GB.UTF-8";
+    LC_MEASUREMENT = "en_GB.UTF-8";
+    LC_MONETARY = "en_GB.UTF-8";
+    LC_NAME = "en_GB.UTF-8";
+    LC_NUMERIC = "en_GB.UTF-8";
+    LC_PAPER = "en_GB.UTF-8";
+    LC_TELEPHONE = "en_GB.UTF-8";
+    LC_TIME = "en_GB.UTF-8";
+  };
+
+  # Update the xkb layout to British.
+  services.xserver = {
+    xkb.layout = "gb";
+  };
+
+  # Configure console keymap.
+  console.keyMap = "uk";
+
+  # Set the bootloader preferences.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.editor = false;
+
   # This is only used when building and running a test
   # virtual machine to validate my config before switching.
   virtualisation.vmVariant = {
@@ -73,17 +132,6 @@
       memorySize = 8192;
       cores = 4;
     };
-  };
-
-  megadots = {
-    audio.enable = true;
-    bluetooth.enable = true;
-    gaming.enable = true;
-    gnome.enable = false;
-    kde.enable = true;
-    kernel.cachy.enable = true;
-    nvidia.enable = true;
-    packages.enable = true;
   };
 
   system.stateVersion = stateVersion;
