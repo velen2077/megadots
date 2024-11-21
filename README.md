@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/images/megadots.png" alt="Sublime's custom image"/>
+  <img src="assets/images/megadots.png" alt="megadots by velen2077"/>
 </p>
 
 # megadots
