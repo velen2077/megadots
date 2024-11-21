@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/images/megadots.png" alt="megadots by velen2077"/>
+</p>
+
 # megadots
 
 My modular and Flaked-out repo for managing systems using Nix, Flakes and Home Manager (as a system module). I publish megadots to help others, as I found Github and other peoples repos (some shoutouts below!) extremely helpful to learn Nix/NixOS. Hopefully I can return the favour by publishing my own, for others to use, adapt, and learn.
