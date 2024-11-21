@@ -22,13 +22,13 @@
     # #   package = pkgs.source-han-serif;
     # # };
     # theme = {
-    #   name = "${config.colorScheme.slug}";
-    #   package = nix-colors-lib.gtkThemeFromScheme {scheme = config.colorScheme;};
-    # };
-    # iconTheme = {
-    #   name = "Papirus-Dark";
-    #   package = pkgs.papirus-icon-theme;
-    # };
+    #  name = "${config.colorScheme.slug}";
+    #  package = nix-colors-lib.gtkThemeFromScheme {scheme = config.colorScheme;};
+    #};
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
+    };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
     };

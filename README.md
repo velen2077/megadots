@@ -8,7 +8,7 @@ My modular and Flaked-out repo for managing systems using Nix, Flakes and Home M
 
 ## Standard disclaimer
 
-Though I use this repo for my own config, I also dabble and break things from time to time. I tend to keep working code in the `main` branch. Any other branch, assume it is a work in progress and not suitable for application. Also note that as this is my primary personal config, my `hardware-configuration.nix` and attributes like `hostname`, `hashedPassword` and `username` will be unique to me, so you'll have to bring your own.
+> Though I use this repo for my own config, I also dabble and break things from time to time. I tend to keep working code in the `main` branch. Any other branch, assume it is a work in progress and not suitable for application. Also note that as this is my primary personal config, my `hardware-configuration.nix` and attributes like `hostname`, `hashedPassword` and `username` will be unique to me, so you'll have to bring your own.
 
 ## Introduction
 
@@ -28,8 +28,39 @@ I have a single user that I manage through Home Manager (velen2077). You may add
 
 ### File structure
 
+I use the following structure to organise my configurations.
+
 ```
-Update coming soon(tm).
+.
+├── assets                                  # Additional artefacts such as wallpapers and logos.
+│   └── images                              # Stores images used in this repo (logo).
+├── flake.lock                              # My flake lock file.
+├── flake.nix                               # My flake containing entry points for system configs.
+├── hosts                                   # Folder containing a subfolder for each host to configure.
+│   └── endgame                             # My config folder for my primary desktop computer.
+│       ├── configuration.nix               # My config file for my primary desktop computer.
+│       └── hardware-configuration.nix      # My hardware config for my primary desktop computer.
+├── modules                                 # Contains all NixOS and Home Manager modules in subfolders.
+│   ├── home-manager                        # Contains all Home Manager modules that I use.
+│   │   ├── alacritty                       # My custom alacritty module.
+│   │   ├── firefox                         # My custom firefox module.
+│   │   ├── git                             # My custom git module.
+│   │   ├── gnome                           # My custom gnome module.
+│   │   └── zsh                             # My custom zsh module.
+│   │   └── default.nix                     # Import file for Home Manager modules (imports all modules).
+│   └── nixos                               # Contains all NixOS modules that I use.
+│       ├── audio                           # My custom audio module.
+│       ├── bluetooth                       # My custom bluetooth module.
+│       ├── gaming                          # My custom gaming module.
+│       ├── gnome                           # My custom gnome module.
+│       ├── kde                             # My custom kde module.
+│       ├── kernel                          # My custom kernel module.
+│       ├── nvidia                          # My custom nvidia module.
+│       └── packages                        # My custom packages module.
+│       └── default.nix                     # Import file for NixOS modules (imports all modules)..
+└── users                                   # Folder containing a home config subfolder for each user.
+    └── velen2077                           # Folder for my primary user.
+        └── home.nix                        # My Home Manager configuration for my primary user.
 ```
 
 ## mega-thanks
