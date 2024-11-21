@@ -47,8 +47,6 @@ in {
       discover
       partitionmanager
       kclock
-      #pkgs.exfatprogs
-      #pkgs.leoPkgs.sddm-theme-breeze-user
     ];
 
     services.desktopManager.plasma6.enable = true;
