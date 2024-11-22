@@ -12,6 +12,7 @@
       ./alacritty
       ./firefox
       ./git
+      ./vscodium
       ./zsh
     ]
     # The imports below are only for Home Manager modules that
