@@ -15,6 +15,7 @@
     inputs.hardware.nixosModules.common-pc-ssd
     # My host-specific hardware configuration.
     ./hardware-configuration.nix
+    ./stylix
     # NixOS module imports.
     ../../modules/nixos
   ];
@@ -83,6 +84,7 @@
     isNormalUser = true;
     hashedPassword = "$6$SpG3sYsUt3IxXQLv$1v6tnDzULI4mM6bO.jXbJGuO/7rXcfdKJet4xBcylTG88dDyJrGdNpsKH9/eGwVIFSmQD6lIWWWE4CTUAMI820";
     shell = pkgs.zsh;
+    icon = ../../../assets/avatars/velen2077.png;
     extraGroups = [
       "audio"
       "git"
