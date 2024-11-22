@@ -32,7 +32,7 @@
   stylix.cursor = {
     package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Classic";
-    size = 36;
+    size = 24;
   };
   # gtk.iconTheme = {
   #   package = pkgs.adwaita-icon-theme;
