@@ -10,7 +10,9 @@
   ...
 }: {
   imports = [
-    # Common hardware imports.
+    # Common hardware imports. See the link to view
+    # what is applied here in these inputs.
+    # https://github.com/NixOS/nixos-hardware/tree/master/common
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-pc-ssd
     # My host-specific hardware configuration.
@@ -60,6 +62,9 @@
 
   hardware.enableRedistributableFirmware = true;
   networking.domain = "extranet.click";
+
+  # Set the power governor to performance mode.
+  powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
 
   # Cleanup stuff included by default.
   services.speechd.enable = lib.mkForce false;
