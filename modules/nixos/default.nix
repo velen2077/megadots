@@ -6,6 +6,7 @@
   # first to understand the options I have configured.
   imports = [
     ./audio
+    ./avatar
     ./bluetooth
     ./gaming
     ./gnome
