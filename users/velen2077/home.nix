@@ -35,6 +35,7 @@
       email = "velen2077@proton.me";
       key = "8F1B8CFF76C80581";
     };
+    vscodium.enable = true;
     zsh.enable = true;
   };
 }

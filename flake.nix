@@ -26,6 +26,8 @@
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     # Nix color scheming.
     nix-colors.url = "github:misterio77/nix-colors";
+    # Stylix, for global themeing.
+    stylix.url = "github:danth/stylix";
     # Home Manager.
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -57,6 +59,7 @@
     home-manager,
     chaotic,
     plasma-manager,
+    stylix,
     ...
   }: {
     nixosConfigurations = {
@@ -73,6 +76,7 @@
             ./hosts/${hostname}/configuration.nix
             chaotic.nixosModules.default
             home-manager.nixosModules.home-manager
+            stylix.nixosModules.stylix
             {
               home-manager.backupFileExtension = "backup";
               home-manager.useGlobalPkgs = true;
