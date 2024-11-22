@@ -24,6 +24,7 @@ in {
       ];
       userSettings = {
         "git.confirmSync" = "false";
+        "git.enableSmartCommit" = "true";
       };
     };
   };
