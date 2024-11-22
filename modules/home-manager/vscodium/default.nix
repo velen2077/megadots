@@ -22,6 +22,9 @@ in {
         jnoortheen.nix-ide
         yzhang.markdown-all-in-one
       ];
+      userSettings = {
+        "git.confirmSync" = "false";
+      };
     };
   };
 }
