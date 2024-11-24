@@ -31,7 +31,7 @@
     gaming.enable = true;
     gnome.enable = true;
     kernel = {
-      cachy.enable = true;
+      cachy.enable = false;
     };
     nvidia.enable = true;
     packages.enable = true;

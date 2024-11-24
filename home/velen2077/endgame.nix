@@ -18,4 +18,33 @@
     vscodium.enable = true;
     zsh.enable = true;
   };
+
+  programs.git = {
+    enable = true;
+    userName = "velen2077";
+    userEmail = "velen2077@proton.me";
+    aliases = {};
+    extraConfig = {
+      log.showSignature = "true";
+      init.defaultBranch = "main";
+      pull.rebase = "true";
+      commit.gpgsign = true;
+      #gpg.format = "gpg";
+      user.signing.key = "8F1B8CFF76C80581";
+      # Taken from https://github.com/clemak27/homecfg/blob/16b86b04bac539a7c9eaf83e9fef4c813c7dce63/modules/git/ssh_signing.nix#L14
+      #gpg.ssh.allowedSignersFile = "${config.home.homeDirectory}/.ssh/allowed_signers";
+
+      #save.directory = "${config.home.homeDirectory}/sync/obsidian-vault-01/wiki";
+    };
+    signing = {
+      signByDefault = true;
+      key = "8F1B8CFF76C80581";
+    };
+    ignores = [
+      ".csvignore"
+      ".direnv"
+      "result"
+      "*.qcow2"
+    ];
+  };
 }

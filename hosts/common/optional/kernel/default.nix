@@ -8,12 +8,11 @@
 with lib; let
   cfg = config.megadots.nixos.optional.kernel.cachy;
 in {
-  #imports = [inputs.chaotic.nixosModules.default];
   options.megadots.nixos.optional.kernel.cachy = {
     enable = mkEnableOption "Enable CachyOS kernel.";
   };
   config = mkIf cfg.enable {
-    #chaotic.nyx.overlay.enable = true;
+    chaotic.nyx.overlay.enable = true;
     chaotic.scx = {
       enable = true;
       package = pkgs.scx_git.lavd;
