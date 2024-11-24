@@ -5,6 +5,9 @@
   ...
 }: {
   imports = [
+    # Import common hardware files for CPU and SSD.
+    inputs.hardware.nixosModules.common-cpu-amd
+    inputs.hardware.nixosModules.common-pc-ssd
     # Import my host-specific hardware configuration.
     ./hardware-configuration.nix
     # Import all NixOS modules to apply them based on
