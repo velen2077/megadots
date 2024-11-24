@@ -38,6 +38,7 @@
   networking = {
     hostName = "endgame";
     useDHCP = lib.mkDefault true;
+    domain = "extranet.click";
   };
 
   # Apply Stylix styling to this system for colour scheming
