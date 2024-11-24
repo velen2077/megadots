@@ -14,7 +14,12 @@ in {
   };
   config = mkIf cfg.enable {
     #chaotic.nyx.overlay.enable = true;
+    chaotic.scx = {
+      enable = true;
+      package = pkgs.scx_git.lavd;
+      scheduler = "scx_lavd";
+    };
     boot.kernelPackages = pkgs.linuxPackages_cachyos;
-    boot.kernelParams = ["quiet"];
+    #boot.kernelParams = ["quiet"];
   };
 }

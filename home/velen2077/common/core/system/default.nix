@@ -33,7 +33,7 @@
   home = {
     username = lib.mkDefault "velen2077";
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
-    stateVersion = lib.mkDefault "25.05";
+    stateVersion = lib.mkDefault "24.11";
     sessionPath = ["$HOME/.local/bin"];
     sessionVariables = {
       FLAKE = "$HOME/Development/megadots";
