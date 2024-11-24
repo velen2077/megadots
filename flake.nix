@@ -53,39 +53,44 @@
     };
   };
 
-  outputs = inputs @ {
+  outputs = {
     self,
     nixpkgs,
     home-manager,
     chaotic,
-    plasma-manager,
     stylix,
+    systems,
     ...
-  }: {
+  } @ inputs: let
+    inherit (self) outputs;
+    lib = nixpkgs.lib // home-manager.lib;
+    forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
+    pkgsFor = lib.genAttrs (import systems) (
+      system:
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        }
+    );
+  in {
+    inherit lib;
+    nixosModules = import ./modules/nixos;
+    homeManagerModules = import ./modules/home-manager;
+    overlays = import ./overlays {inherit inputs outputs;};
+    packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
+    formatter = forEachSystem (pkgs: pkgs.alejandra);
+
+    # Entry points for system configurations with
+    # Home Manager loaded as a system module.
     nixosConfigurations = {
-      endgame = let
-        username = "velen2077";
-        hostname = "endgame";
-        stateVersion = "25.05";
-        specialArgs = {inherit inputs username hostname stateVersion;};
-      in
-        nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
-          system = "x86_64-linux";
-          modules = [
-            ./hosts/${hostname}/configuration.nix
-            chaotic.nixosModules.default
-            home-manager.nixosModules.home-manager
-            stylix.nixosModules.stylix
-            {
-              home-manager.backupFileExtension = "backup";
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = inputs // specialArgs;
-              home-manager.users.${username} = import ./users/${username}/home.nix;
-            }
-          ];
+      # My primary system, endgame. Desktop with nvidia
+      # graphics card.
+      endgame = lib.nixosSystem {
+        modules = [./hosts/endgame];
+        specialArgs = {
+          inherit inputs outputs;
         };
+      };
     };
   };
 }

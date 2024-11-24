@@ -32,35 +32,28 @@ I use the following structure to organise my configurations.
 
 ```
 .
-├── assets                                  # Additional artefacts such as wallpapers and logos.
-│   └── images                              # Stores images used in this repo (logo).
-├── flake.lock                              # My flake lock file.
-├── flake.nix                               # My flake containing entry points for system configs.
-├── hosts                                   # Folder containing a subfolder for each host to configure.
-│   └── endgame                             # My config folder for my primary desktop computer.
-│       ├── configuration.nix               # My config file for my primary desktop computer.
-│       └── hardware-configuration.nix      # My hardware config for my primary desktop computer.
-├── modules                                 # Contains all NixOS and Home Manager modules in subfolders.
-│   ├── home-manager                        # Contains all Home Manager modules that I use.
-│   │   ├── alacritty                       # My custom alacritty module.
-│   │   ├── firefox                         # My custom firefox module.
-│   │   ├── git                             # My custom git module.
-│   │   ├── gnome                           # My custom gnome module.
-│   │   └── zsh                             # My custom zsh module.
-│   │   └── default.nix                     # Import file for Home Manager modules (imports all modules).
-│   └── nixos                               # Contains all NixOS modules that I use.
-│       ├── audio                           # My custom audio module.
-│       ├── bluetooth                       # My custom bluetooth module.
-│       ├── gaming                          # My custom gaming module.
-│       ├── gnome                           # My custom gnome module.
-│       ├── kde                             # My custom kde module.
-│       ├── kernel                          # My custom kernel module.
-│       ├── nvidia                          # My custom nvidia module.
-│       └── packages                        # My custom packages module.
-│       └── default.nix                     # Import file for NixOS modules (imports all modules)..
-└── users                                   # Folder containing a home config subfolder for each user.
-    └── velen2077                           # Folder for my primary user.
-        └── home.nix                        # My Home Manager configuration for my primary user.
+├── flake.nix             # My flake. Entry point for system configs.
+├── assets                # Stores additional items such as wallpapers and avatars.
+│   ├── avatars           # User avatars/profile pictures.
+│   ├── images            # Images used for this repo, such as logos.
+│   └── wallpapers        # Wallpapers I used on my system that are used by Stylix.
+├── home                  # Home folder that contains a folder for each Home Manager user.
+│   └── velen2077         # My primary user, managed by Home Manager.
+│       └── common        # Common app settings to apply for this user, some optional, some core.
+│           ├── core      # Core Home Manager modules, all imported and applied to the user.
+│           └── optional  # Optional Home Manager modules, all imported and toggled with options.
+├── hosts                 # Hosts folder, containing a subfolder for each host.
+│   ├── common            # Common app/features for system configs.
+│   │   ├── core          # Core system modules, to apply on every system.
+│   │   ├── optional      # Optional system modules, all imported, and toggled with options.
+│   │   └── users         # User settings to apply on selected systems.
+│   └── endgame           # The configuration for my primary system.
+├── lib                   # Lib folder for custom lib functions.
+├── modules               # Modules folder, containing a subfolder for both NixOS and Home Manager.
+│   ├── home-manager      # Custom-written and sharable Home Manager modules.
+│   └── nixos             # Custom-written and sharable NixOS modules.
+├── overlays              # Overlays folder containing any patches or overrides.
+├── pkgs                  # Pkgs folder for storing any custom packaged apps.
 ```
 
 ## mega-thanks
@@ -68,6 +61,8 @@ I use the following structure to organise my configurations.
 I learn by doing. None of this would be possible without the copious ammounts of developers and repos that share their content freely for others like me to disect and study. There are many, but to name a few - shout outs go to:
 
 [ryan4yin](https://github.com/ryan4yin/) for their [awesome book](https://nixos-and-flakes.thiscute.world/) on NixOS (if you haven't started here, then give it a whirl - it really was great) and the [i3 Kickstarter repo](https://github.com/ryan4yin/nix-config/blob/i3-kickstarter/). Both excellent resources to help me understand the power of NixOS.
+
+The majority of my config structure was heavily influenced by the awesome [Misterio77](https://github.com/Misterio77/). Not only did he's [Nix Starter Configs](https://github.com/Misterio77/nix-starter-configs) help guide me early on, but his own [Nix Config](https://github.com/Misterio77/nix-config/tree/main) repo was a great inspiration on how to construct and model a modular Nix configuration.
 
 #### And more inspiration...
 
