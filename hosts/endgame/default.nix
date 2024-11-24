@@ -37,6 +37,13 @@
     packages.enable = true;
   };
 
+  # Set the bootloader preferences.
+  boot = {
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+    loader.systemd-boot.editor = false;
+  };
+
   # Set the hostname for this system.
   networking = {
     hostName = "endgame";
