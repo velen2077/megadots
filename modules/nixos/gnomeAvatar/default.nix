@@ -1,3 +1,8 @@
+# This is a custom module used to apply a GDM logon screen
+# avatar/profile picture. It was taken from the issue log
+# here: https://github.com/NixOS/nixpkgs/issues/163080#issuecomment-1722465663
+# created by jonathan-condor. Requires the 'icon' attribute to
+# be set on the user.users.<username> option.
 {
   config,
   lib,

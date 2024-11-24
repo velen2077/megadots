@@ -1,6 +1,4 @@
-#
-# This file defines overlays/custom modifications to upstream packages
-#
+# Patches and version overrides for some packages. Accessible via nix build.
 {inputs, ...}: {
   # This one brings our custom packages from the 'pkgs' directory
   additions = final: _prev: import ../pkgs {pkgs = final;};
@@ -21,7 +19,7 @@
   };
 
   #
-  # Convenient access to stable or unstable nixpkgs regardless
+  # Convenient access to stable or unstable nixpkgs regardless.
   #
   # When applied, the nixpkgs-stable set (declared in the flake inputs) will
   # be accessible through 'pkgs.stable'. Likewise, the nixpkgs-unstable set

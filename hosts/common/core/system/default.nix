@@ -22,11 +22,6 @@
     };
   };
 
-  networking = {
-    hostName = "endgame";
-    useDHCP = lib.mkDefault true;
-  };
-
   programs = {
     adb.enable = true;
     dconf.enable = true;

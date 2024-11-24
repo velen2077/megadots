@@ -80,8 +80,11 @@
     packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
     formatter = forEachSystem (pkgs: pkgs.alejandra);
 
+    # Entry points for system configurations with
+    # Home Manager loaded as a system module.
     nixosConfigurations = {
-      # Main desktop
+      # My primary system, endgame. Desktop with nvidia
+      # graphics card.
       endgame = lib.nixosSystem {
         modules = [./hosts/endgame];
         specialArgs = {
