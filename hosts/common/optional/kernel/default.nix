@@ -12,6 +12,7 @@ in {
     enable = mkEnableOption "Enable CachyOS kernel.";
   };
   config = mkIf cfg.enable {
+    chaotic.nyx.cache.enable = true;
     chaotic.nyx.overlay.enable = true;
     chaotic.scx = {
       enable = true;
