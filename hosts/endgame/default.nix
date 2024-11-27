@@ -29,7 +29,8 @@
   # off using the appropriate option.
   megadots.nixos.optional = {
     gaming.enable = true;
-    gnome.enable = true;
+    gnome.enable = false;
+    kde.enable = true;
     kernel = {
       cachy.enable = false;
     };

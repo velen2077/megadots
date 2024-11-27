@@ -8,6 +8,7 @@
   imports = [
     inputs.home-manager.nixosModules.home-manager
     inputs.chaotic.nixosModules.default
+    inputs.sops-nix.nixosModules.sops
     inputs.stylix.nixosModules.stylix
   ];
 

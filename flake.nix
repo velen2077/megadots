@@ -58,6 +58,7 @@
     nixpkgs,
     home-manager,
     chaotic,
+    sops-nix,
     stylix,
     systems,
     ...
