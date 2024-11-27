@@ -7,6 +7,7 @@
 }: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
+    inputs.disko.nixosModules.disko
     inputs.chaotic.nixosModules.default
     inputs.sops-nix.nixosModules.sops
     inputs.stylix.nixosModules.stylix

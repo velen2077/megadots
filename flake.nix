@@ -20,6 +20,11 @@
   inputs = {
     # Nix ecosystem.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # Disko disk partitioning.
+    disko = {
+      url = "github:nix-community/disko/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Common hardware.
     hardware.url = "github:nixos/nixos-hardware";
     # Chaotic inputs for CachyOS and Zen kernels.
@@ -57,6 +62,7 @@
     self,
     nixpkgs,
     home-manager,
+    disko,
     chaotic,
     sops-nix,
     stylix,
@@ -88,6 +94,12 @@
       # graphics card.
       endgame = lib.nixosSystem {
         modules = [./hosts/endgame];
+        specialArgs = {
+          inherit inputs outputs;
+        };
+      };
+      surface = lib.nixosSystem {
+        modules = [./hosts/surface];
         specialArgs = {
           inherit inputs outputs;
         };

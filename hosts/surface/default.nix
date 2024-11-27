@@ -6,10 +6,13 @@
 }: {
   imports = [
     # Import common hardware files for CPU and SSD.
-    inputs.hardware.nixosModules.common-cpu-amd
+    inputs.hardware.nixosModules.common-cpu-intel
     inputs.hardware.nixosModules.common-pc-ssd
+    inputs.hardware.nixosModules.microsoft-surface-common
     # Import my host-specific hardware configuration.
     ./hardware-configuration.nix
+    # Import disko config.
+    ./disk-config.nix
     # Import all NixOS modules to apply them based on
     # the megadots option toggles.
     ../../modules/nixos
@@ -28,13 +31,13 @@
   # be loaded at import, and they can be toggled on or
   # off using the appropriate option.
   megadots.nixos.optional = {
-    gaming.enable = true;
+    gaming.enable = false;
     gnome.enable = true;
     kde.enable = false;
     kernel = {
       cachy.enable = false;
     };
-    nvidia.enable = true;
+    nvidia.enable = false;
     packages.enable = true;
   };
 
@@ -43,11 +46,28 @@
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
     loader.systemd-boot.editor = false;
+
+    # kernelParams = [
+    #   "resume_offset=533760"
+    # ];
+    # blacklistedKernelModules = [
+    #   "ath12k_pci"
+    #   "ath12k"
+    # ];
+
+    supportedFilesystems = lib.mkForce ["btrfs"];
+    #kernelPackages = pkgs.linuxPackages_latest;
+    resumeDevice = "/dev/disk/by-label/nixos";
+
+    initrd = {
+      supportedFilesystems = ["nfs"];
+      kernelModules = ["nfs"];
+    };
   };
 
   # Set the hostname for this system.
   networking = {
-    hostName = "endgame";
+    hostName = "surface";
     useDHCP = lib.mkDefault true;
     domain = "extranet.click";
   };
