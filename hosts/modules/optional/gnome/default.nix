@@ -22,23 +22,23 @@ in {
       gnome-photos
       gnome-tour
       gedit
-      gnome.cheese # webcam tool
-      gnome.gnome-music
+      cheese # webcam tool
+      gnome-music
       # text editor
       epiphany # web browser
-      gnome.geary # email reader
-      gnome.gnome-characters
-      gnome.tali # poker game
-      gnome.iagno # go game
-      gnome.hitori # sudoku game
-      gnome.atomix # puzzle game
-      gnome.yelp # Help view
-      gnome.gnome-contacts
-      gnome.gnome-initial-setup
+      geary # email reader
+      gnome-characters
+      tali # poker game
+      iagno # go game
+      hitori # sudoku game
+      atomix # puzzle game
+      yelp # Help view
+      gnome-contacts
+      gnome-initial-setup
     ];
 
     environment.systemPackages = with pkgs; [
-      gnome.gnome-tweaks
+      gnome-tweaks
     ];
   };
 }

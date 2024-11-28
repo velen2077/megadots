@@ -19,7 +19,7 @@
   # functionality to my config.
   inputs = {
     # Nix ecosystem.
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     # Disko disk partitioning.
     disko = {
       url = "github:nix-community/disko/latest";

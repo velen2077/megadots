@@ -9,8 +9,8 @@
     inputs.home-manager.nixosModules.home-manager
     inputs.disko.nixosModules.disko
     inputs.chaotic.nixosModules.default
-    inputs.sops-nix.nixosModules.sops
-    inputs.stylix.nixosModules.stylix
+    #inputs.sops-nix.nixosModules.sops
+    #inputs.stylix.nixosModules.stylix
   ];
 
   # home-manager = {
@@ -30,7 +30,7 @@
     dconf.enable = true;
   };
 
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
   hardware.enableRedistributableFirmware = true;
 
   # Increase open file limit for sudoers
