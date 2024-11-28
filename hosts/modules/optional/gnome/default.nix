@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.megadots.gnome;
+  cfg = config.megadots.host.optional.gnome;
 in {
-  options.megadots.gnome = {
+  options.megadots.host.optional.gnome = {
     enable = mkEnableOption "Enable the GNOME desktop environment.";
   };
 
@@ -22,23 +22,23 @@ in {
       gnome-photos
       gnome-tour
       gedit
-      cheese # webcam tool
-      gnome-music
+      gnome.cheese # webcam tool
+      gnome.gnome-music
       # text editor
       epiphany # web browser
-      geary # email reader
-      gnome-characters
-      tali # poker game
-      iagno # go game
-      hitori # sudoku game
-      atomix # puzzle game
-      yelp # Help view
-      gnome-contacts
-      gnome-initial-setup
+      gnome.geary # email reader
+      gnome.gnome-characters
+      gnome.tali # poker game
+      gnome.iagno # go game
+      gnome.hitori # sudoku game
+      gnome.atomix # puzzle game
+      gnome.yelp # Help view
+      gnome.gnome-contacts
+      gnome.gnome-initial-setup
     ];
 
     environment.systemPackages = with pkgs; [
-      gnome-tweaks
+      gnome.gnome-tweaks
     ];
   };
 }

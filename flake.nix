@@ -19,7 +19,12 @@
   # functionality to my config.
   inputs = {
     # Nix ecosystem.
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    # Disko disk partitioning.
+    disko = {
+      url = "github:nix-community/disko/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Common hardware.
     hardware.url = "github:nixos/nixos-hardware";
     # Chaotic inputs for CachyOS and Zen kernels.
@@ -30,7 +35,7 @@
     stylix.url = "github:danth/stylix";
     # Home Manager.
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # KDE Plasma manager.
@@ -53,39 +58,47 @@
     };
   };
 
-  outputs = inputs @ {
+  outputs = {
     self,
     nixpkgs,
     home-manager,
+    disko,
     chaotic,
-    plasma-manager,
+    sops-nix,
     stylix,
+    systems,
     ...
-  }: {
+  } @ inputs: let
+    inherit (self) outputs;
+    lib = nixpkgs.lib // home-manager.lib;
+    forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
+    pkgsFor = lib.genAttrs (import systems) (
+      system:
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        }
+    );
+  in {
+    inherit lib;
+    nixosModules = import ./modules/nixos;
+    nixosModulesCommon = import ./hosts/modules/common;
+    nixosModulesOptional = import ./hosts/modules/optional;
+    nixosModulesUsers = import ./hosts/modules/users;
+    homeManagerModules = import ./modules/home-manager;
+    formatter = forEachSystem (pkgs: pkgs.alejandra);
+
+    # Entry points for system configurations with
+    # Home Manager loaded as a system module.
     nixosConfigurations = {
-      endgame = let
-        username = "velen2077";
-        hostname = "endgame";
-        stateVersion = "25.05";
-        specialArgs = {inherit inputs username hostname stateVersion;};
-      in
-        nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
-          system = "x86_64-linux";
-          modules = [
-            ./hosts/${hostname}/configuration.nix
-            chaotic.nixosModules.default
-            home-manager.nixosModules.home-manager
-            stylix.nixosModules.stylix
-            {
-              home-manager.backupFileExtension = "backup";
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = inputs // specialArgs;
-              home-manager.users.${username} = import ./users/${username}/home.nix;
-            }
-          ];
+      # My primary system, endgame. Desktop with nvidia
+      # graphics card.
+      endgame = lib.nixosSystem {
+        modules = [./hosts/endgame/configuration.nix];
+        specialArgs = {
+          inherit inputs outputs;
         };
+      };
     };
   };
 }
