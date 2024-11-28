@@ -44,6 +44,7 @@
     # directory and toggled using the relevant options.
     optional = {
       gnome.enable = true;
+      packages.enable = true;
     };
   };
   # Set the bootloader preferences.
