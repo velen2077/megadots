@@ -34,8 +34,6 @@ in {
       tree
       unzip
       vim
-      #FIXME move to Home Manager.
-      telegram-desktop
     ];
   };
 }
