@@ -14,6 +14,7 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       age
+      alejandra
       btop
       eza
       fastfetch
@@ -33,6 +34,8 @@ in {
       tree
       unzip
       vim
+      #FIXME move to Home Manager.
+      telegram-desktop
     ];
   };
 }
