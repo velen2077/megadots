@@ -16,9 +16,21 @@
     desktop = {
       gnome.enable = true;
     };
+    hardware = {
+      audio.enable = true;
+      bluetooth.enable = true;
+      nvidia.enable = true;
+    };
     packages = {
       common.enable = true;
       development.enable = true;
+      gaming.enable = true;
+    };
+    security = {
+      firewall.enable = true;
+    };
+    services = {
+      ssh.enable = true;
     };
     system = {
       boot.enable = true;

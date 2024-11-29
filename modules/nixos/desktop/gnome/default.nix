@@ -47,18 +47,6 @@ in {
         # Show all three button layers
         [org.gnome.desktop.wm.preferences]
         button-layout='appmenu:minimize,maximize,close'
-
-        # Shitty monospace font to JetBrains Mono
-        [org.gnome.desktop.interface]
-        monospace-font-name='JetBrainsMono Nerd Font 10'
-
-        # Don't hibernate on delay
-        [org.gnome.settings-daemon.plugins.power]
-        sleep-inactive-ac-type='nothing'
-
-        # Don't sleep, don't sleep!
-        [org.gnome.desktop.session]
-        idle-delay=0
       ";
 
       extraGSettingsOverridePackages = [

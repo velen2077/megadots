@@ -10,12 +10,20 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Chaotic inputs for CachyOS and Zen kernels.
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+
+    # Firefox addons to support my Firefox
+    # Home Manager module. These allow installation
+    # of Firefox Extensions such as uBlock Origin.
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:
@@ -34,6 +42,13 @@
       # Instead of accessing packages with `pkgs.<name>`, your internal packages
       # will be available at `pkgs.<namespace>.<name>`.
       snowfall.namespace = "megadots";
+
+      # The attribute set specified here will be passed directly to NixPkgs when
+      # instantiating the package set.
+      channels-config = {
+        # Allow unfree packages.
+        allowUnfree = true;
+      };
 
       # Add overlays for the `nixpkgs` channel.
       overlays = with inputs; [

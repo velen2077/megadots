@@ -23,6 +23,9 @@ in {
       createHome = true;
       shell = pkgs.zsh;
       packages = with pkgs; [zsh];
+      openssh.authorizedKeys.keys = [
+        (builtins.readFile ./id_ed25519.pub)
+      ];
     };
     programs.zsh.enable = true;
   };
