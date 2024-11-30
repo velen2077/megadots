@@ -22,6 +22,7 @@ in {
       gnupg
       home-manager
       jq
+      just
       libnotify
       nh
       nix-index
