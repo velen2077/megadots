@@ -43,7 +43,7 @@
     };
     system = {
       boot.enable = true;
-      cachy-kernel.enable = false;
+      cachy-kernel.enable = true;
       impermanence.enable = true;
       locale.enable = true;
       nix = {

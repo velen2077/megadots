@@ -20,9 +20,6 @@
       };
       zsh.enable = true;
     };
-    system = {
-      impermanence.enable = false;
-    };
   };
 
   # Packages that should be installed to the user profile.

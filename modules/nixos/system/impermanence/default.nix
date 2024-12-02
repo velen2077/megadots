@@ -67,7 +67,7 @@ in {
       '';
     };
 
-    environment.persistence."/persist" = {
+    environment.persistence."/persist/system" = {
       hideMounts = true;
       directories = [
         "/srv"

@@ -14,11 +14,7 @@ in {
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
     boot.kernelParams = [
-      "nouveau.modeset=0"
-      "amdgpu.modeset=0"
-      "module_blacklist=i915"
-      "module_blacklist=amdgpu"
-      "module_blacklist=nouveau"
+      "quiet"
     ];
   };
 }
