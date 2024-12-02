@@ -71,6 +71,12 @@
       systems.modules.nixos = with inputs; [
         chaotic.nixosModules.default
         disko.nixosModules.disko
+        impermanence.nixosModules.impermanence
       ];
+
+      # Add modules to a specific home.
+      homes.users."velen2077@endgame".specialArgs = {
+          username = "velen2077";
+      };
     };
 }
