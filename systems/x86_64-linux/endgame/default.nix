@@ -15,7 +15,7 @@
     # Import disko config.
     ./disk-config.nix
     # Import impermanence settings.
-    ./impermanence.nix
+    # ./impermanence.nix
     # Import common hardware files for CPU and SSD.
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-pc-ssd
@@ -43,7 +43,7 @@
     };
     system = {
       boot.enable = true;
-      cachy-kernel.enable = true;
+      cachy-kernel.enable = false;
       impermanence.enable = true;
       locale.enable = true;
       nix = {
