@@ -21,7 +21,7 @@
       zsh.enable = true;
     };
     system = {
-      impermanence.enable = true;
+      impermanence.enable = false;
     };
   };
 
