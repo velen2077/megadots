@@ -18,10 +18,10 @@
         username = "velen2077";
         email = "velen2077@proton.me";
       };
-      system = {
-        impermanence.enable = true;
-      };
       zsh.enable = true;
+    };
+    system = {
+      impermanence.enable = true;
     };
   };
 

@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  username,
   ...
 }:
 with lib; let
@@ -13,7 +12,7 @@ in {
 
   config = mkIf cfg.enable {
     home.persistence = {
-      "/persist/home/${username}" = {
+      "/persist/home/velen2077" = {
         allowOther = true;
 
         directories = [

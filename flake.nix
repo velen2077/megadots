@@ -71,12 +71,14 @@
       systems.modules.nixos = with inputs; [
         chaotic.nixosModules.default
         disko.nixosModules.disko
+        home-manager.nixosModules.home-manager
+        {home-manager.backupFileExtension = "hm-backup";}
         impermanence.nixosModules.impermanence
       ];
 
-      # Add modules to a specific home.
-      homes.users."velen2077@endgame".specialArgs = {
-          username = "velen2077";
-      };
+      # Add modules to all homes.
+      homes.modules = with inputs; [
+        impermanence.homeManagerModules.impermanence
+      ];
     };
 }
