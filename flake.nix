@@ -14,6 +14,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # NixOS Impermanence module.
+    impermanence.url = "github:nix-community/impermanence";
+
+    # Disko disk partitioning.
+    disko = {
+      url = "github:nix-community/disko/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Common hardware.
+    hardware.url = "github:nixos/nixos-hardware";
+
     # Chaotic inputs for CachyOS and Zen kernels.
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
@@ -58,6 +70,7 @@
       # Add modules to all NixOS systems.
       systems.modules.nixos = with inputs; [
         chaotic.nixosModules.default
+        disko.nixosModules.disko
       ];
     };
 }
