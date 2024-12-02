@@ -29,15 +29,6 @@ in {
         Specify the email address of the git user.
       ";
     };
-    # GPG signing key option for git user.email.
-    key = mkOption {
-      type = types.str;
-      default = "";
-      example = "8F1B8CFF76C80581";
-      description = "
-        Specify the GPG signing key of the git user.
-      ";
-    };
   };
   config = mkIf cfg.enable {
     programs = {
@@ -54,12 +45,16 @@ in {
         extraConfig = {
           init.defaultBranch = "main";
           pull.rebase = false;
+          # Sign all commits using ssh key
+          commit.gpgsign = true;
+          gpg.format = "ssh";
+          user.signingkey = "~/.ssh/id_ed25519.pub";
         };
 
-        signing = {
-          key = cfg.key;
-          signByDefault = true;
-        };
+        #signing = {
+        #  key = cfg.key;
+        #  signByDefault = true;
+        #};
 
         aliases = {
           s = "status";
