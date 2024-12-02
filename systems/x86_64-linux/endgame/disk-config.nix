@@ -1,3 +1,4 @@
+# disko configuration for endgame with btrfs and LUKS.
 {
   disko.devices = {
     disk = {
