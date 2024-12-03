@@ -43,6 +43,10 @@ in {
           ".mozilla"
           ".config/vesktop"
           ".config/VSCodium"
+          ".config/sunshine"
+          ".cache/mozilla"
+          ".local/share/Steam"
+          ".local/share/direnv"
           {
             directory = ".gnupg";
             mode = "0700";
@@ -59,7 +63,6 @@ in {
             directory = ".local/share/keyrings";
             mode = "0700";
           }
-          ".local/share/direnv"
         ];
         files = [
           ".screenrc"
