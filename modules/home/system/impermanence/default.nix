@@ -20,6 +20,7 @@ in {
         "Pictures"
         "Templates"
         "Videos"
+        ".config/vesktop"
         # GPG keys and metadata.
         ".gnupg"
         # SSH keys and config.
