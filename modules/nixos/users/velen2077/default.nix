@@ -66,7 +66,7 @@ in {
         ];
         files = [
           ".screenrc"
-          ".zshenv"
+          #".zshenv"
           ".zsh_history"
         ];
       };
