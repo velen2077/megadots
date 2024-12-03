@@ -37,7 +37,10 @@ in {
           "Pictures"
           "Documents"
           "Videos"
-          "VirtualBox VMs"
+          "Templates"
+          ".mozilla"
+          ".config/vesktop"
+          ".config/VSCodium"
           {
             directory = ".gnupg";
             mode = "0700";
