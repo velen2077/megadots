@@ -29,6 +29,8 @@ in {
     };
     programs.zsh.enable = true;
     environment.persistence."/persist" = {
+      enable = true; # NB: Defaults to true, not needed
+      hideMounts = true;
       users.velen2077 = {
         directories = [
           "Development"
