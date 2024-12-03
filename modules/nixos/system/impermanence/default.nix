@@ -74,11 +74,11 @@ in {
       hideMounts = true;
       directories = [
         "/srv"
-        "/.cache/nix/"
+        "/.cache/nix"
         "/etc/NetworkManager/system-connections"
-        "/var/cache/"
-        "/var/db/sudo/"
-        "/var/lib/"
+        "/var/cache"
+        "/var/db/sudo"
+        "/var/lib"
       ];
       files = [
         "/etc/machine-id"
