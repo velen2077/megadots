@@ -16,7 +16,7 @@ in {
       Defaults lecture = never
     '';
 
-    # programs.fuse.userAllowOther = true;
+    programs.fuse.userAllowOther = true;
 
     # This script does the actual wipe of the system
     # So if it doesn't run, the btrfs system effectively acts like a normal system

@@ -14,8 +14,6 @@
     ./hardware-configuration.nix
     # Import disko config.
     ./disk-config.nix
-    # Import impermanence settings.
-    # ./impermanence.nix
     # Import common hardware files for CPU and SSD.
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-pc-ssd

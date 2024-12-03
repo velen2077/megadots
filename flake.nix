@@ -76,7 +76,7 @@
 
       # Add modules to all homes.
       homes.modules = with inputs; [
-        # impermanence.homeManagerModules.impermanence
+        impermanence.homeManagerModules.impermanence
       ];
     };
 }
