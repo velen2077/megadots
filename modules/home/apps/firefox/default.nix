@@ -139,5 +139,12 @@ in {
       };
 
     home.file.".mozilla/firefox/default/extension-preferences.json".force = true;
+
+    xdg.mimeApps.defaultApplications = {
+      "x-scheme-handler/http" = ["firefox.desktop"];
+      "x-scheme-handler/https" = ["firefox.desktop"];
+      "text/html" = ["firefox.desktop"];
+      "application/pdf" = ["firefox.desktop"];
+    };
   };
 }

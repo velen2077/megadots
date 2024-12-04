@@ -20,6 +20,9 @@
   ];
 
   megadots.nixos = {
+    apps = {
+      sunshine.enable = true;
+    };
     desktop = {
       gnome.enable = true;
     };

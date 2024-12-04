@@ -23,6 +23,7 @@ in {
       createHome = true;
       shell = pkgs.zsh;
       packages = with pkgs; [zsh];
+      icon = mkIf (config.megadots.nixos.desktop.gnome.enable) ../../../../assets/avatars/velen2077.png;
       openssh.authorizedKeys.keys = [
         (builtins.readFile ./id_ed25519.pub)
       ];
