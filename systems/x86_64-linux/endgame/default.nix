@@ -50,6 +50,11 @@
         enable = true;
         stateVersion = "24.11";
       };
+      theme = {
+        enable = true;
+        wallpaper = ../../../assets/wallpapers/monokai.jpeg;
+        darkmode = false;
+      };
       virtualisation.enable = true;
     };
     users = {

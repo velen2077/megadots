@@ -14,8 +14,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # NixOS Impermanence module.
-    impermanence.url = "github:nix-community/impermanence";
+    # Stylix, for global themeing.
+    stylix.url = "github:danth/stylix/release-24.11";
 
     # Disko disk partitioning.
     disko = {
@@ -71,6 +71,7 @@
       systems.modules.nixos = with inputs; [
         chaotic.nixosModules.default
         disko.nixosModules.disko
+        stylix.nixosModules.stylix
       ];
 
       # Add modules to all homes.
