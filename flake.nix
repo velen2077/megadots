@@ -71,7 +71,6 @@
       systems.modules.nixos = with inputs; [
         chaotic.nixosModules.default
         disko.nixosModules.disko
-        impermanence.nixosModules.impermanence
       ];
 
       # Add modules to all homes.

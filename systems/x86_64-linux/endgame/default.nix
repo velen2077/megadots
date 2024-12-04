@@ -42,7 +42,6 @@
     system = {
       boot.enable = true;
       cachy-kernel.enable = false;
-      impermanence.enable = true;
       locale.enable = true;
       nix = {
         enable = true;

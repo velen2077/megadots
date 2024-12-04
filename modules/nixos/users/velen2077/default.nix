@@ -28,48 +28,5 @@ in {
       ];
     };
     programs.zsh.enable = true;
-    environment.persistence."/persist" = {
-      enable = true; # NB: Defaults to true, not needed
-      hideMounts = true;
-      users.velen2077 = {
-        directories = [
-          "Development"
-          "Downloads"
-          "Music"
-          "Pictures"
-          "Documents"
-          "Videos"
-          "Templates"
-          ".mozilla"
-          ".config/vesktop"
-          ".config/VSCodium"
-          ".config/sunshine"
-          ".cache/mozilla"
-          ".local/share/Steam"
-          ".local/share/direnv"
-          {
-            directory = ".gnupg";
-            mode = "0700";
-          }
-          {
-            directory = ".ssh";
-            mode = "0700";
-          }
-          {
-            directory = ".nixops";
-            mode = "0700";
-          }
-          {
-            directory = ".local/share/keyrings";
-            mode = "0700";
-          }
-        ];
-        files = [
-          ".screenrc"
-          #".zshenv"
-          ".zsh_history"
-        ];
-      };
-    };
   };
 }
