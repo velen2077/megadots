@@ -35,7 +35,7 @@ in {
   config = mkIf cfg.enable {
     # Apply Stylix styling to this system for colour scheming
     # and wallpaper. This applies globally to the system.
-    stylix.enable = true;
+    stylix.enable = false;
     stylix.autoEnable = true;
     stylix.image = mkIf (cfg.wallpaper != null) cfg.wallpaper;
     stylix.imageScalingMode = "fill";

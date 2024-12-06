@@ -13,6 +13,9 @@ in {
 
   config = mkIf cfg.enable {
     services.sunshine = {
+      package = pkgs.sunshine.override {
+        boost = pkgs.boost185;
+      };
       enable = true;
       autoStart = true;
       capSysAdmin = true;
