@@ -7,7 +7,7 @@
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-pc-ssd
 
-    # ../common/global
+    ./common
     # ../common/users/gabriel
 
     # ../common/optional/peripherals.nix
@@ -19,6 +19,12 @@
 
     # ../common/optional/starcitizen-fixes.nix
   ];
+
+  modules = {
+    users = {
+      velen2077.enable = true;
+    };
+  };
 
   environment.systemPackages = with pkgs; [
     hello
