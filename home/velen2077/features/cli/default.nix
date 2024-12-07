@@ -1,5 +1,5 @@
 {
   imports = [
-    ./velen2077
+    ./fish
   ];
 }

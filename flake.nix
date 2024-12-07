@@ -20,6 +20,12 @@
 
     hardware.url = "github:nixos/nixos-hardware";
 
+    # Disko disk partitioning.
+    disko = {
+      url = "github:nix-community/disko/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # impermanence.url = "github:nix-community/impermanence";
     impermanence.url = "github:misterio77/impermanence";
 

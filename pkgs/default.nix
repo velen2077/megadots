@@ -1,3 +1,2 @@
-{
-  # Pkgs go here.
+{pkgs ? import <nixpkgs> {}, ...}: rec {
 }

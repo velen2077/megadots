@@ -4,9 +4,9 @@
   ...
 }:
 with lib; let
-  cfg = config.module;
+  cfg = config.modules;
 in {
-  options.module = {
+  options.modules = {
     enable = mkEnableOption "Enable module.";
   };
 

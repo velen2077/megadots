@@ -3,7 +3,8 @@
   config,
   lib,
   ...
-}: let
+}:
+with lib; let
   cfg = config.modules.users.velen2077;
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in {
@@ -40,7 +41,7 @@ in {
       packages = [pkgs.home-manager];
     };
 
-    #home-manager.users.gabriel = import ../../../../home/gabriel/${config.networking.hostName}.nix;
+    home-manager.users.velen2077 = import ../../../../home/velen2077/${config.networking.hostName}.nix;
 
     security.pam.services = {
       #swaylock = {};

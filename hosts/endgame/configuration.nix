@@ -6,8 +6,9 @@
   imports = [
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-pc-ssd
+    inputs.disko.nixosModules.disko
 
-    ./common
+    ../common
     # ../common/users/gabriel
 
     # ../common/optional/peripherals.nix
@@ -21,6 +22,11 @@
   ];
 
   modules = {
+    bluetooth.enable = true;
+    firewall.enable = true;
+    pipewire.enable = true;
+    quietboot.enable = true;
+    virtualisation.enable = true;
     users = {
       velen2077.enable = true;
     };
