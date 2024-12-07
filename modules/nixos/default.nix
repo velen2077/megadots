@@ -1,7 +1,3 @@
 {
-  # Custom modules for NixOS get
-  # imported here.
-  imports = [
-    ./gnomeAvatar
-  ];
+  #fonts = import ./fonts.nix;
 }
