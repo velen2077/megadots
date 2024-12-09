@@ -4,6 +4,7 @@
     ./firewall
     ./pipewire
     ./quietboot
+    ./services
     ./virtualisation
   ];
 }

@@ -26,6 +26,9 @@
     firewall.enable = true;
     pipewire.enable = true;
     quietboot.enable = true;
+    services = {
+      polkit.enable = true;
+    };
     virtualisation.enable = true;
     users = {
       velen2077.enable = true;
