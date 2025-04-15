@@ -31,7 +31,7 @@
     pandoc
     rclone
     ripgrep
-    signal-desktop
+    signal-desktop-bin
     sops
     spicetify-cli
     spotify
