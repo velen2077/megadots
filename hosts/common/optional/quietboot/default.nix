@@ -11,9 +11,12 @@
   boot = {
     plymouth = {
       enable = true;
-      theme = "spinner-monochrome";
-      themePackages = [
-        (pkgs.plymouth-spinner-monochrome.override {inherit (config.boot.plymouth) logo;})
+      theme = "hexagon_dots";
+      themePackages = with pkgs; [
+        # By default we would install all themes
+        (adi1090x-plymouth-themes.override {
+          selected_themes = ["hexagon_dots"];
+        })
       ];
     };
     loader.timeout = 0;

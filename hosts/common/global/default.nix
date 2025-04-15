@@ -1,5 +1,6 @@
 # This file (and the global directory) holds config that i use on all hosts
 {
+  lib,
   inputs,
   outputs,
   ...
@@ -57,5 +58,5 @@
   ];
 
   # Cleanup stuff included by default
-  services.speechd.enable = false;
+  services.speechd.enable = lib.mkForce false;
 }

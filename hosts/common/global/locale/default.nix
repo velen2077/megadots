@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   # Set the time zone.
   time.timeZone = "Europe/London";
 
@@ -24,5 +28,5 @@
   };
 
   # Configure console keymap.
-  console.keyMap = "uk";
+  console.keyMap = lib.mkForce "uk";
 }
