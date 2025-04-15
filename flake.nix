@@ -8,45 +8,34 @@
   nixConfig = {
     extra-substituters = [
       "https://chaotic-nyx.cachix.org/"
+      "https://cosmic.cachix.org/"
     ];
     extra-trusted-public-keys = [
       "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+      "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
     ];
   };
 
-  # Inputs for my megadots configuration. These are used throughout
-  # NixOS and Home Manager and are always evolving as I add more
-  # functionality to my config.
   inputs = {
-    # Nix ecosystem.
+    # Nix ecosystem
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # Common hardware.
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
+    systems.url = "github:nix-systems/default-linux";
     hardware.url = "github:nixos/nixos-hardware";
-    # Chaotic inputs for CachyOS and Zen kernels.
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    # Nix color scheming.
-    nix-colors.url = "github:misterio77/nix-colors";
-    # Stylix, for global themeing.
-    stylix.url = "github:danth/stylix";
-    # Home Manager.
+    impermanence.url = "github:nix-community/impermanence";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # KDE Plasma manager.
-    plasma-manager = {
-      url = "github:nix-community/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
-    # Secrets management with SOPS and Nix.
     sops-nix = {
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Firefox addons to support my Firefox
-    # Home Manager module. These allow installation
-    # of Firefox Extensions such as uBlock Origin.
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # Third party programs, packaged with nix
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -57,8 +46,6 @@
     self,
     nixpkgs,
     home-manager,
-    chaotic,
-    stylix,
     systems,
     ...
   } @ inputs: let
@@ -80,11 +67,8 @@
     packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
     formatter = forEachSystem (pkgs: pkgs.alejandra);
 
-    # Entry points for system configurations with
-    # Home Manager loaded as a system module.
     nixosConfigurations = {
-      # My primary system, endgame. Desktop with nvidia
-      # graphics card.
+      # Main desktop
       endgame = lib.nixosSystem {
         modules = [./hosts/endgame];
         specialArgs = {

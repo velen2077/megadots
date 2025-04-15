@@ -1,44 +1,17 @@
 {
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-with lib; let
-  cfg = config.megadots.nixos.optional.gnome;
-in {
-  options.megadots.nixos.optional.gnome = {
-    enable = mkEnableOption "Enable the GNOME desktop environment.";
+  services = {
+    xserver = {
+      desktopManager.gnome = {
+        enable = true;
+      };
+      displayManager.gdm = {
+        enable = true;
+        autoSuspend = false;
+      };
+    };
+    gnome.games.enable = true;
   };
-
-  config = mkIf cfg.enable {
-    services.libinput.enable = true;
-    # To fix GTK apps:
-    programs.dconf.enable = true;
-    services.xserver.enable = true;
-    services.xserver.displayManager.gdm.enable = true;
-    services.xserver.desktopManager.gnome.enable = true;
-    environment.gnome.excludePackages = with pkgs; [
-      gnome-photos
-      gnome-tour
-      gedit
-      cheese # webcam tool
-      gnome-music
-      # text editor
-      epiphany # web browser
-      geary # email reader
-      gnome-characters
-      tali # poker game
-      iagno # go game
-      hitori # sudoku game
-      atomix # puzzle game
-      yelp # Help view
-      gnome-contacts
-      gnome-initial-setup
-    ];
-
-    environment.systemPackages = with pkgs; [
-      gnome-tweaks
-    ];
-  };
+  # Fix broken stuff
+  services.avahi.enable = false;
+  networking.networkmanager.enable = false;
 }
