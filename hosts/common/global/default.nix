@@ -14,6 +14,7 @@
       ./nix
       ./nix-ld
       ./openssh
+      ./packages
       ./steam-hardware
       ./systemd-initrd
       ./upower

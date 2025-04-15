@@ -41,5 +41,17 @@
 
   hardware.graphics.enable = true;
 
+  # This is only used when building and running a test
+  # virtual machine to validate my config before switching.
+  virtualisation.vmVariant = {
+    virtualisation = {
+      memorySize = 8192;
+      cores = 4;
+    };
+    virtualisation.qemu.options = [
+      "-vga qxl"
+    ];
+  };
+
   system.stateVersion = "24.11";
 }
