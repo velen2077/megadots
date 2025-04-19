@@ -25,7 +25,11 @@
   ];
 
   megadots = {
+    apps = {
+      zsh.enable = true;
+    };
     system = {
+      audio.enable = true;
       bluetooth.enable = true;
       locale.enable = true;
     };
