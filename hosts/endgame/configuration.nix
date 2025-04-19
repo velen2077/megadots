@@ -26,6 +26,7 @@
 
   megadots = {
     system = {
+      bluetooth.enable = true;
       locale.enable = true;
     };
     users = {
