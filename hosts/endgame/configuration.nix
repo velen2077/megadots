@@ -31,6 +31,7 @@
     system = {
       audio.enable = true;
       bluetooth.enable = true;
+      bootloader.enable = true;
       locale.enable = true;
     };
     users = {
