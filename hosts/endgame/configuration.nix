@@ -26,7 +26,7 @@
   ];
 
   megadots = {
-    apps = {
+    packages = {
       zsh.enable = true;
     };
     system = {

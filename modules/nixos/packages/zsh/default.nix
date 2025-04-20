@@ -6,9 +6,9 @@
   ...
 }:
 with lib; let
-  cfg = config.megadots.apps.zsh;
+  cfg = config.megadots.packages.zsh;
 in {
-  options.megadots.apps.zsh = {
+  options.megadots.packages.zsh = {
     enable = mkEnableOption "Enable zsh.";
   };
   config = mkIf cfg.enable {
