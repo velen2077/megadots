@@ -28,5 +28,7 @@ in {
         shell = pkgs.zsh;
       };
     };
+    # TODO: Make this an option to enable HM seperately.
+    home-manager.users.velen2077 = import ../../../../home-manager/velen2077/${config.networking.hostName}.nix;
   };
 }

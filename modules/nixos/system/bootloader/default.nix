@@ -12,7 +12,7 @@ in {
     enable = mkEnableOption "Enable and configure bootloader for the system.";
   };
   config = mkIf cfg.enable {
-    config.boot.loader = {
+    boot.loader = {
       systemd-boot = {
         enable = true;
         consoleMode = "max"; # makes console fill screen

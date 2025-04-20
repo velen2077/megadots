@@ -47,8 +47,30 @@
 
   # TODO: Set your username
   home = {
-    username = "your-username";
-    homeDirectory = "/home/your-username";
+    username = "velen2077";
+    homeDirectory = "/home/velen2077";
+  };
+
+  home = {
+    username = lib.mkDefault "velen2077";
+    homeDirectory = lib.mkDefault "/home/${config.home.username}";
+    stateVersion = lib.mkDefault "24.11";
+    sessionPath = ["$HOME/.local/bin"];
+    sessionVariables = {
+      FLAKE = "$HOME/Development/megadots";
+    };
+  };
+
+  nix = {
+    package = lib.mkDefault pkgs.nix;
+    settings = {
+      experimental-features = [
+        "nix-command"
+        "flakes"
+        "ca-derivations"
+      ];
+      warn-dirty = false;
+    };
   };
 
   # Add stuff for your user as you see fit:
@@ -61,7 +83,4 @@
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
-
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "23.05";
 }

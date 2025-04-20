@@ -7,6 +7,7 @@
     ./apps/zsh
     ./system/audio
     ./system/bluetooth
+    ./system/bootloader
     ./system/locale
     ./users/velen2077
   ];
