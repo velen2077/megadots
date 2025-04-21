@@ -39,6 +39,16 @@
     just
   ];
 
+  virtualisation.vmVariant = {
+    virtualisation = {
+      memorySize = 8192;
+      cores = 4;
+    };
+    virtualisation.qemu.options = [
+      "-vga qxl"
+    ];
+  };
+
   hardware.enableRedistributableFirmware = true;
 
   # Cleanup stuff included by default

@@ -26,6 +26,7 @@
     ../config/optional/audio
     ../config/optional/bluetooth
     ../config/optional/cachyos
+    ../config/optional/gnome
 
     # Import required users here.
     ../config/users/velen2077
