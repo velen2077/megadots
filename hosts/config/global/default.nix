@@ -8,8 +8,8 @@
     [
       inputs.home-manager.nixosModules.home-manager
       ./bootloader
-      ./fish.nix
-      ./locale.nix
+      ./fish
+      ./locale
       ./nix
     ]
     ++ (builtins.attrValues outputs.nixosModules);
