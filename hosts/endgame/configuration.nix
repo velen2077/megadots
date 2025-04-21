@@ -25,6 +25,7 @@
     ../config/global
     ../config/optional/audio
     ../config/optional/bluetooth
+    ../config/optional/cachyos
 
     # Import required users here.
     ../config/users/velen2077
