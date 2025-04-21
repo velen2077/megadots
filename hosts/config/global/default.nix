@@ -1,5 +1,6 @@
 # This file (and the global directory) holds config that i use on all hosts
 {
+  pkgs,
   inputs,
   outputs,
   ...
@@ -7,7 +8,7 @@
   imports =
     [
       inputs.home-manager.nixosModules.home-manager
-      inputs.chaotic.nixosModules.default
+      #inputs.chaotic.nixosModules.default
       ./bootloader
       ./fish
       ./locale
@@ -26,6 +27,17 @@
       allowUnfree = true;
     };
   };
+
+  environment.systemPackages = with pkgs; [
+    # Common system packages that should be included
+    # on all my systems.
+    age
+    fastfetch
+    # Devlopment packages, primarily used for
+    # tools to assist in dev work.
+    alejandra
+    just
+  ];
 
   hardware.enableRedistributableFirmware = true;
 

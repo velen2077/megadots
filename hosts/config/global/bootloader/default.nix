@@ -8,6 +8,6 @@
       efi.canTouchEfiVariables = true;
       timeout = 20;
     };
-    initrd.systemd.enable = true;
+    #initrd.systemd.enable = true;
   };
 }
