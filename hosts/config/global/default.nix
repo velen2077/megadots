@@ -52,5 +52,5 @@
   hardware.enableRedistributableFirmware = true;
 
   # Cleanup stuff included by default
-  services.speechd.enable = false;
+  #services.speechd.enable = mkForce false;
 }

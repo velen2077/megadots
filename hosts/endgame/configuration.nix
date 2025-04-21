@@ -38,7 +38,6 @@
 
   networking = {
     hostName = "endgame";
-    useDHCP = true;
   };
 
   #boot = {
