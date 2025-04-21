@@ -4,11 +4,5 @@
   # List your module files here
   # my-module = import ./my-module.nix;
   imports = [
-    ./packages/zsh
-    ./system/audio
-    ./system/bluetooth
-    ./system/bootloader
-    ./system/locale
-    ./users/velen2077
   ];
 }
