@@ -7,6 +7,7 @@
   imports =
     [
       inputs.home-manager.nixosModules.home-manager
+      inputs.chaotic.nixosModules.default
       ./bootloader
       ./fish
       ./locale
