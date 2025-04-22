@@ -7,6 +7,8 @@
   stylix.imageScalingMode = "fill";
   stylix.polarity = "dark";
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
+  #stylix.targets.gnome.enable = false;
+
   # Set the system cursor type. I like Bibata Modern Classic.
   stylix.cursor = {
     package = pkgs.bibata-cursors;
