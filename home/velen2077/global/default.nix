@@ -8,6 +8,7 @@
 }: {
   imports =
     [
+      ../features/cli/alacritty
       ../features/cli/fish
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);
