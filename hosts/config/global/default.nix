@@ -8,7 +8,7 @@
   imports =
     [
       inputs.home-manager.nixosModules.home-manager
-      #inputs.chaotic.nixosModules.default
+      inputs.chaotic.nixosModules.default
       ./bootloader
       ./fish
       ./locale
@@ -32,10 +32,9 @@
     # Common system packages that should be included
     # on all my systems.
     age
-    fastfetch
-    # Devlopment packages, primarily used for
-    # tools to assist in dev work.
     alejandra
+    fastfetch
+    git
     just
   ];
 

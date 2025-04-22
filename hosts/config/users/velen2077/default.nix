@@ -12,24 +12,21 @@ in {
     shell = pkgs.fish;
     extraGroups = ifTheyExist [
       "audio"
-      "deluge"
       "docker"
       "git"
       "i2c"
       "libvirtd"
-      "lxd"
-      "minecraft"
       "mysql"
       "network"
       "plugdev"
       "podman"
       "video"
       "wheel"
-      "wireshark"
     ];
     hashedPassword = "$6$SpG3sYsUt3IxXQLv$1v6tnDzULI4mM6bO.jXbJGuO/7rXcfdKJet4xBcylTG88dDyJrGdNpsKH9/eGwVIFSmQD6lIWWWE4CTUAMI820";
-    #openssh.authorizedKeys.keys = lib.splitString "\n" (builtins.readFile ../../../../home/gabriel/ssh.pub);
-    #hashedPasswordFile = config.sops.secrets.gabriel-password.path;
+    openssh.authorizedKeys.keys = [
+      (builtins.readFile ./id_ed25519.pub)
+    ];
     packages = [pkgs.home-manager];
   };
 

@@ -1,55 +1,39 @@
-# This is your system's configuration file.
-# Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
 {
   inputs,
   outputs,
-  lib,
-  config,
-  pkgs,
   ...
 }: {
-  # You can import other NixOS modules here
+  # Import needed modules here. This is going to pull in my hardware-configuration,
+  # global configs (stuff shared between all hosts), optional configs, and
+  # my user configs for any users I want added to this host.
   imports = [
-    # If you want to use modules your own flake exports (from modules/nixos):
-    # inputs.home-manager.nixosModules.home-manager
-
-    # Or modules from other flakes (such as nixos-hardware):
-    # inputs.hardware.nixosModules.common-cpu-amd
-    # inputs.hardware.nixosModules.common-ssd
-
-    # Import your generated (nixos-generate-config) hardware configuration
+    # Import the specific hardware-configuration.nix for this host.
     ./hardware-configuration.nix
-
-    # You can also split up your configuration and import pieces of it here:
-    # ./users.nix
+    # Import my global configs.
     ../config/global
+    # Import optional configs for this host.
     ../config/optional/audio
     ../config/optional/bluetooth
     ../config/optional/cachyos
     ../config/optional/gnome
-
-    # Import required users here.
+    # Import required users for this host.
     ../config/users/velen2077
   ];
 
-  environment.systemPackages = with pkgs; [
-    hello
-  ];
-
+  # Set the host-specific hostname here.
   networking = {
     hostName = "endgame";
   };
 
-  #boot = {
-  # kernelPackages = pkgs.linuxPackages_latest;
-  #}#;
-
+  # Enable adb and dconf for the host.
   programs = {
     adb.enable = true;
     dconf.enable = true;
   };
 
+  # Enable graphics.
   hardware.graphics.enable = true;
 
+  # Set the hosts system state version.
   system.stateVersion = "24.11";
 }
