@@ -16,7 +16,7 @@
     ../config/optional/bluetooth
     ../config/optional/cachyos
     ../config/optional/gnome
-    #../config/optional/theme
+    ../config/optional/theme
     # Import required users for this host.
     ../config/users/velen2077
   ];

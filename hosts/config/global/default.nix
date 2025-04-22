@@ -9,6 +9,7 @@
     [
       inputs.home-manager.nixosModules.home-manager
       inputs.chaotic.nixosModules.default
+      inputs.catppuccin.nixosModules.catppuccin
       ./bootloader
       ./fish
       ./locale

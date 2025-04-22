@@ -8,9 +8,11 @@
 }: {
   imports =
     [
+      inputs.catppuccin.homeModules.catppuccin
       ../features/cli/alacritty
       ../features/cli/fish
       ../features/cli/git
+      ../features/theme
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);
 
