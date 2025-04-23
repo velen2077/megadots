@@ -13,7 +13,7 @@
     };
     # Chaotic inputs for CachyOS and Zen kernels.
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    catppuccin.url = "github:catppuccin/nix";
+    stylix.url = "github:danth/stylix";
   };
 
   outputs = {
@@ -21,7 +21,7 @@
     nixpkgs,
     home-manager,
     chaotic,
-    catppuccin,
+    stylix,
     ...
   } @ inputs: let
     inherit (self) outputs;
