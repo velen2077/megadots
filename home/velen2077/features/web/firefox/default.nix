@@ -50,50 +50,6 @@
       action = "useSystemDefault"; # Open Element app
       ask = false;
     };
-  };
-
-  programs.firefox.profiles.default = {
-    isDefault = true;
-    extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
-      ublock-origin
-      proton-pass
-    ];
-    search = {
-      force = true;
-      default = "DuckDuckGo";
-    };
-  };
-
-  programs.firefox.profiles.default.search.engines = {
-    "Google".metaData.hidden = true;
-    "Bing".metaData.hidden = true;
-    "eBay".metaData.hidden = true;
-    "Amazon.com".metaData.hidden = true;
-    "Wikipedia (en)".metaData.hidden = true;
-  };
-
-  programs.firefox.policies.Preferences = {
-    "browser.urlbar.suggest.searches" = true; # Need this for basic search suggestions
-    "browser.urlbar.shortcuts.bookmarks" = false;
-    "browser.urlbar.shortcuts.history" = false;
-    "browser.urlbar.shortcuts.tabs" = false;
-    "browser.urlbar.placeholderName" = "DuckDuckGo";
-    "browser.urlbar.placeholderName.private" = "DuckDuckGo";
-    "browser.aboutConfig.showWarning" = false; # No warning when going to config
-    "browser.warnOnQuitShortcut" = false;
-    "browser.tabs.loadInBackground" = true; # Load tabs automatically
-    "media.ffmpeg.vaapi.enabled" = true; # Enable hardware acceleration
-    "browser.in-content.dark-mode" = true; # Use dark mode
-    "ui.systemUsesDarkTheme" = true;
-    "extensions.autoDisableScopes" = 0; # Automatically enable extensions
-    "extensions.update.enabled" = false;
-    "widget.use-xdg-desktop-portal.file-picker" = 1; # Use new gtk file picker instead of legacy one
-    "signon.management.page.breach-alerts.enabled" = false;
-    "extensions.formautofill.creditCards.enabled" = false;
-  };
-
-  #programs.firefox.policies.Preferences."browser.uiCustomization.state" =
-  programs.firefox.policies = {
     # extensions
     ExtensionSettings = {
       "uBlock0@raymondhill.net" = {
@@ -107,6 +63,44 @@
         install_url = "https://addons.mozilla.org/firefox/downloads/latest/proton-pass/latest.xpi";
         updates_disabled = false;
         default_area = "navbar";
+      };
+    };
+    Preferences = {
+      "browser.urlbar.suggest.searches" = true; # Need this for basic search suggestions
+      "browser.urlbar.shortcuts.bookmarks" = false;
+      "browser.urlbar.shortcuts.history" = false;
+      "browser.urlbar.shortcuts.tabs" = false;
+      "browser.urlbar.placeholderName" = "ddg";
+      "browser.urlbar.placeholderName.private" = "ddg";
+      "browser.aboutConfig.showWarning" = false; # No warning when going to config
+      "browser.warnOnQuitShortcut" = false;
+      "browser.tabs.loadInBackground" = true; # Load tabs automatically
+      "media.ffmpeg.vaapi.enabled" = true; # Enable hardware acceleration
+      "browser.in-content.dark-mode" = true; # Use dark mode
+      "ui.systemUsesDarkTheme" = true;
+      "extensions.autoDisableScopes" = 0; # Automatically enable extensions
+      "extensions.update.enabled" = false;
+      "widget.use-xdg-desktop-portal.file-picker" = 1; # Use new gtk file picker instead of legacy one
+      "signon.management.page.breach-alerts.enabled" = false;
+      "extensions.formautofill.creditCards.enabled" = false;
+    };
+  };
+
+  programs.firefox.profiles.default = {
+    isDefault = true;
+    extensions.packages = with inputs.firefox-addons.packages."x86_64-linux"; [
+      ublock-origin
+      proton-pass
+    ];
+    search = {
+      force = true;
+      default = "ddg";
+      engines = {
+        google.metaData.hidden = true;
+        bing.metaData.hidden = true;
+        ebay.metaData.hidden = true;
+        amazondotcome-us.metaData.hidden = true;
+        wikipedia.metaData.hidden = true;
       };
     };
   };
