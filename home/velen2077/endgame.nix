@@ -3,6 +3,6 @@
     ./global
     ./features/development/vscodium
     ./features/theme/stylix
-    ./features/web/firefox
+    ./features/productivity/firefox
   ];
 }
