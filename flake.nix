@@ -13,7 +13,7 @@
     };
     # Chaotic inputs for CachyOS and Zen kernels.
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    stylix.url = "github:danth/stylix";
+    stylix.url = "github:danth/stylix/release-24.11";
     # Firefox addons to support my Firefox
     # Home Manager module. These allow installation
     # of Firefox Extensions such as uBlock Origin.
