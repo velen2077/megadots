@@ -13,3 +13,7 @@ eval-test:
 
 test-build-flatmate:
     sudo nix build .#nixosConfigurations.flatmate.config.system.build.vm --extra-experimental-features "nix-command flakes"
+
+test-run-flatmate:
+    rm -f ./flatmate.qcow2
+    ./result/bin/run-flatmate-vm
