@@ -10,3 +10,6 @@ run-test:
     ./result/bin/run-endgame-vm
 eval-test:
     sudo nix eval .#nixosConfigurations.endgame.config.system.build.vm --extra-experimental-features "nix-command flakes"
+
+test-build-flatmate:
+    sudo nix build .#nixosConfigurations.flatmate.config.system.build.vm --extra-experimental-features "nix-command flakes"
