@@ -14,6 +14,11 @@
     # Chaotic inputs for CachyOS and Zen kernels.
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     stylix.url = "github:danth/stylix/release-24.11";
+    # Disko disk partitioning.
+    disko = {
+      url = "github:nix-community/disko/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Firefox addons to support my Firefox
     # Home Manager module. These allow installation
     # of Firefox Extensions such as uBlock Origin.
@@ -67,6 +72,13 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./hosts/endgame/configuration.nix
+        ];
+      };
+      # Surface Pro 7, running NixOS.
+      flatmate = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./hosts/flatmate/configuration.nix
         ];
       };
     };

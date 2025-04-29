@@ -25,7 +25,7 @@
 
   # Set the host-specific hostname here.
   networking = {
-    hostName = "endgame";
+    hostName = "flatmate";
   };
 
   # Enable adb and dconf for the host.
