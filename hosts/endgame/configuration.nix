@@ -18,7 +18,6 @@
     ../config/optional/cachyos
     #../config/optional/gnome
     ../config/optional/cosmic
-    ../config/optional/theme
     # Import required users for this host.
     ../config/users/velen2077
   ];

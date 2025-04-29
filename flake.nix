@@ -14,7 +14,6 @@
     };
     # Chaotic inputs for CachyOS and Zen kernels.
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    stylix.url = "github:danth/stylix/release-24.11";
     # Disko disk partitioning.
     disko = {
       url = "github:nix-community/disko/latest";
