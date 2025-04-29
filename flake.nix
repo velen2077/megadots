@@ -20,6 +20,13 @@
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    cosmic-manager = {
+      url = "github:HeitorAugustoLN/cosmic-manager";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
+    };
     # Firefox addons to support my Firefox
     # Home Manager module. These allow installation
     # of Firefox Extensions such as uBlock Origin.

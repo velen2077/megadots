@@ -8,6 +8,7 @@
 }: {
   imports =
     [
+      inputs.cosmic-manager.homeManagerModules.cosmic-manager
       ../features/cli/alacritty
       ../features/cli/fish
       ../features/cli/git
