@@ -1,7 +1,20 @@
 {
+  inputs,
+  lib,
+  pkgs,
+  config,
+  outputs,
+  ...
+}: {
   imports = [
-    ./global
-    ./features/development/vscodium
-    ./features/productivity/firefox
+    ./core
+    ./optional
   ];
+
+  megadots = {
+    optional = {
+      firefox.enable = true;
+      vscodium.enable = true;
+    };
+  };
 }
