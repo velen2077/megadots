@@ -3,6 +3,7 @@
     # Import my core nixos confifuration. These are configurations
     # that are required on all nixos hosts I build and are not
     # controlled by mkOptions (megadots).
+    ./core/firewall.nix
     ./core/fish.nix
     ./core/locale.nix
     ./core/nix.nix
