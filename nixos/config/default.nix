@@ -8,6 +8,7 @@
     ./core/locale.nix
     ./core/nix.nix
     ./core/packages.nix
+    ./core/ssh.nix
     ./core/system.nix
     ./core/systemd-boot.nix
     # Import any optional configurations. These may not be required
