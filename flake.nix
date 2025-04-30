@@ -34,7 +34,6 @@
     home-manager,
     systems,
     chaotic,
-    stylix,
     disko,
     ...
   } @ inputs: let
