@@ -3,11 +3,10 @@
     loader = {
       systemd-boot = {
         enable = true;
-        consoleMode = "max"; # makes console fill screen
+        consoleMode = "max";
       };
       efi.canTouchEfiVariables = true;
-      timeout = 20;
+      timeout = 30;
     };
-    #initrd.systemd.enable = true;
   };
 }

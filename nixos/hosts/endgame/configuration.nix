@@ -10,31 +10,29 @@
     # Import the specific hardware-configuration.nix for this host.
     ./disks.nix
     ./hardware-configuration.nix
-    # Import my global configs.
-    ../config/global
-    # Import optional configs for this host.
-    ../config/optional/audio
-    ../config/optional/bluetooth
-    ../config/optional/cachyos
-    #../config/optional/gnome
-    ../config/optional/cosmic
-    # Import required users for this host.
-    ../config/users/velen2077
+    # Import my nixos host configs. Both core and optional.
+    # Optionals are enabled on a per config basis using the
+    # megadots options. This includes user configs.
+    ../../config
   ];
+
+  megadots = {
+    optional = {
+      bluetooth.enable = true;
+      cachyos.enable = true;
+      cosmic.enable = true;
+      gnome.enable = false;
+      pipewire.enable = true;
+    };
+    users = {
+      velen2077.enable = true;
+    };
+  };
 
   # Set the host-specific hostname here.
   networking = {
     hostName = "endgame";
   };
-
-  # Enable adb and dconf for the host.
-  programs = {
-    adb.enable = true;
-    dconf.enable = true;
-  };
-
-  # Enable graphics.
-  hardware.graphics.enable = true;
 
   # Set the hosts system state version.
   system.stateVersion = "24.11";

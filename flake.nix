@@ -60,14 +60,14 @@
       endgame = lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./hosts/endgame/configuration.nix
+          ./nixos/hosts/endgame/configuration.nix
         ];
       };
       # Surface Pro 7, running NixOS.
       flatmate = lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./hosts/flatmate/configuration.nix
+          ./nixos/hosts/flatmate/configuration.nix
         ];
       };
     };
