@@ -12,7 +12,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    boot.kernelPackages = pkgs.linuxPackages_cachyos;
+    boot.kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
     boot.kernelParams = ["quiet"];
   };
 }

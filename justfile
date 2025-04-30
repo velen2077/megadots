@@ -1,5 +1,8 @@
 # Justfile
 
+nix-flake-update:
+    sudo nix --extra-experimental-features 'nix-command flakes' flake update
+
 test-build-endgame-chaotic:
     sudo nix build .#nixosConfigurations.endgame.config.system.build.vm --extra-experimental-features "nix-command flakes" --option 'extra-substituters' 'https://chaotic-nyx.cachix.org/' --option extra-trusted-public-keys "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
 
