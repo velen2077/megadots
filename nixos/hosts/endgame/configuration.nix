@@ -29,8 +29,8 @@
     optional = {
       bluetooth.enable = true;
       cachyos.enable = true;
-      cosmic.enable = true;
-      gnome.enable = false;
+      cosmic.enable = false;
+      gnome.enable = true;
       pipewire.enable = true;
     };
     # Optional users to enable for this host.

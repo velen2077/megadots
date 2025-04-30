@@ -12,12 +12,22 @@ in {
   };
 
   config = mkIf cfg.enable {
-    services.libinput.enable = true;
     # To fix GTK apps:
     programs.dconf.enable = true;
-    services.xserver.enable = true;
-    services.xserver.displayManager.gdm.enable = true;
-    services.xserver.desktopManager.gnome.enable = true;
+
+    services = {
+      libinput.enable = true;
+      xserver = {
+        desktopManager.gnome = {
+          enable = true;
+        };
+        displayManager.gdm = {
+          enable = true;
+          autoSuspend = false;
+        };
+      };
+    };
+
     environment.gnome.excludePackages = with pkgs; [
       gnome-photos
       gnome-tour
