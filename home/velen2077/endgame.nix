@@ -1,10 +1,15 @@
-{outputs}: {
-  imports =
-    [
-      ./core
-      ./optional
-    ]
-    ++ (builtins.attrValues outputs.homeManagerModules);
+{
+  inputs,
+  lib,
+  pkgs,
+  config,
+  outputs,
+  ...
+}: {
+  imports = [
+    ./core
+    ./optional
+  ];
 
   megadots = {
     optional = {
