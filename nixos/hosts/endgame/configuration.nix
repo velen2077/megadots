@@ -7,6 +7,11 @@
   # global configs (stuff shared between all hosts), optional configs, and
   # my user configs for any users I want added to this host.
   imports = [
+    # Import the relevant common hardware modules from the hardware flake
+    # for this specific host.
+    inputs.hardware.nixosModules.common-cpu-amd
+    inputs.hardware.nixosModules.common-gpu-amd
+    inputs.hardware.nixosModules.common-pc-ssd
     # Import the specific hardware-configuration.nix for this host.
     ./disks.nix
     ./hardware-configuration.nix
@@ -16,7 +21,11 @@
     ../../config
   ];
 
+  # The megadots options are where optional configurations are
+  # applied to this host. I try to keep every option listed,
+  # and use enable = true; to turn on what I need.
   megadots = {
+    # Optional configurations to enable for this host.
     optional = {
       bluetooth.enable = true;
       cachyos.enable = true;
@@ -24,6 +33,7 @@
       gnome.enable = false;
       pipewire.enable = true;
     };
+    # Optional users to enable for this host.
     users = {
       velen2077.enable = true;
     };

@@ -102,6 +102,21 @@
         "url": "https://flakehub.com/f/DeterminateSystems/flake-schemas/%3D0.1.5.tar.gz"
       }
     },
+    "hardware": {
+      "locked": {
+        "lastModified": 1745955289,
+        "narHash": "sha256-mmV2oPhQN+YF2wmnJzXX8tqgYmUYXUj3uUUBSTmYN5o=",
+        "owner": "nixos",
+        "repo": "nixos-hardware",
+        "rev": "72081c9fbbef63765ae82bff9727ea79cc86bd5b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -241,6 +256,7 @@
         "chaotic": "chaotic",
         "disko": "disko",
         "firefox-addons": "firefox-addons",
+        "hardware": "hardware",
         "home-manager": "home-manager_2",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-stable": "nixpkgs-stable",

@@ -7,34 +7,42 @@
   # global configs (stuff shared between all hosts), optional configs, and
   # my user configs for any users I want added to this host.
   imports = [
+    # Import the relevant common hardware modules from the hardware flake
+    # for this specific host.
+    inputs.hardware.nixosModules.common-cpu-intel
+    inputs.hardware.nixosModules.common-gpu-intel
+    inputs.hardware.nixosModules.common-pc-ssd
     # Import the specific hardware-configuration.nix for this host.
     ./disks.nix
     ./hardware-configuration.nix
-    # Import my global configs.
-    ../config/global
-    # Import optional configs for this host.
-    ../config/optional/audio
-    ../config/optional/bluetooth
-    ../config/optional/cachyos
-    #../config/optional/gnome
-    ../config/optional/cosmic
-    # Import required users for this host.
-    ../config/users/velen2077
+    # Import my nixos host configs. Both core and optional.
+    # Optionals are enabled on a per config basis using the
+    # megadots options. This includes user configs.
+    ../../config
   ];
+
+  # The megadots options are where optional configurations are
+  # applied to this host. I try to keep every option listed,
+  # and use enable = true; to turn on what I need.
+  megadots = {
+    # Optional configurations to enable for this host.
+    optional = {
+      bluetooth.enable = true;
+      cachyos.enable = true;
+      cosmic.enable = true;
+      gnome.enable = false;
+      pipewire.enable = true;
+    };
+    # Optional users to enable for this host.
+    users = {
+      velen2077.enable = true;
+    };
+  };
 
   # Set the host-specific hostname here.
   networking = {
     hostName = "flatmate";
   };
-
-  # Enable adb and dconf for the host.
-  programs = {
-    adb.enable = true;
-    dconf.enable = true;
-  };
-
-  # Enable graphics.
-  hardware.graphics.enable = true;
 
   # Set the hosts system state version.
   system.stateVersion = "24.11";

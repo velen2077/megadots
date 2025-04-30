@@ -6,14 +6,6 @@
   outputs,
   ...
 }: {
-  imports =
-    [
-      ../features/cli/alacritty
-      ../features/cli/fish
-      ../features/cli/git
-    ]
-    ++ (builtins.attrValues outputs.homeManagerModules);
-
   nix = {
     package = lib.mkDefault pkgs.nix;
     settings = {

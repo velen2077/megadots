@@ -6,7 +6,10 @@
     # on a per-package basis using the stable-packages overlay.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
+    # Common system definition input.
     systems.url = "github:nix-systems/default-linux";
+    # Common hardware input.
+    hardware.url = "github:nixos/nixos-hardware";
     # Home Manager for managing my dotfiles and user config.
     home-manager = {
       url = "github:nix-community/home-manager";
