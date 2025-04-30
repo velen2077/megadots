@@ -4,7 +4,6 @@
     enable = true;
 
     allowedUDPPorts = [
-      config.services.tailscale.port
       # Tailscale direct connection.
       3478
       41641
