@@ -14,6 +14,7 @@
   megadots = {
     optional = {
       firefox.enable = true;
+      vesktop.enable = true;
       vscodium.enable = true;
     };
   };

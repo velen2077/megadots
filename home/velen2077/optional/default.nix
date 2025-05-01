@@ -1,6 +1,7 @@
 {
   imports = [
     ./firefox
+    ./vesktop
     ./vscodium
   ];
 }
