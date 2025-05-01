@@ -1,3 +1,4 @@
+# Disk configuration file for disko for the host 'flatmate'.
 {
   disko.devices = {
     disk = {
@@ -27,13 +28,9 @@
                   "--perf-no_read_workqueue"
                   "--perf-no_write_workqueue"
                 ];
-                # disable settings.keyFile if you want to use interactive password entry
-                #passwordFile = "/tmp/secret.key"; # Interactive
                 settings = {
                   allowDiscards = true;
-                  # keyFile = "/tmp/secret.key";
                 };
-                # additionalKeyFiles = ["/tmp/additionalSecret.key"];
                 content = {
                   type = "btrfs";
                   extraArgs = ["-L" "nixos" "-f"];

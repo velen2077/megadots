@@ -1,3 +1,4 @@
+# Disk configuration file for disko for the host 'endgame'.
 {
   disko.devices = {
     disk = {
@@ -22,16 +23,22 @@
               content = {
                 type = "luks";
                 name = "crypted";
-                # disable settings.keyFile if you want to use interactive password entry
-                #passwordFile = "/tmp/secret.key"; # Interactive
+                extraOpenArgs = [
+                  "--allow-discards"
+                  "--perf-no_read_workqueue"
+                  "--perf-no_write_workqueue"
+                ];
                 settings = {
                   allowDiscards = true;
-                  # keyFile = "/tmp/secret.key";
                 };
-                # additionalKeyFiles = ["/tmp/additionalSecret.key"];
                 content = {
                   type = "btrfs";
-                  extraArgs = ["-f"];
+                  extraArgs = ["-L" "nixos" "-f"];
+                  postCreateHook = ''
+                    mount -t btrfs /dev/disk/by-label/nixos /mnt
+                    btrfs subvolume snapshot -r /mnt /mnt/root-blank
+                    umount /mnt
+                  '';
                   subvolumes = {
                     "/root" = {
                       mountpoint = "/";
@@ -57,10 +64,10 @@
                         "noatime"
                       ];
                     };
-                    "/log" = {
-                      mountpoint = "/var/log";
+                    "/persist" = {
+                      mountpoint = "/persist";
                       mountOptions = [
-                        "subvol=log"
+                        "subvol=persist"
                         "compress=zstd"
                         "noatime"
                       ];
@@ -74,4 +81,6 @@
       };
     };
   };
+  fileSystems."/persist".neededForBoot = true;
+  fileSystems."/home".neededForBoot = true;
 }
