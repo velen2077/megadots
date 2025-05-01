@@ -29,8 +29,8 @@
     optional = {
       bluetooth.enable = true;
       cachyos.enable = true;
-      cosmic.enable = false;
-      gnome.enable = true;
+      cosmic.enable = true;
+      gnome.enable = false;
       impermanence.enable = true;
       pipewire.enable = true;
     };
