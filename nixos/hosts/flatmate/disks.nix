@@ -22,6 +22,11 @@
               content = {
                 type = "luks";
                 name = "crypted";
+                extraOpenArgs = [
+                  "--allow-discards"
+                  "--perf-no_read_workqueue"
+                  "--perf-no_write_workqueue"
+                ];
                 # disable settings.keyFile if you want to use interactive password entry
                 #passwordFile = "/tmp/secret.key"; # Interactive
                 settings = {
@@ -58,14 +63,6 @@
                       mountpoint = "/nix";
                       mountOptions = [
                         "subvol=nix"
-                        "compress=zstd"
-                        "noatime"
-                      ];
-                    };
-                    "/log" = {
-                      mountpoint = "/var/log";
-                      mountOptions = [
-                        "subvol=log"
                         "compress=zstd"
                         "noatime"
                       ];

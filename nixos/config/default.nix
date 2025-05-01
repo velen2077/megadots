@@ -18,6 +18,7 @@
     ./optional/cachyos.nix
     ./optional/cosmic.nix
     ./optional/gnome.nix
+    ./optional/impermanence.nix
     ./optional/pipewire.nix
     # Import my users. These are optional, and like optional
     # configurations above, can be enabled per-host using the

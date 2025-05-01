@@ -29,6 +29,7 @@
       cachyos.enable = true;
       cosmic.enable = true;
       gnome.enable = false;
+      impermanence.enable = true;
       pipewire.enable = true;
     };
     # Optional users to enable for this host.
