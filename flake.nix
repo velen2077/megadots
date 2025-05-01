@@ -1,47 +1,27 @@
 {
-  # Welcome to megadots by velen2077. Find out more at
-  # https://github.com/velen2077/megadots
   description = "megadots by velen2077.";
 
-  # Substituters currently used for Cachy kernel
-  # so that it doesn't need to be compiled everytime.
-  nixConfig = {
-    extra-substituters = [
-      "https://chaotic-nyx.cachix.org/"
-    ];
-    extra-trusted-public-keys = [
-      "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
-    ];
-  };
-
-  # Inputs for my megadots configuration. These are used throughout
-  # NixOS and Home Manager and are always evolving as I add more
-  # functionality to my config.
   inputs = {
-    # Nix ecosystem.
+    # Nixpkgs. By default, I'm using unstable. This can be overuled
+    # on a per-package basis using the stable-packages overlay.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # Common hardware.
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
+    # Common system definition input.
+    systems.url = "github:nix-systems/default-linux";
+    # Common hardware input.
     hardware.url = "github:nixos/nixos-hardware";
-    # Chaotic inputs for CachyOS and Zen kernels.
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    # Nix color scheming.
-    nix-colors.url = "github:misterio77/nix-colors";
-    # Stylix, for global themeing.
-    stylix.url = "github:danth/stylix";
-    # Home Manager.
+    # Impermanence for nixos.
+    impermanence.url = "github:nix-community/impermanence";
+    # Home Manager for managing my dotfiles and user config.
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # KDE Plasma manager.
-    plasma-manager = {
-      url = "github:nix-community/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
-    # Secrets management with SOPS and Nix.
-    sops-nix = {
-      url = "github:mic92/sops-nix";
+    # Chaotic inputs for CachyOS and Zen kernels.
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    # Disko disk partitioning.
+    disko = {
+      url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Firefox addons to support my Firefox
@@ -57,39 +37,60 @@
     self,
     nixpkgs,
     home-manager,
-    chaotic,
-    stylix,
     systems,
+    chaotic,
+    disko,
     ...
   } @ inputs: let
     inherit (self) outputs;
+    # Supported systems for my flake packages, shell, etc. Included in
+    # the Systems input and includes updated NixOS supported systems.
     lib = nixpkgs.lib // home-manager.lib;
     forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
     pkgsFor = lib.genAttrs (import systems) (
       system:
         import nixpkgs {
           inherit system;
+          # Allows the use of non-free software.
           config.allowUnfree = true;
         }
     );
   in {
     inherit lib;
+    # Import my nixos modules. These modules should not be confused with
+    # nixos configuration files. These are typically custom modules that
+    # I may want to share in the future.
     nixosModules = import ./modules/nixos;
+    # Same goes with home-manager modules. This is not my per user configs
+    # but custom modules with options I may wish to share.
     homeManagerModules = import ./modules/home-manager;
+    # Import my custom packages and modifications, exported as overlays.
     overlays = import ./overlays {inherit inputs outputs;};
+    # My custom packages accessible through 'nix build', 'nix shell', etc.
     packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
+    # Formatter for my nix files, available through 'nix fmt'.
+    # Other options beside 'alejandra' include 'nixpkgs-fmt'.
     formatter = forEachSystem (pkgs: pkgs.alejandra);
-
-    # Entry points for system configurations with
-    # Home Manager loaded as a system module.
+    # NixOS configuration entrypoint. These are available
+    # through 'nixos-rebuild --flake .#hostname'.
     nixosConfigurations = {
-      # My primary system, endgame. Desktop with nvidia
-      # graphics card.
+      # NixOS configuration for my host 'endgame'. My primary
+      # desktop computer, running NixOS.
       endgame = lib.nixosSystem {
-        modules = [./hosts/endgame];
-        specialArgs = {
-          inherit inputs outputs;
-        };
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          # Import the primary configuration file for host.
+          ./nixos/hosts/endgame/configuration.nix
+        ];
+      };
+      # NixOS configuration for my host 'flatmate'. My primary
+      # laptop computer (Surface Pro 7), running NixOS.
+      flatmate = lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          # Import the primary configuration file for host.
+          ./nixos/hosts/flatmate/configuration.nix
+        ];
       };
     };
   };
