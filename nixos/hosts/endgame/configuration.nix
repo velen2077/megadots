@@ -33,6 +33,7 @@
       gnome.enable = false;
       impermanence.enable = true;
       pipewire.enable = true;
+      steam.enable = true;
     };
     # Optional users to enable for this host.
     users = {

@@ -25,3 +25,10 @@ prod-build-flatmate:
 
 prod-build-endgame:
     sudo nix --extra-experimental-features 'nix-command flakes' run github:nix-community/nixos-anywhere -- --disko-mode disko --flake .#endgame --target-host nixos@10.20.1.1
+
+rebuild-endgame:
+    sudo nixos-rebuild switch --flake .#endgame
+
+rebuild-update-endgame:
+    nix flake update
+    sudo nixos-rebuild switch --flake .#endgame

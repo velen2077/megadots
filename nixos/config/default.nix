@@ -14,6 +14,7 @@
     # Import any optional configurations. These may not be required
     # on all hosts I build and can be enabled in the hosts
     # configuration.nix by using the megadots options.
+    ./optional/steam
     ./optional/bluetooth.nix
     ./optional/cachyos.nix
     ./optional/cosmic.nix
