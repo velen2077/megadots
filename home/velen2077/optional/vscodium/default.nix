@@ -28,6 +28,7 @@ in {
             "git.enableSmartCommit" = "true";
             "git.autofetch" = "true";
             "workbench.colorTheme" = "Rosé Pine (no italics)";
+            "explorer.confirmDragAndDrop" = "false";
           };
         };
       };
