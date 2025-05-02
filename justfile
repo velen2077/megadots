@@ -22,3 +22,6 @@ test-run-flatmate:
 
 prod-build-flatmate:
     sudo nix --extra-experimental-features 'nix-command flakes' run github:nix-community/nixos-anywhere -- --disko-mode disko --flake .#flatmate --target-host nixos@10.20.100.50
+
+prod-build-endgame:
+    sudo nix --extra-experimental-features 'nix-command flakes' run github:nix-community/nixos-anywhere -- --disko-mode disko --flake .#endgame --target-host nixos@10.20.1.1
