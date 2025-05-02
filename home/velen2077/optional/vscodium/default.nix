@@ -27,7 +27,7 @@ in {
             "git.confirmSync" = "false";
             "git.enableSmartCommit" = "true";
             "git.autofetch" = "true";
-            #"workbench.colorTheme" = "Rosé Pine (no italics)";
+            "workbench.colorTheme" = "Rosé Pine (no italics)";
           };
         };
       };
