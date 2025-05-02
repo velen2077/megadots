@@ -31,6 +31,7 @@
       cachyos.enable = true;
       cosmic.enable = true;
       gnome.enable = false;
+      gpu-screen-recorder.enable = true;
       impermanence.enable = true;
       pipewire.enable = true;
       steam.enable = true;

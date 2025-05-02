@@ -19,6 +19,7 @@
     ./optional/cachyos
     ./optional/cosmic
     ./optional/gnome
+    ./optional/gpu-screen-recorder
     ./optional/impermanence
     ./optional/pipewire
     # Import my users. These are optional, and like optional
