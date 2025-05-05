@@ -14,7 +14,7 @@ in {
   config = mkIf cfg.enable {
     services.sunshine = {
       enable = true;
-      autoStart = false;
+      autoStart = true;
       package = pkgs.sunshine;
       openFirewall = true;
       capSysAdmin = true;
