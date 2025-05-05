@@ -32,9 +32,11 @@
       cosmic.enable = true;
       gnome.enable = false;
       gpu-screen-recorder.enable = true;
+      grub.enable = true;
       impermanence.enable = true;
       pipewire.enable = true;
       steam.enable = true;
+      systemd-boot.enable = false;
     };
     # Optional users to enable for this host.
     users = {
