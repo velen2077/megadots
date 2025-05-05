@@ -132,7 +132,7 @@ in {
         };
       };
 
-    home.file.".mozilla/firefox/default/extension-preferences.json".force = true;
+    #home.file.".mozilla/firefox/default/extension-preferences.json".force = true;
 
     xdg.mimeApps.defaultApplications = {
       "x-scheme-handler/http" = ["firefox.desktop"];

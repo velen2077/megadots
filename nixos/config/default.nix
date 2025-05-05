@@ -10,6 +10,7 @@
     ./core/packages
     ./core/ssh
     ./core/system
+    ./core/systemd-boot/systemd-boot.nix
     # Import any optional configurations. These may not be required
     # on all hosts I build and can be enabled in the hosts
     # configuration.nix by using the megadots options.
@@ -19,10 +20,8 @@
     ./optional/cosmic
     ./optional/gnome
     ./optional/gpu-screen-recorder
-    ./optional/grub/grub.nix
     ./optional/impermanence
     ./optional/pipewire
-    ./optional/systemd-boot/systemd-boot.nix
     # Import my users. These are optional, and like optional
     # configurations above, can be enabled per-host using the
     # megadots option for each user.
