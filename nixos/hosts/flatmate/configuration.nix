@@ -10,8 +10,9 @@
     # Import the relevant common hardware modules from the hardware flake
     # for this specific host.
     inputs.hardware.nixosModules.microsoft-surface-pro-intel
-    # Import the specific hardware-configuration.nix for this host.
+    # Import the disko disk configuration for this host.
     ./disks.nix
+    # Import the specific hardware-configuration.nix for this host.
     ./hardware-configuration.nix
     # Import my nixos host configs. Both core and optional.
     # Optionals are enabled on a per config basis using the

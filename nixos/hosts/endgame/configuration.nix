@@ -12,8 +12,9 @@
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-amd
     inputs.hardware.nixosModules.common-pc-ssd
-    # Import the specific hardware-configuration.nix for this host.
+    # Import the disko disk configuration for this host.
     ./disks.nix
+    # Import the specific hardware-configuration.nix for this host.
     ./hardware-configuration.nix
     # Import my nixos host configs. Both core and optional.
     # Optionals are enabled on a per config basis using the
@@ -32,7 +33,6 @@
       cosmic.enable = true;
       gnome.enable = false;
       gpu-screen-recorder.enable = true;
-      grub.enable = false;
       impermanence.enable = true;
       pipewire.enable = true;
       steam.enable = true;
