@@ -14,7 +14,6 @@
     # Import any optional configurations. These may not be required
     # on all hosts I build and can be enabled in the hosts
     # configuration.nix by using the megadots options.
-    ./optional/steam/steam.nix
     ./optional/bluetooth/bluetooth.nix
     ./optional/cachyos/cachyos.nix
     ./optional/cosmic/cosmic.nix
@@ -22,6 +21,8 @@
     ./optional/gpu-screen-recorder/gpu-screen-recorder.nix
     ./optional/impermanence/impermanence.nix
     ./optional/pipewire/pipewire.nix
+    ./optional/steam/steam.nix
+    ./optional/sunshine/sunshine.nix
     # Import my users. These are optional, and like optional
     # configurations above, can be enabled per-host using the
     # megadots option for each user.

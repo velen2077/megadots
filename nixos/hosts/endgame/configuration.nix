@@ -36,6 +36,7 @@
       impermanence.enable = true;
       pipewire.enable = true;
       steam.enable = true;
+      sunshine.enable = true;
       systemd-boot.enable = true;
     };
     # Optional users to enable for this host.
