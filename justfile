@@ -32,3 +32,12 @@ rebuild-endgame:
 rebuild-update-endgame:
     nix flake update
     sudo nixos-rebuild switch --flake .#endgame
+
+prod-build-nixvm:
+    sudo nix --extra-experimental-features 'nix-command flakes' run github:nix-community/nixos-anywhere -- --disko-mode disko --flake .#nixvm --target-host nixos@192.168.122.116
+
+rebuild-nixvm:
+    nixos-rebuild switch --flake .#nixvm --target-host velen2077@192.168.122.116 --use-remote-sudo --option 'extra-substituters' 'https://hyprland.cachix.org/' --option extra-trusted-public-keys "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+
+eval-test:
+    nix eval .#nixosConfigurations.nixvm.config.system --extra-experimental-features "nix-command flakes"

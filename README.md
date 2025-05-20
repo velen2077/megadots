@@ -30,6 +30,7 @@ This configuration has a multiple system entry points, with Home Manager configu
 |---|---|---|---|---|---|
 | endgame | My personal desktop | Custom build | NixOS | AMD Ryzen 7800X3D | AMD 9070XT |
 | flatmate | My personal laptop | Microsoft Surface Pro 7 | NixOS | Intel Core i7-1065G7 | Intel Iris Plus G7 |
+| nixvm | My test VM | QEMU VM | NixOS | Host passthrough | OpenGL/3D accelerated |
 
 I have a single user that I manage through Home Manager (velen2077). You may add additional users or rename mine to inherit my existing settings - though don't forget to change my hashedPassword to something of your own otherwise you won't be able to log in.
 
@@ -58,6 +59,7 @@ I use the following structure to organise my configurations.
 │   │   └── users         # Optional user settings to apply on selected systems with options.
 │   └── endgame           # The configuration for my primary desktop system.
 │   └── flatmate          # The configuration for my primary laptop system.
+│   └── nixvm             # The configuration for my test VM.
 ├── overlays              # Overlays folder containing any patches or overrides.
 ├── pkgs                  # Pkgs folder for storing any custom packaged apps.
 ```

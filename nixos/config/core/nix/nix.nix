@@ -23,13 +23,8 @@
     # Making legacy nix commands consistent as well, awesome!
     nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
     settings = {
-      extra-substituters = [
-        "https://chaotic-nyx.cachix.org/"
-      ];
-      extra-trusted-public-keys = [
-        "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
-      ];
       trusted-users = [
+        "root"
         "@wheel"
       ];
       auto-optimise-store = true;
@@ -63,14 +58,4 @@
   };
 
   hardware.enableRedistributableFirmware = true;
-
-  virtualisation.vmVariant = {
-    virtualisation = {
-      memorySize = 8192;
-      cores = 4;
-    };
-    virtualisation.qemu.options = [
-      "-vga qxl"
-    ];
-  };
 }

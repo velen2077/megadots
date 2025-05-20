@@ -1,6 +1,15 @@
 {
   description = "megadots by velen2077.";
 
+  nixConfig = {
+    extra-substituters = [
+      "https://chaotic-nyx.cachix.org/"
+    ];
+    extra-trusted-public-keys = [
+      "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+    ];
+  };
+
   inputs = {
     # Nixpkgs. By default, I'm using unstable. This can be overuled
     # on a per-package basis using the stable-packages overlay.
@@ -90,6 +99,14 @@
         modules = [
           # Import the primary configuration file for host.
           ./nixos/hosts/flatmate/configuration.nix
+        ];
+      };
+      # NixOS vm for testing my configs.
+      nixvm = lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          # Import the primary configuration file for host.
+          ./nixos/hosts/nixvm/configuration.nix
         ];
       };
     };
