@@ -1,5 +1,13 @@
 # Disk configuration file for disko for the host 'endgame'.
 {
+  inputs,
+  outputs,
+  ...
+}: {
+  imports = [
+    inputs.disko.nixosModules.disko
+  ];
+
   disko.devices = {
     disk = {
       primary = {

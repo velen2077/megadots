@@ -13,35 +13,31 @@
     inputs.hardware.nixosModules.common-gpu-amd
     inputs.hardware.nixosModules.common-pc-ssd
     # Import the disko disk configuration for this host.
-    ./disks.nix
+    #./disks.nix
     # Import the specific hardware-configuration.nix for this host.
     ./hardware-configuration.nix
     # Import my nixos host configs. Both core and optional.
     # Optionals are enabled on a per config basis using the
     # megadots options. This includes user configs.
-    ../../config
+    ../../config/global
+    # Optional configs to import.
+    ../../config/optional/encrypted-root.nix
+    ../../config/optional/ephemeral-btrfs.nix
+    ../../config/optional/gnome.nix
+    ../../config/optional/quietboot.nix
+    # Import my user configs.
+    ../../config/users/velen2077
   ];
 
-  # The megadots options are where optional configurations are
-  # applied to this host. I try to keep every option listed,
-  # and use enable = true; to turn on what I need.
-  megadots = {
-    # Optional configurations to enable for this host.
-    optional = {
-      bluetooth.enable = false;
-      cachyos.enable = true;
-      cosmic.enable = false;
-      gnome.enable = true;
-      gpu-screen-recorder.enable = false;
-      impermanence.enable = false;
-      pipewire.enable = true;
-      steam.enable = false;
-      sunshine.enable = false;
-      systemd-boot.enable = true;
-    };
-    # Optional users to enable for this host.
-    users = {
-      velen2077.enable = true;
+  # Boot loader settings are usually unique to my hosts
+  # since some systems will dual boot with Windows. For
+  # that reason, I keep the boot loader settings in the
+  # configuration.nix for each host.
+  boot.loader = {
+    efi.canTouchEfiVariables = true;
+    timeout = 30;
+    systemd-boot = {
+      enable = true;
     };
   };
 
@@ -51,5 +47,5 @@
   };
 
   # Set the hosts system state version.
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
 }
