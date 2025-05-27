@@ -1,6 +1,7 @@
 {
   inputs,
   outputs,
+  pkgs,
   ...
 }: {
   # Import needed modules here. This is going to pull in my hardware-configuration,
