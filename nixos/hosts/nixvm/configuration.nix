@@ -24,6 +24,7 @@
     # config becomes global, and needs to apply to all my hosts,
     # it gets moved to global.
     ../../config/optional/cachyos.nix
+    ../../config/optional/gaming.nix
     ../../config/optional/gnome.nix
     ../../config/optional/impermanence.nix
     ../../config/optional/pipewire.nix
