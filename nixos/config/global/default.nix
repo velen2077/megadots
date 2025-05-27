@@ -3,6 +3,7 @@
   inputs,
   lib,
   outputs,
+  pkgs,
   ...
 }: {
   imports =
@@ -32,6 +33,22 @@
     config = {
       allowUnfree = true;
     };
+  };
+
+  # Apps installed on all hosts go here.
+  environment.systemPackages = with pkgs; [
+    age
+    alejandra
+    fastfetch
+    git
+    just
+    sops
+  ];
+
+  # Enable adb and dconf for the host.
+  programs = {
+    adb.enable = true;
+    dconf.enable = true;
   };
 
   hardware.enableRedistributableFirmware = true;

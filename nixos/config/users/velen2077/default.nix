@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -32,4 +33,62 @@ in {
   };
 
   home-manager.users.velen2077 = import ../../../../home/velen2077/${config.networking.hostName}.nix;
+
+  environment.persistence."/persist" = {
+    users.velen2077 = {
+      directories = [
+        "Development"
+        "Documents"
+        "Downloads"
+        "Music"
+        "Pictures"
+        "Videos"
+        ".ansible_inventory"
+        ".mozilla"
+        ".obsidian"
+        ".openvpn"
+        ".password-store"
+        ".themes"
+        ".config/sops"
+        ".config/vesktop"
+        ".config/sops-nix"
+        ".config/obsidian"
+        ".config/Code"
+        ".config/dconf"
+        ".config/htop"
+        ".config/nvim"
+        ".config/obs-studio"
+        ".local/share/fish"
+        ".local/share/nix"
+        ".local/share/keyrings"
+        ".local/share/nvim"
+        ".local/state"
+        ".vscode"
+        {
+          directory = ".ssh";
+          mode = "0700";
+        }
+        {
+          directory = ".pki";
+          mode = "0700";
+        }
+        {
+          directory = ".gnupg";
+          mode = "0700";
+        }
+        {
+          directory = ".nixops";
+          mode = "0700";
+        }
+        {
+          directory = ".local/share/keyrings";
+          mode = "0700";
+        }
+        ".local/share/direnv"
+      ];
+      files = [
+        ".screenrc"
+      ];
+    };
+  };
 }

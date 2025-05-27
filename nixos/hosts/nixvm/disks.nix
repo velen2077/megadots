@@ -51,14 +51,6 @@
                       "noatime"
                     ];
                   };
-                  "/home" = {
-                    mountpoint = "/home";
-                    mountOptions = [
-                      "subvol=home"
-                      "compress=zstd"
-                      "noatime"
-                    ];
-                  };
                   "/nix" = {
                     mountpoint = "/nix";
                     mountOptions = [
@@ -84,5 +76,4 @@
     };
   };
   fileSystems."/persist".neededForBoot = true;
-  fileSystems."/home".neededForBoot = true;
 }

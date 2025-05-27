@@ -8,7 +8,6 @@
 }: {
   imports =
     [
-      inputs.impermanence.nixosModules.home-manager.impermanence
       ../features/cli
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);
@@ -41,20 +40,20 @@
       NH_FLAKE = "$HOME/Development/megadots";
     };
 
-    persistence = {
-      "/persist/${config.home.homeDirectory}" = {
-        defaultDirectoryMethod = "symlink";
-        directories = [
-          "Development"
-          "Documents"
-          "Downloads"
-          "Pictures"
-          "Videos"
-          ".local/bin"
-          ".local/share/nix" # trusted settings and repl history
-        ];
-        allowOther = true;
-      };
-    };
+    #persistence = {
+    #  "/persist/${config.home.homeDirectory}" = {
+    #    hideMounts = true;
+    #    directories = [
+    #      "Development"
+    #      "Documents"
+    #      "Downloads"
+    #      "Pictures"
+    #      "Videos"
+    #      ".local/bin"
+    #      ".local/share/nix" # trusted settings and repl history
+    #    ];
+    #    allowOther = true;
+    #  };
+    #};
   };
 }

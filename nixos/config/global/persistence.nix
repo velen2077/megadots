@@ -12,6 +12,7 @@
   imports = [inputs.impermanence.nixosModules.impermanence];
 
   environment.persistence."/persist" = {
+    hideMounts = true;
     directories = [
       "/var/lib/systemd"
       "/var/lib/nixos"
