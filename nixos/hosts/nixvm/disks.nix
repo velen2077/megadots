@@ -1,4 +1,10 @@
-# Disk configuration file for disko for the host 'endgame'.
+# Disk configuration file for disko for the host 'nixvm'.
+# There are some specific configurations in this disko
+# file that are needed for my impermanence setup to work.
+# The primary btrfs volume needs to be labelled 'nixos'
+# using the extraArgs = ["-L" "nixos" "-f"]; setting,
+# and I also use a postCreateHook to generate a blank
+# root snapshot when the host is first created.
 {
   inputs,
   outputs,
@@ -10,15 +16,14 @@
 
   disko.devices = {
     disk = {
-      primary = {
+      main = {
         type = "disk";
         device = "/dev/vda";
         content = {
           type = "gpt";
           partitions = {
             ESP = {
-              priority = 1;
-              size = "2048M";
+              size = "1024M";
               type = "EF00";
               content = {
                 type = "filesystem";
@@ -31,9 +36,12 @@
               size = "100%";
               content = {
                 type = "btrfs";
-                extraArgs = ["-f"]; # Override existing partition
-                # Subvolumes must set a mountpoint in order to be mounted,
-                # unless their parent is mounted
+                extraArgs = ["-L" "nixos" "-f"];
+                postCreateHook = ''
+                  mount -t btrfs /dev/disk/by-label/nixos /mnt
+                  btrfs subvolume snapshot -r /mnt /mnt/root-blank
+                  umount /mnt
+                '';
                 subvolumes = {
                   "/root" = {
                     mountpoint = "/";
@@ -59,6 +67,14 @@
                       "noatime"
                     ];
                   };
+                  "/persist" = {
+                    mountpoint = "/persist";
+                    mountOptions = [
+                      "subvol=persist"
+                      "compress=zstd"
+                      "noatime"
+                    ];
+                  };
                 };
               };
             };
@@ -67,5 +83,6 @@
       };
     };
   };
+  fileSystems."/persist".neededForBoot = true;
   fileSystems."/home".neededForBoot = true;
 }

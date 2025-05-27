@@ -14,9 +14,10 @@
       ./nix-ld.nix
       ./nix.nix
       ./openssh.nix
-      ./optin-persistence.nix
+      ./persistence.nix
       ./steam-hardware.nix
       ./systemd-initrd.nix
+      ./thermald.nix
       ./upower.nix
     ]
     ++ (builtins.attrValues outputs.nixosModules);

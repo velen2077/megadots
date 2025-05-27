@@ -13,18 +13,20 @@
     inputs.hardware.nixosModules.common-gpu-amd
     inputs.hardware.nixosModules.common-pc-ssd
     # Import the disko disk configuration for this host.
-    #./disks.nix
+    ./disks.nix
     # Import the specific hardware-configuration.nix for this host.
     ./hardware-configuration.nix
-    # Import my nixos host configs. Both core and optional.
-    # Optionals are enabled on a per config basis using the
-    # megadots options. This includes user configs.
+    # Import my global nixos host configs. These are configs
+    # I apply to all my hosts.
     ../../config/global
-    # Optional configs to import.
-    ../../config/optional/encrypted-root.nix
-    ../../config/optional/ephemeral-btrfs.nix
+    # Optional configs to import for this host. If an optional
+    # config becomes global, and needs to apply to all my hosts,
+    # it gets moved to global.
     ../../config/optional/gnome.nix
+    ../../config/optional/impermanence.nix
+    ../../config/optional/pipewire.nix
     ../../config/optional/quietboot.nix
+    ../../config/optional/wireless.nix
     # Import my user configs.
     ../../config/users/velen2077
   ];
@@ -45,6 +47,12 @@
   networking = {
     hostName = "nixvm";
   };
+
+  # Host specific apps go here. These will only be
+  # installed on this host.
+  environment.systemPackages = with pkgs; [
+    hello
+  ];
 
   # Set the hosts system state version.
   system.stateVersion = "25.05";

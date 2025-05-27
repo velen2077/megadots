@@ -11,20 +11,18 @@
 }: {
   imports = [inputs.impermanence.nixosModules.impermanence];
 
-  environment.persistence = {
-    "/persist" = {
-      files = [
-        "/etc/machine-id"
-      ];
-      directories = [
-        "/var/lib/bluetooth"
-        "/var/lib/fprint"
-        "/var/lib/systemd"
-        "/var/lib/nixos"
-        "/var/log"
-        "/srv"
-      ];
-    };
+  environment.persistence."/persist" = {
+    directories = [
+      "/var/lib/systemd"
+      "/var/lib/nixos"
+      "/var/lib/bluetooth"
+      "/var/log"
+    ];
+    files = [
+      "/etc/machine-id"
+      "/etc/ssh/ssh_host_ed25519_key"
+      "/etc/ssh/ssh_host_ed25519_key.pub"
+    ];
   };
   programs.fuse.userAllowOther = true;
 

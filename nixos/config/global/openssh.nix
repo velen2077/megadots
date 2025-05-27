@@ -48,10 +48,10 @@ in {
       # Alias to m7.rs and git.m7.rs if it's alcyone
     });
   };
-}
-# Passwordless sudo when SSH'ing with keys
-# security.pam.sshAgentAuth = {
-#   enable = true;
-#   authorizedKeysFiles = ["/etc/ssh/authorized_keys.d/%u"];
-# };
 
+  # Passwordless sudo when SSH'ing with keys
+  security.pam.sshAgentAuth = {
+    enable = true;
+    authorizedKeysFiles = ["/etc/ssh/authorized_keys.d/%u"];
+  };
+}
