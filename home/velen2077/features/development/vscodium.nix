@@ -11,7 +11,7 @@
       default = {
         extensions = with pkgs.vscode-extensions; [
           kamadorueda.alejandra
-          mvllow.rose-pine
+          #mvllow.rose-pine
           jnoortheen.nix-ide
           yzhang.markdown-all-in-one
         ];
@@ -19,7 +19,7 @@
           "git.confirmSync" = false;
           "git.enableSmartCommit" = true;
           "git.autofetch" = true;
-          "workbench.colorTheme" = "Rosé Pine (no italics)";
+          #"workbench.colorTheme" = "Rosé Pine (no italics)";
           "explorer.confirmDragAndDrop" = false;
         };
       };

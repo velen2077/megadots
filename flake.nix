@@ -14,7 +14,7 @@
     # Nixpkgs. By default, I'm using unstable. This can be overuled
     # on a per-package basis using the stable-packages overlay.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
     # Common system definition input.
     systems.url = "github:nix-systems/default-linux";
     # Common hardware input.
@@ -33,6 +33,8 @@
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Sylix.
+    stylix.url = "github:nix-community/stylix";
     # Firefox addons to support my Firefox
     # Home Manager module. These allow installation
     # of Firefox Extensions such as uBlock Origin.
@@ -49,6 +51,7 @@
     systems,
     chaotic,
     disko,
+    stylix,
     ...
   } @ inputs: let
     inherit (self) outputs;

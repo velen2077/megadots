@@ -17,6 +17,8 @@
     ./disks.nix
     # Import the specific hardware-configuration.nix for this host.
     ./hardware-configuration.nix
+    # Import theme.
+    ./theme.nix
     # Import my global nixos host configs. These are configs
     # I apply to all my hosts.
     ../../config/global
@@ -29,6 +31,7 @@
     ../../config/optional/impermanence.nix
     ../../config/optional/pipewire.nix
     ../../config/optional/quietboot.nix
+    ../../config/optional/virtman.nix
     ../../config/optional/wireless.nix
     # Import my user configs.
     ../../config/users/velen2077
@@ -49,6 +52,7 @@
   # Set the host-specific hostname here.
   networking = {
     hostName = "nixvm";
+    domain = "extranet.casa";
   };
 
   # Host specific apps go here. These will only be

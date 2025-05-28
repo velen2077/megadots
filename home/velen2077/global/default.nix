@@ -39,21 +39,5 @@
     sessionVariables = {
       NH_FLAKE = "$HOME/Development/megadots";
     };
-
-    #persistence = {
-    #  "/persist/${config.home.homeDirectory}" = {
-    #    hideMounts = true;
-    #    directories = [
-    #      "Development"
-    #      "Documents"
-    #      "Downloads"
-    #      "Pictures"
-    #      "Videos"
-    #      ".local/bin"
-    #      ".local/share/nix" # trusted settings and repl history
-    #    ];
-    #    allowOther = true;
-    #  };
-    #};
   };
 }
