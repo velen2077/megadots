@@ -76,8 +76,10 @@
   # Host specific apps go here. These will only be
   # installed on this host.
   environment.systemPackages = with pkgs; [
+    digikam
     filen-desktop
     hello
+    signal-desktop
   ];
 
   # Set the hosts system state version.
