@@ -15,7 +15,7 @@
   ];
   disko.devices = {
     disk = {
-      primary = {
+      main = {
         type = "disk";
         device = "/dev/nvme0n1";
         content = {
