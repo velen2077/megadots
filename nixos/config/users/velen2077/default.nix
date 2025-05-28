@@ -90,6 +90,7 @@ in {
         ".local/share/direnv"
       ];
       files = [
+        ".face"
         ".screenrc"
       ];
     };

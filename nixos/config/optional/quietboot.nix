@@ -14,7 +14,7 @@
       enable = true;
       theme = lib.mkForce "hexagon_dots_alt";
       themePackages = with pkgs; [
-        # By default we would install all themes
+        # By default we would install all themes.
         (adi1090x-plymouth-themes.override {
           selected_themes = ["hexagon_dots_alt"];
         })

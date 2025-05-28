@@ -7,8 +7,6 @@
 in {
   nix = {
     settings = {
-      extra-substituters = lib.mkAfter ["https://cache.m7.rs"];
-      extra-trusted-public-keys = ["cache.m7.rs:kszZ/NSwE/TjhOcPPQ16IuUiuRSisdiIwhKZCxguaWg="];
       trusted-users = [
         "root"
         "@wheel"
@@ -20,16 +18,18 @@ in {
         "ca-derivations"
       ];
       warn-dirty = false;
-      flake-registry = ""; # Disable global flake registry
+      # Disable global flake registry.
+      flake-registry = "";
     };
     gc = {
       automatic = true;
       dates = "weekly";
-      # Keep the last 3 generations
-      options = "--delete-older-than +7";
+      # Delete generations that haven't been activated in
+      # over 30 days.
+      options = "--delete-older-than +30";
     };
 
-    # Add each flake input as a registry and nix_path
+    # Add each flake input as a registry and nix_path.
     registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };

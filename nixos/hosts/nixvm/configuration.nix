@@ -45,6 +45,7 @@
     efi.canTouchEfiVariables = true;
     timeout = 30;
     systemd-boot = {
+      configurationLimit = 10;
       enable = true;
     };
   };

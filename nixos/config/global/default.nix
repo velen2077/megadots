@@ -43,6 +43,7 @@
     git
     just
     sops
+    xorg.xrandr
   ];
 
   # Enable adb and dconf for the host.
@@ -52,7 +53,14 @@
   };
 
   hardware.enableRedistributableFirmware = true;
-  networking.domain = "extranet.casa";
+
+  # Allow users to mount removable drives.
+  services.udisks2.enable = true;
+
+  # Mark admins as trusted users.
+  nix.settings.trusted-users = [
+    "@wheel"
+  ];
 
   # Increase open file limit for sudoers
   security.pam.loginLimits = [

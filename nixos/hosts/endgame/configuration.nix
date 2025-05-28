@@ -46,6 +46,7 @@
     timeout = 30;
     systemd-boot = {
       enable = true;
+      configurationLimit = 10;
       windows = {
         "windows" = let
           # To determine the name of the windows boot drive, boot into edk2 first, then run

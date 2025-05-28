@@ -4,8 +4,10 @@
   pkgs,
   ...
 }: {
-  # To fix GTK apps:
+  # Enable dconf so it can be configured by home-manager.
   programs.dconf.enable = true;
+
+  xdg.portal.enable = true;
 
   services = {
     libinput.enable = true;
@@ -40,6 +42,15 @@
   ];
 
   environment.systemPackages = with pkgs; [
+    dconf-editor
     gnome-tweaks
   ];
+
+  environment.persistence."/persist" = {
+    directories = [
+      "/var/lib/AccountsService"
+    ];
+    files = [
+    ];
+  };
 }
