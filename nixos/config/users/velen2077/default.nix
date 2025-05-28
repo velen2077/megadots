@@ -50,6 +50,7 @@ in {
         ".password-store"
         ".themes"
         ".steam"
+        ".config/@filen"
         ".config/sops"
         ".config/vesktop"
         ".config/sops-nix"
