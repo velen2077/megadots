@@ -21,7 +21,10 @@ test-run-flatmate:
     ./result/bin/run-flatmate-vm
 
 prod-build-flatmate:
-    sudo nix --extra-experimental-features 'nix-command flakes' run github:nix-community/nixos-anywhere -- --disko-mode disko --flake .#flatmate --target-host nixos@10.20.100.50
+    sudo nix --extra-experimental-features 'nix-command flakes' run github:nix-community/nixos-anywhere -- --disko-mode disko --flake .#flatmate --target-host nixos@10.20.100.10
+
+rebuild-flatmate:
+    NIX_SSHOPTS="-i /home/velen2077/.ssh/id_ed25519" nixos-rebuild switch --flake .#flatmate --target-host velen2077@10.20.100.10 --use-remote-sudo --option 'extra-substituters' 'https://hyprland.cachix.org/' --option extra-trusted-public-keys "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
 
 prod-build-endgame:
     sudo nix --extra-experimental-features 'nix-command flakes' run github:nix-community/nixos-anywhere -- --disko-mode disko --flake .#endgame --target-host nixos@10.20.1.1
@@ -37,7 +40,7 @@ prod-build-nixvm:
     sudo nix --extra-experimental-features 'nix-command flakes' run github:nix-community/nixos-anywhere -- --disko-mode disko --flake .#nixvm --target-host nixos@192.168.122.116
 
 rebuild-nixvm:
-    nixos-rebuild switch --flake .#nixvm --target-host velen2077@192.168.122.116 --use-remote-sudo --option 'extra-substituters' 'https://hyprland.cachix.org/' --option extra-trusted-public-keys "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+    NIX_SSHOPTS="-i /home/velen2077/.ssh/id_ed25519" nixos-rebuild switch --flake .#nixvm --target-host velen2077@192.168.122.116 --use-remote-sudo --option 'extra-substituters' 'https://hyprland.cachix.org/' --option extra-trusted-public-keys "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
 
 eval-test:
     nix eval .#nixosConfigurations.nixvm.config.system --extra-experimental-features "nix-command flakes"

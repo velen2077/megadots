@@ -47,15 +47,15 @@ I use the following structure to organise my configurations.
 │   └── wallpapers        # Wallpapers I used on my system that are used by Stylix.
 ├── home                  # Home folder that contains a folder for each Home Manager user.
 │   └── velen2077         # My primary user, managed by Home Manager.
-│       ├── core          # Core Home Manager modules, all imported and applied to the user.
-│       └── optional      # Optional Home Manager modules, all imported and toggled with options.
+│       ├── global        # Global Home Manager configs, all imported and applied to the user.
+│       └── optional      # Optional Home Manager configs, selectively imported per user.
 ├── modules               # Modules folder, containing a subfolder for both NixOS and Home Manager.
 │   ├── home-manager      # Custom-written and sharable Home Manager modules.
 │   └── nixos             # Custom-written and sharable NixOS modules.
 ├── nixos                 # NixOS configs, containing a subfolder for each host and a config folder.
 │   ├── config            # NixOS config files for system configs.
-│   │   ├── core          # Core system configs, to apply on every system.
-│   │   ├── optional      # Optional system configs, all imported, and toggled with options.
+│   │   ├── global        # Global system configs, to apply on every system.
+│   │   ├── optional      # Optional system configs, selectively imported per host.
 │   │   └── users         # Optional user settings to apply on selected systems with options.
 │   └── endgame           # The configuration for my primary desktop system.
 │   └── flatmate          # The configuration for my primary laptop system.

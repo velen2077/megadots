@@ -1,23 +1,21 @@
 # Disk configuration file for disko for the host 'endgame'.
-# There are some specific configurations in this disko
-# file that are needed for my impermanence setup to work.
-# The primary btrfs volume needs to be labelled 'nixos'
-# using the extraArgs = ["-L" "nixos" "-f"]; setting,
-# and I also use a postCreateHook to generate a blank
-# root snapshot when the host is first created.
 {
+  config,
   inputs,
   outputs,
   ...
-}: {
+}: let
+  hostname = config.networking.hostName;
+in {
   imports = [
     inputs.disko.nixosModules.disko
   ];
+
   disko.devices = {
     disk = {
       main = {
         type = "disk";
-        device = "/dev/nvme0n1";
+        device = "/dev/vda";
         content = {
           type = "gpt";
           partitions = {
@@ -61,6 +59,14 @@
                         "noatime"
                       ];
                     };
+                    "/home" = {
+                      mountpoint = "/home";
+                      mountOptions = [
+                        "subvol=home"
+                        "compress=zstd"
+                        "noatime"
+                      ];
+                    };
                     "/nix" = {
                       mountpoint = "/nix";
                       mountOptions = [
@@ -87,4 +93,5 @@
     };
   };
   fileSystems."/persist".neededForBoot = true;
+  fileSystems."/home".neededForBoot = true;
 }

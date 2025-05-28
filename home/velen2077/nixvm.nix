@@ -7,15 +7,17 @@
   ...
 }: {
   imports = [
-    ./core
-    ./optional
+    ./global
+    ./features/development
+    ./features/productivity
   ];
 
-  megadots = {
-    optional = {
-      firefox.enable = true;
-      vesktop.enable = true;
-      vscodium.enable = true;
-    };
-  };
+  monitors = [
+    {
+      name = "Virtual-1";
+      width = 1920;
+      height = 1080;
+      primary = true;
+    }
+  ];
 }
