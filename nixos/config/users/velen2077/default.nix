@@ -61,6 +61,7 @@ in {
         ".config/htop"
         ".config/nvim"
         ".config/obs-studio"
+        ".local/share/digikam"
         ".local/share/fish"
         ".local/share/nix"
         ".local/share/nvim"
