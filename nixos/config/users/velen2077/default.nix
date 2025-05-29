@@ -94,6 +94,8 @@ in {
       files = [
         ".face"
         ".screenrc"
+        ".config/digikamrc"
+        ".config/digikam_systemrc"
       ];
     };
   };
