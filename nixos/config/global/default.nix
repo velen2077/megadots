@@ -24,6 +24,7 @@
     ++ (builtins.attrValues outputs.nixosModules);
 
   home-manager.useGlobalPkgs = true;
+  home-manager.backupFileExtension = "backup";
   home-manager.extraSpecialArgs = {
     inherit inputs outputs;
   };
@@ -44,6 +45,7 @@
     just
     sops
     xorg.xrandr
+    game-devices-udev-rules
   ];
 
   # Enable adb and dconf for the host.
@@ -53,6 +55,8 @@
   };
 
   hardware.enableRedistributableFirmware = true;
+  hardware.enableAllFirmware = true;
+  hardware.uinput.enable = true;
 
   # Allow users to mount removable drives.
   services.udisks2.enable = true;

@@ -7,6 +7,7 @@
   home = {
     packages = with pkgs; [
       gnomeExtensions.appindicator
+      gnomeExtensions.user-themes
     ];
   };
 
@@ -49,7 +50,11 @@
 
     # Extension config.
     "org/gnome/shell" = {
-      enabled-extensions = ["appindicatorsupport@rgcjonas.gmail.com"];
+      disable-user-extensions = false;
+      enabled-extensions = with pkgs.gnomeExtensions; [
+        appindicator.extensionUuid
+        user-themes.extensionUuid
+      ];
       #favorite-apps = [ "org.gnome.Nautilus.desktop" "kitty.desktop" "chromium-browser.desktop" "code.desktop" ];
       last-selected-power-profile = "performance";
     };
