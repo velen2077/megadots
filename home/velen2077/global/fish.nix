@@ -48,4 +48,13 @@
     nix-your-shell.enableFishIntegration = true;
     zoxide.enableFishIntegration = true;
   };
+
+  home.persistence."/persist" = {
+    directories = [
+      ".config/fish"
+      ".local/share/fish"
+    ];
+    files = [
+    ];
+  };
 }

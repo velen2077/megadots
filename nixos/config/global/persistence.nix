@@ -13,11 +13,15 @@
 
   environment.persistence."/persist" = {
     hideMounts = true;
-    directories = [
-      "/var/lib/systemd"
-      "/var/lib/nixos"
-      "/var/log"
-    ];
+    directories =
+      [
+        "/var/lib/systemd"
+        "/var/lib/nixos"
+        "/var/log"
+        "/etc/NetworkManager/system-connections"
+      ]
+      ++ lib.optionals config.services.udisks2.enable ["/var/lib/udisks2"]
+      ++ lib.optionals config.services.upower.enable ["/var/lib/upower"];
     files = [
       "/etc/machine-id"
       "/etc/ssh/ssh_host_ed25519_key"

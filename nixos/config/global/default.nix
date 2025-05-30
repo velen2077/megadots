@@ -62,6 +62,23 @@
     "@wheel"
   ];
 
+  # Enable passwordless sudo for members
+  # of wheel group.
+  security.sudo = {
+    enable = true;
+    extraRules = [
+      {
+        commands = [
+          {
+            command = "ALL";
+            options = ["NOPASSWD"];
+          }
+        ];
+        groups = ["wheel"];
+      }
+    ];
+  };
+
   # Increase open file limit for sudoers
   security.pam.loginLimits = [
     {
