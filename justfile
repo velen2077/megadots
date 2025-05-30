@@ -39,6 +39,10 @@ endgame-deploy:
 endgame-rebuild:
     nixos-rebuild switch --flake .#endgame --target-host velen2077@endgame --use-remote-sudo
 
+# Perform a rebuild of endgame.
+endgame-rebuild-locally:
+    sudo nixos-rebuild switch --flake .#endgame
+
 # ███████╗██╗      █████╗ ████████╗███╗   ███╗ █████╗ ████████╗███████╗     ██████╗ ██████╗ ███████╗
 # ██╔════╝██║     ██╔══██╗╚══██╔══╝████╗ ████║██╔══██╗╚══██╔══╝██╔════╝    ██╔═══██╗██╔══██╗██╔════╝
 # █████╗  ██║     ███████║   ██║   ██╔████╔██║███████║   ██║   █████╗      ██║   ██║██████╔╝███████╗
