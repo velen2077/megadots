@@ -12,12 +12,8 @@
     ./global
     # Optional configs to import for this user.
     ./optional/alacritty.nix
-    ./optional/digikam.nix
-    ./optional/filen-desktop.nix
     ./optional/firefox.nix
     ./optional/gnome.nix
-    ./optional/signal-desktop.nix
-    ./optional/vesktop.nix
     ./optional/vscodium.nix
   ];
 
