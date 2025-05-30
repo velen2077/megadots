@@ -42,6 +42,9 @@
       # Fish shell only.
       enableInteractive = true;
       enableTransience = true;
+      settings = {
+        add_newline = false;
+      };
     };
     # Shell integrations.
     kitty.shellIntegration.enableFishIntegration = true;
