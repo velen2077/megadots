@@ -20,7 +20,7 @@
     # Common hardware input.
     hardware.url = "github:nixos/nixos-hardware";
     # Impermanence for nixos.
-    impermanence.url = "github:nix-community/impermanence";
+    impermanence.url = "github:nix-community/impermanence/home-manager-v2";
     # Home Manager for managing my dotfiles and user config.
     home-manager = {
       url = "github:nix-community/home-manager";

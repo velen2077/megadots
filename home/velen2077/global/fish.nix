@@ -42,10 +42,22 @@
       # Fish shell only.
       enableInteractive = true;
       enableTransience = true;
+      settings = {
+        add_newline = false;
+      };
     };
     # Shell integrations.
     kitty.shellIntegration.enableFishIntegration = true;
     nix-your-shell.enableFishIntegration = true;
     zoxide.enableFishIntegration = true;
+  };
+
+  home.persistence."/persist" = {
+    directories = [
+      ".config/fish"
+      ".local/share/fish"
+    ];
+    files = [
+    ];
   };
 }

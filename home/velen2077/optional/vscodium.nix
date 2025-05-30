@@ -19,10 +19,21 @@
           "git.confirmSync" = false;
           "git.enableSmartCommit" = true;
           "git.autofetch" = true;
-          #"workbench.colorTheme" = "Rosé Pine (no italics)";
           "explorer.confirmDragAndDrop" = false;
+          "explorer.confirmDelete" = false;
         };
       };
     };
+  };
+
+  home.persistence."/persist" = {
+    directories = [
+      ".config/Code"
+      ".config/VSCodium"
+      ".vscode"
+      ".vscode-oss"
+    ];
+    files = [
+    ];
   };
 }

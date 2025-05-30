@@ -119,4 +119,12 @@
     "text/html" = ["firefox.desktop"];
     "application/pdf" = ["firefox.desktop"];
   };
+
+  home.persistence."/persist" = {
+    directories = [
+      ".mozilla"
+    ];
+    files = [
+    ];
+  };
 }
