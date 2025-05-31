@@ -9,6 +9,7 @@
   imports =
     [
       inputs.home-manager.nixosModules.home-manager
+      ./firewall.nix
       ./fish.nix
       ./gamemode.nix
       ./locale.nix

@@ -68,6 +68,7 @@
       ".themes"
       ".config/sops"
       ".config/sops-nix"
+      ".config/sunshine"
       ".config/dconf"
       ".local/share/nix"
       ".local/state"

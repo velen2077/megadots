@@ -31,6 +31,7 @@
     ../../config/optional/impermanence.nix
     ../../config/optional/pipewire.nix
     ../../config/optional/quietboot.nix
+    ../../config/optional/sunshine.nix
     ../../config/optional/virtman.nix
     ../../config/optional/wireless.nix
     # Import my user configs.

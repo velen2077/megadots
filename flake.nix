@@ -115,3 +115,19 @@
     };
   };
 }
+# These systems run on logic, code, and care,
+# But tucked within its config, there's something rare.
+#
+# To Edie, Maisey, and Logan — my stars, my song,
+# This world moves fast, but my love is strong.
+#
+# In bits and bytes these systems may grow,
+# Yet what truly matters is what you sow,
+# Kindness, courage, and being true,
+# The best parts of me live on in you.
+#
+# If someday you find this, nestled in code,
+# Know that wherever you are, or go, or grow old,
+# Your names are written in every line,
+# May it remind you: you are my home.
+
