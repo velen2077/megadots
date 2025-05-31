@@ -17,7 +17,7 @@ I am not an expert in Nix, NixOS, Home Manager or Flakes. Nor am I a developer. 
 ## Features
 - **NixOS** system configuration on mulitple hosts.
 - **Home Manager** user configuration for my user.
-- **Impermanence** with LUKS encrypted btrfs snapshot and rollback.#
+- **Impermanence** with LUKS encrypted btrfs snapshot and rollback.
 - **Flakes** and modular configs.
 - **Disko** for disk partioning and preperation.
 - **Chaotic** inputs for CachyOS kernel.
@@ -57,9 +57,10 @@ I use the following structure to organise my configurations.
 │   │   ├── global        # Global system configs, to apply on every system.
 │   │   ├── optional      # Optional system configs, selectively imported per host.
 │   │   └── users         # Optional user settings to apply on selected systems with options.
-│   └── endgame           # The configuration for my primary desktop system.
-│   └── flatmate          # The configuration for my primary laptop system.
-│   └── nixvm             # The configuration for my test VM.
+│   └── hosts             # NixOS hosts managed by megadots.
+│       └── endgame       # The configuration for my primary desktop system.
+│       └── flatmate      # The configuration for my primary laptop system.
+│       └── nixvm         # The configuration for my test VM.
 ├── overlays              # Overlays folder containing any patches or overrides.
 ├── pkgs                  # Pkgs folder for storing any custom packaged apps.
 ```
