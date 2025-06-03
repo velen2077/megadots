@@ -73,6 +73,8 @@
       #".config/dconf"
       #".local/share/nix"
       #".local/state"
+      ".local/bin"
+      ".local/share/nix" # trusted settings and repl history
       ".local/share/Steam"
       #".local/share/direnv"
       ".steam"
