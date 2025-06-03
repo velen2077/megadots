@@ -56,6 +56,7 @@
   # Global persists for anything that could be global
   # or optional for nixos configs, like Steam.
   home.persistence."/persist" = {
+    hideMounts = true;
     directories = [
       "Development"
       "Documents"
@@ -63,17 +64,17 @@
       "Music"
       "Pictures"
       "Videos"
-      ".openvpn"
-      ".password-store"
-      ".themes"
-      ".config/sops"
-      ".config/sops-nix"
-      ".config/sunshine"
-      ".config/dconf"
-      ".local/share/nix"
-      ".local/state"
+      #".openvpn"
+      #".password-store"
+      #".themes"
+      #".config/sops"
+      #".config/sops-nix"
+      #".config/sunshine"
+      #".config/dconf"
+      #".local/share/nix"
+      #".local/state"
       ".local/share/Steam"
-      ".local/share/direnv"
+      #".local/share/direnv"
       ".steam"
       {
         directory = ".ssh";
@@ -87,10 +88,10 @@
         directory = ".gnupg";
         mode = "0700";
       }
-      {
-        directory = ".nixops";
-        mode = "0700";
-      }
+      #{
+      #  directory = ".nixops";
+      #  mode = "0700";
+      #}
       {
         directory = ".local/share/keyrings";
         mode = "0700";

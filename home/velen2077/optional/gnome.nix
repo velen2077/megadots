@@ -21,7 +21,7 @@
     "org/gnome/desktop/interface" = {
       # gtk4 theme/scheme.
       color-scheme = "prefer-dark";
-      accent-color = "slate";
+      #accent-color = "slate";
       show-battery-percentage = true;
     };
 
