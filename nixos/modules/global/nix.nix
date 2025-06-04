@@ -1,6 +1,7 @@
 {
   inputs,
   lib,
+  outputs,
   ...
 }: {
   imports = [
@@ -26,6 +27,13 @@
       # Delete generations that haven't been activated in
       # over 30 days.
       options = "--delete-older-than +30";
+    };
+  };
+
+  nixpkgs = {
+    overlays = builtins.attrValues outputs.overlays;
+    config = {
+      allowUnfree = true;
     };
   };
 

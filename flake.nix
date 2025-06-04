@@ -35,8 +35,6 @@
     self,
     nixpkgs,
     home-manager,
-    #disko,
-    #impermanence,
     ...
   } @ inputs: let
     inherit (self) outputs;

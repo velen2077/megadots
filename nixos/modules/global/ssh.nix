@@ -11,6 +11,7 @@
   # just persisting the keys won't work, we must point at /persist.
   hasPersistence = config.environment.persistence ? "/persist";
 in {
+  # Configure SSH for my systems.
   services.openssh = {
     enable = true;
     settings = {
