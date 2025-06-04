@@ -7,6 +7,7 @@
   # Global persists for anything that could be global
   # or optional for nixos configs, like Steam.
   home.persistence."/persist" = {
+    hideMounts = true;
     directories = [
       "Development"
       "Documents"

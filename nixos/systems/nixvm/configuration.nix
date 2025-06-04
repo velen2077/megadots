@@ -30,7 +30,11 @@
     # specific host.
     ../../modules/optional/cachyos.nix
     ../../modules/optional/gaming.nix
+    ../../modules/optional/gnome.nix
     ../../modules/optional/persistence.nix
+    ../../modules/optional/pipewire.nix
+    ../../modules/optional/virtmanager.nix
+    ../../modules/optional/wireless.nix
     # Import the users for this system.
     ../../modules/users/velen2077
   ];
