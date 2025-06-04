@@ -10,6 +10,8 @@
 }: {
   # You can import other NixOS modules here
   imports = [
+    inputs.disko.nixosModules.disko
+    inputs.impermanence.nixosModules.impermanence
     # If you want to use modules your own flake exports (from modules/nixos):
     # outputs.nixosModules.example
 
@@ -23,6 +25,7 @@
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
     ./disks.nix
+    ./impermanence.nix
   ];
 
   nixpkgs = {
@@ -104,6 +107,21 @@
     };
   };
 
+  environment.persistence."/persist" = {
+    hideMounts = true;
+    directories = [
+      "/var/lib/systemd"
+      "/var/lib/nixos"
+      "/var/log"
+      "/etc/NetworkManager/system-connections"
+    ];
+    files = [
+      "/etc/machine-id"
+      "/etc/ssh/ssh_host_ed25519_key"
+      "/etc/ssh/ssh_host_ed25519_key.pub"
+    ];
+  };
+
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
 }
