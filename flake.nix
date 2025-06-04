@@ -27,6 +27,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence.url = "github:nix-community/impermanence/home-manager-v2";
+    # Sylix.
+    stylix.url = "github:nix-community/stylix";
     # Chaotic inputs for CachyOS and Zen kernels.
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     # Firefox addons to support my Firefox

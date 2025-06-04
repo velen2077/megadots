@@ -39,6 +39,13 @@
     ../../modules/users/velen2077
   ];
 
+  stylix = {
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark.yaml";
+    image = ../../../assets/wallpaper/robogirl.png;
+    polarity = "dark";
+  };
+
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "25.05";
 }
