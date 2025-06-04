@@ -2,6 +2,7 @@
   imports = [
     ./bootloader.nix
     ./firewall.nix
+    ./impermanence.nix
     ./locale.nix
     ./nix.nix
     ./packages.nix
