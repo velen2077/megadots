@@ -3,6 +3,7 @@
     ./bootloader.nix
     ./firewall.nix
     ./fish.nix
+    ./hardware.nix
     ./impermanence.nix
     ./locale.nix
     ./nix.nix

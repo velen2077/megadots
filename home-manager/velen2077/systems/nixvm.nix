@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   imports = [
     # Import my global Home Manager configs. These are configs
     # I apply to all my Home Manager users.
@@ -10,6 +10,7 @@
     ../modules/optional/gnome.nix
     ../modules/optional/persistence.nix
     ../modules/optional/signal-desktop.nix
+    ../modules/optional/theme.nix
     ../modules/optional/vesktop.nix
     ../modules/optional/vscodium.nix
     #../modules/optional/steam.nix
