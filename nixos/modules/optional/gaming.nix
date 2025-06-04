@@ -9,6 +9,8 @@
     extraCompatPackages = with pkgs; [proton-ge-bin];
   };
 
+  programs.gamemode.enable = true;
+
   services.sunshine = {
     enable = true;
     autoStart = false;
@@ -29,6 +31,8 @@
       ];
     };
   };
+
+  hardware.steam-hardware.enable = true;
 
   # Required to simulate input in sunshine.
   services.udev.extraRules = lib.optionalString config.services.sunshine.enable ''
