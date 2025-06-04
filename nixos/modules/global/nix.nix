@@ -4,11 +4,14 @@
   outputs,
   ...
 }: {
-  imports = [
-    inputs.chaotic.nixosModules.default
-    inputs.disko.nixosModules.disko
-    inputs.impermanence.nixosModules.impermanence
-  ];
+  imports =
+    [
+      inputs.chaotic.nixosModules.default
+      inputs.disko.nixosModules.disko
+      inputs.home-manager.nixosModules.home-manager
+      inputs.impermanence.nixosModules.impermanence
+    ]
+    ++ (builtins.attrValues outputs.nixosModules);
   nix = {
     settings = {
       trusted-users = [
@@ -35,6 +38,12 @@
     config = {
       allowUnfree = true;
     };
+  };
+
+  home-manager.useUserPackages = true;
+  home-manager.backupFileExtension = "backup";
+  home-manager.extraSpecialArgs = {
+    inherit inputs outputs;
   };
 
   # Enable passwordless sudo for members
