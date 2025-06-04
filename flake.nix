@@ -29,6 +29,13 @@
     impermanence.url = "github:nix-community/impermanence/home-manager-v2";
     # Chaotic inputs for CachyOS and Zen kernels.
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    # Firefox addons to support my Firefox
+    # Home Manager module. These allow installation
+    # of Firefox Extensions such as uBlock Origin.
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
