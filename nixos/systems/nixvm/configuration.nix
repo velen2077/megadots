@@ -8,24 +8,27 @@
   pkgs,
   ...
 }: {
-  # You can import other NixOS modules here
+  # Set the essential options for this host before I do
+  # anything else. Hostname and domain are used in global
+  # configs so must be accurate.
+  networking = {
+    hostName = "nixvm";
+    domain = "extranet.casa";
+  };
+
+  # Import my configurations.
   imports = [
-    inputs.disko.nixosModules.disko
-    inputs.impermanence.nixosModules.impermanence
-    # If you want to use modules your own flake exports (from modules/nixos):
-    # outputs.nixosModules.example
-
-    # Or modules from other flakes (such as nixos-hardware):
-    # inputs.hardware.nixosModules.common-cpu-amd
-    # inputs.hardware.nixosModules.common-ssd
-
-    # You can also split up your configuration and import pieces of it here:
-    # ./users.nix
-
-    # Import your generated (nixos-generate-config) hardware configuration
+    # Import my generated (nixos-generate-config) hardware configuration.
+    # for this host. This should always be unique to a host.
     ./hardware-configuration.nix
+    # Import my disko disk config for this host.
     ./disks.nix
-    ./impermanence.nix
+    # Import my global host configs. These should apply to every
+    # every host and contain important defaults.
+    ../../modules/global
+    # Import the optional configurations I want to apply to this
+    # specific host.
+    ../../modules/optional/cachyos.nix
   ];
 
   nixpkgs = {
@@ -74,9 +77,6 @@
 
   # FIXME: Add the rest of your current configuration
 
-  # TODO: Set your hostname
-  networking.hostName = "nixvm";
-
   # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
   users.users = {
     # FIXME: Replace with your username
@@ -91,19 +91,6 @@
       ];
       # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
       extraGroups = ["wheel"];
-    };
-  };
-
-  # This setups a SSH server. Very important if you're setting up a headless system.
-  # Feel free to remove if you don't need it.
-  services.openssh = {
-    enable = true;
-    settings = {
-      # Opinionated: forbid root login through SSH.
-      PermitRootLogin = "no";
-      # Opinionated: use keys only.
-      # Remove if you want to SSH using passwords
-      PasswordAuthentication = true;
     };
   };
 

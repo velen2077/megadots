@@ -8,7 +8,6 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
-  boot.loader.systemd-boot.enable = true;
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "sr_mod" "virtio_pci" "virtio_blk"];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd"];

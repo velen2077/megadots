@@ -1,5 +1,14 @@
 {
-  description = "Your new nix config";
+  description = "megadots by velen2077.";
+
+  nixConfig = {
+    extra-substituters = [
+      "https://chaotic-nyx.cachix.org/"
+    ];
+    extra-trusted-public-keys = [
+      "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+    ];
+  };
 
   inputs = {
     # Nixpkgs
@@ -18,14 +27,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence.url = "github:nix-community/impermanence";
+    # Chaotic inputs for CachyOS and Zen kernels.
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
   };
 
   outputs = {
     self,
     nixpkgs,
     home-manager,
-    disko,
-    impermanence,
+    #disko,
+    #impermanence,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -47,7 +58,6 @@
     # Formatter for your nix files, available through 'nix fmt'
     # Other options beside 'alejandra' include 'nixpkgs-fmt'
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
-
     # Your custom packages and modifications, exported as overlays
     overlays = import ./overlays {inherit inputs;};
     # Reusable nixos modules you might want to export
@@ -60,12 +70,22 @@
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
-      # FIXME replace with your hostname
+      # NixOS configuration for my primary desktop, endgame.
+      endgame = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          # Import the system configuration which acts essentially
+          # as an entry point to the system config.
+          ./nixos/systems/endgame/configuration.nix
+        ];
+      };
+      # NixOS configuration for my virtual machine, nixvm.
       nixvm = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          # > Our main nixos configuration file <
-          ./nixos/configuration.nix
+          # Import the system configuration which acts essentially
+          # as an entry point to the system config.
+          ./nixos/systems/nixvm/configuration.nix
         ];
       };
     };
