@@ -28,17 +28,22 @@
     ../../modules/global
     # Import the optional configurations I want to apply to this
     # specific host.
-    ../../modules/optional/cachyos.nix
+    #../../modules/optional/cachyos.nix
     ../../modules/optional/gaming.nix
     ../../modules/optional/gnome.nix
     ../../modules/optional/persistence.nix
     ../../modules/optional/pipewire.nix
     ../../modules/optional/theme.nix
     ../../modules/optional/virtmanager.nix
-    ../../modules/optional/wireless.nix
+    #../../modules/optional/wireless.nix
     # Import the users for this system.
     ../../modules/users/velen2077
   ];
+
+  megadots = {
+    bluetooth.enable = true;
+    cachyos.enable = true;
+  };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "25.05";
