@@ -6,10 +6,10 @@
 }: {
   imports =
     [
-      inputs.disko.nixosModules.disko
+      #      inputs.disko.nixosModules.disko
       inputs.home-manager.nixosModules.home-manager
-      inputs.impermanence.nixosModules.impermanence
-      inputs.stylix.nixosModules.stylix
+      #inputs.impermanence.nixosModules.impermanence
+      #inputs.stylix.nixosModules.stylix
     ]
     ++ (builtins.attrValues outputs.nixosModules);
   nix = {

@@ -8,7 +8,7 @@ with lib; let
   cfg = config.megadots.bluetooth;
 in {
   options.megadots.bluetooth = {
-    enable = mkEnableOption "the foo program";
+    enable = mkEnableOption "Enable bluetooth.";
   };
 
   config = mkIf cfg.enable {
@@ -17,7 +17,7 @@ in {
       package = pkgs.bluez;
     };
 
-    environment.persistence."/persist" = {
+    environment.persistence."/persist" = mkIf config.megadots.persistence.enable {
       directories = [
         "/var/lib/bluetooth"
       ];

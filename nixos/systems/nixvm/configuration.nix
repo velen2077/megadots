@@ -29,12 +29,12 @@
     # Import the optional configurations I want to apply to this
     # specific host.
     #../../modules/optional/cachyos.nix
-    ../../modules/optional/gaming.nix
-    ../../modules/optional/gnome.nix
-    ../../modules/optional/persistence.nix
-    ../../modules/optional/pipewire.nix
-    ../../modules/optional/theme.nix
-    ../../modules/optional/virtmanager.nix
+    #../../modules/optional/gaming.nix
+    #../../modules/optional/gnome.nix
+    #../../modules/optional/persistence.nix
+    #../../modules/optional/pipewire.nix
+    #../../modules/optional/theme.nix
+    #../../modules/optional/virtmanager.nix
     #../../modules/optional/wireless.nix
     # Import the users for this system.
     ../../modules/users/velen2077
@@ -43,6 +43,27 @@
   megadots = {
     bluetooth.enable = true;
     cachyos.enable = true;
+    ephemeral-btrfs = {
+      enable = true;
+      diskLabel = "nixos";
+    };
+    fish.enable = true;
+    gaming.enable = true;
+    gnome.enable = true;
+    graphics.enable = true;
+    locale = {
+      enable = true;
+      timezone = "Europe/London";
+      locale = "en_GB";
+      keyboardLayout = "gb";
+      consoleKeyMap = "uk";
+    };
+    persistence.enable = true;
+    pipewire.enable = true;
+    theme.enable = true;
+    thermald.enable = true;
+    upower.enable = true;
+    virt-manager.enable = true;
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

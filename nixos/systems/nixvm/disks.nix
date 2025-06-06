@@ -5,7 +5,10 @@
 # using the extraArgs = ["-L" "nixos" "-f"]; setting,
 # and I also use a postCreateHook to generate a blank
 # root snapshot when the host is first created.
-{
+{inputs, ...}: {
+  imports = [
+    inputs.disko.nixosModules.disko
+  ];
   disko.devices = {
     disk = {
       main = {
