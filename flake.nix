@@ -15,8 +15,6 @@
     # on a per-package basis using the stable-packages overlay.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
-    # Common system definition input.
-    systems.url = "github:nix-systems/default-linux";
     # Common hardware input.
     hardware.url = "github:nixos/nixos-hardware";
     # Impermanence for nixos.
@@ -48,25 +46,15 @@
     self,
     nixpkgs,
     home-manager,
-    systems,
-    chaotic,
-    disko,
-    stylix,
     ...
   } @ inputs: let
     inherit (self) outputs;
     # Supported systems for my flake packages, shell, etc. Included in
     # the Systems input and includes updated NixOS supported systems.
     lib = nixpkgs.lib // home-manager.lib;
-    forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
-    pkgsFor = lib.genAttrs (import systems) (
-      system:
-        import nixpkgs {
-          inherit system;
-          # Allows the use of non-free software.
-          config.allowUnfree = true;
-        }
-    );
+    forAllSystems = nixpkgs.lib.genAttrs [
+      "x86_64-linux"
+    ];
   in {
     inherit lib;
     # Import my nixos modules. These modules should not be confused with
@@ -79,10 +67,10 @@
     # Import my custom packages and modifications, exported as overlays.
     overlays = import ./overlays {inherit inputs outputs;};
     # My custom packages accessible through 'nix build', 'nix shell', etc.
-    packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
+    packages = forAllSystems (pkgs: import ./pkgs {inherit pkgs;});
     # Formatter for my nix files, available through 'nix fmt'.
     # Other options beside 'alejandra' include 'nixpkgs-fmt'.
-    formatter = forEachSystem (pkgs: pkgs.alejandra);
+    formatter = forAllSystems (pkgs: pkgs.alejandra);
     # NixOS configuration entrypoint. These are available
     # through 'nixos-rebuild --flake .#hostname'.
     nixosConfigurations = {

@@ -62,7 +62,6 @@
 
   home.persistence."/persist" = {
     directories = [
-      "/var/lib/AccountsService"
       ".config/autostart"
       ".local/share/gvfs-metadata"
       ".local/share/gnome-shell"

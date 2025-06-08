@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  wipeScript = ''
+  rollbackScript = ''
     mkdir /mnt
     mount -t btrfs -o subvol=/ /dev/disk/by-label/nixos /mnt
     btrfs subvolume list -o /mnt/root | cut -f 9- -d ' ' | while read subvolume; do
@@ -22,7 +22,6 @@ in {
   boot.initrd = {
     enable = true;
     supportedFilesystems = ["btrfs"];
-    postDeviceCommands = lib.mkIf (!phase1Systemd) (lib.mkBefore wipeScript);
     systemd.services.rollback = {
       description = "Rollback BTRFS root subvolume to a pristine state";
       wantedBy = ["initrd.target"];
@@ -34,7 +33,7 @@ in {
       before = ["sysroot.mount"];
       unitConfig.DefaultDependencies = "no";
       serviceConfig.Type = "oneshot";
-      script = wipeScript;
+      script = rollbackScript;
     };
   };
 }

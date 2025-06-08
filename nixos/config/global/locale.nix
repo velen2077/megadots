@@ -17,8 +17,6 @@
     LC_TELEPHONE = "en_GB.UTF-8";
     LC_TIME = "en_GB.UTF-8";
   };
-  location.provider = "geoclue2";
-  services.automatic-timezoned.enable = true;
 
   # Update the xkb layout to British.
   services.xserver = {

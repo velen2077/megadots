@@ -9,6 +9,8 @@
     mangohud
   ];
 
+  hardware.steam-hardware.enable = true;
+
   programs = {
     gamescope = {
       args = ["--rt"];

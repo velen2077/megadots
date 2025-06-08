@@ -5,7 +5,7 @@
   pkgs,
   ...
 }: let
-  wallpaper = ../../../assets/wallpaper/overwatch.jpg;
+  wallpaper = ../../../assets/wallpaper/robogirl.png;
 in {
   imports = [
     inputs.stylix.nixosModules.stylix
@@ -13,7 +13,7 @@ in {
 
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine-moon.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-pale.yaml";
     image = wallpaper;
     polarity = "dark";
   };
