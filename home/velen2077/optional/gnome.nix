@@ -21,7 +21,7 @@
     "org/gnome/desktop/interface" = {
       # gtk4 theme/scheme.
       color-scheme = "prefer-dark";
-      accent-color = "slate";
+      #accent-color = "slate";
       show-battery-percentage = true;
     };
 
@@ -45,7 +45,7 @@
     # Touchpad support and config.
     "org/gnome/desktop/peripherals/touchpad" = {
       tap-to-click = true;
-      natural-scroll = false;
+      natural-scroll = true;
     };
 
     # Extension config.

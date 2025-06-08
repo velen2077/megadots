@@ -4,6 +4,15 @@
   pkgs,
   ...
 }: {
+  # Set the host-specific hostname here.
+  networking = {
+    hostName = "endgame";
+    domain = "extranet.casa";
+  };
+
+  # Set the hosts system state version.
+  system.stateVersion = "25.05";
+
   # Import needed modules here. This is going to pull in my hardware-configuration,
   # global configs (stuff shared between all hosts), optional configs, and
   # my user configs for any users I want added to this host.
@@ -26,13 +35,12 @@
     # config becomes global, and needs to apply to all my hosts,
     # it gets moved to global.
     ../../config/optional/cachyos.nix
+    ../../config/optional/ephemeral-btrfs.nix
     ../../config/optional/gaming.nix
     ../../config/optional/gnome.nix
-    ../../config/optional/impermanence.nix
+    ../../config/optional/graphics.nix
     ../../config/optional/pipewire.nix
-    ../../config/optional/quietboot.nix
-    ../../config/optional/sunshine.nix
-    ../../config/optional/virtman.nix
+    ../../config/optional/virt-manager.nix
     ../../config/optional/wireless.nix
     # Import my user configs.
     ../../config/users/velen2077
@@ -68,19 +76,10 @@
     };
   };
 
-  # Set the host-specific hostname here.
-  networking = {
-    hostName = "endgame";
-    domain = "extranet.casa";
-  };
-
   # Host specific apps go here. These will only be
   # installed on this host.
   environment.systemPackages = with pkgs; [
     filen-desktop
     hello
   ];
-
-  # Set the hosts system state version.
-  system.stateVersion = "25.05";
 }

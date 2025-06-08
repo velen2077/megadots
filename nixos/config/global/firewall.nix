@@ -1,3 +1,3 @@
-{
-  networking.firewall.enable = true;
+{lib, ...}: {
+  networking.firewall.enable = lib.mkForce true;
 }

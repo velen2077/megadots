@@ -16,13 +16,4 @@
     ./optional/gnome.nix
     ./optional/vscodium.nix
   ];
-
-  monitors = [
-    {
-      name = "Virtual-1";
-      width = 1920;
-      height = 1080;
-      primary = true;
-    }
-  ];
 }

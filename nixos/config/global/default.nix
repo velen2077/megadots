@@ -82,8 +82,6 @@
     git
     just
     sops
-    xorg.xrandr
-    game-devices-udev-rules
   ];
 
   # Enable adb and dconf for the host.
