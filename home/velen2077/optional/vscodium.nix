@@ -11,7 +11,6 @@
       default = {
         extensions = with pkgs.vscode-extensions; [
           kamadorueda.alejandra
-          #mvllow.rose-pine
           jnoortheen.nix-ide
           yzhang.markdown-all-in-one
         ];
