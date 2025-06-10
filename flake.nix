@@ -1,7 +1,9 @@
 {
-  # For those that come after.
-  description = "megadots by velen2077.";
+  # For those who come after.
+  description = "megadots - a NixOS and Home Manager configuration repo by velen2077.";
 
+  # Extra substitutors and keys for any input in my config
+  # that needs one. Chaotic is a good example.
   nixConfig = {
     extra-substituters = [
       "https://chaotic-nyx.cachix.org/"
@@ -32,7 +34,7 @@
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Sylix.
+    # Sylix for theming.
     stylix.url = "github:nix-community/stylix";
     # Firefox addons to support my Firefox
     # Home Manager module. These allow installation
@@ -54,6 +56,8 @@
     # the Systems input and includes updated NixOS supported systems.
     lib = nixpkgs.lib // home-manager.lib;
     forAllSystems = nixpkgs.lib.genAttrs [
+      # I'm only using x86_64-linux at the moment but if that changes
+      # I'll need to add additional system architectures here.
       "x86_64-linux"
     ];
   in {
