@@ -4,15 +4,15 @@
 
 # megadots
 
-My modular and Flaked-out repo for managing my systems using Nix, Flakes and Home Manager (as a NixOS module). I publish megadots to help others, as I found Github and other peoples repos (some shoutouts below!) extremely helpful to learn Nix/NixOS. Hopefully I can return the favour by publishing my own, for others to use, adapt, and learn.
+My modular, flake-based repo for managing my systems using Nix and NixOS, flakes and Home Manager (as a NixOS module). I publish megadots to help others, as I found Github and other peoples repos (some shoutouts below!) extremely helpful to learn Nix/NixOS. Hopefully I can return the favour by publishing my own, for those who come after.
 
 > **Note:** Though I use this repo for my own config, I also dabble and break things from time to time. I tend to keep working code in the `main` branch. Any other branch, assume it is a work in progress and not suitable for use. Also note that as this is my primary personal config, my `hardware-configuration.nix` files and attributes like `hostname`, `hashedPassword` and `username` will be unique to me, so you'll have to bring your own.
 
 ## Introduction
 
-This is my personal system configuration repo that I use to build systems and homes in conjunction with Nix, Home Manager and Flakes. I started out this journey based on sheer curiosity and a desire to have a somewhat declaritive composition to system management (I distro hop - a lot). Some searching online lead me down the garden path that is Nix, and here I am. Down the rabbit hole.
+This is my personal system configuration repo that I use to build systems and homes in conjunction with NixOS, Home Manager and flakes. I started out this journey based on sheer curiosity and a desire to have a somewhat declaritive composition to system management (I distro hop - a lot). Some searching online lead me down the garden path that is NixOS, and here I am. Down the rabbit hole.
 
-I am not an expert in Nix, NixOS, Home Manager or Flakes. Nor am I a developer. Outside of my consultancy job (in a technical field so not completely in the dark), I'm a tinkerer. I'd been feeling a little burnt out and in need of something to learn in my downtime, and this project came along at the perfect time, and has genuinely brought some fun back in to computing for me. Just like the days of old, going to the local monthly computer market and picking up a fresh copy of a new Linux distro on a wad of floppies and taking it for a spin.
+I am not an expert in Nix, NixOS, Home Manager or flakes. Nor am I a developer. Outside of my consultancy job (in a technical field so not completely in the dark), I'm a tinkerer. I'd been feeling a little burnt out and in need of something to learn in my downtime, and this project came along at the perfect time, and has genuinely brought some fun back in to computing for me. Just like the days of old, going to the local monthly computer market and picking up a fresh copy of a new Linux distro on a wad of floppies and taking it for a spin.
 
 ## Features
 - **NixOS** system configuration on mulitple hosts.
@@ -71,7 +71,7 @@ I learn by doing. None of this would be possible without the copious ammounts of
 
 [ryan4yin](https://github.com/ryan4yin/) for their [awesome book](https://nixos-and-flakes.thiscute.world/) on NixOS (if you haven't started here, then give it a whirl - it really was great) and the [i3 Kickstarter repo](https://github.com/ryan4yin/nix-config/blob/i3-kickstarter/). Both excellent resources to help me understand the power of NixOS.
 
-The majority of my config structure was heavily influenced by the awesome [Misterio77](https://github.com/Misterio77/). Not only did he's [Nix Starter Configs](https://github.com/Misterio77/nix-starter-configs) help guide me early on, but his own [Nix Config](https://github.com/Misterio77/nix-config/tree/main) repo was a great inspiration on how to construct and model a modular Nix configuration.
+The majority of my config structure was heavily influenced by the awesome [Misterio77](https://github.com/Misterio77/). Not only did his [Nix Starter Configs](https://github.com/Misterio77/nix-starter-configs) help guide me early on, but his own [Nix Config](https://github.com/Misterio77/nix-config/tree/main) repo was a great inspiration on how to construct and model a modular Nix configuration.
 
 #### And more inspiration...
 
