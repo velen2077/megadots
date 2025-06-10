@@ -13,11 +13,11 @@
     # Optional configs to import for this user.
     ./optional/alacritty.nix
     ./optional/digikam.nix
+    ./optional/element-desktop.nix
     ./optional/filen-desktop.nix
     ./optional/firefox.nix
     ./optional/gnome.nix
     ./optional/signal-desktop.nix
-    #./optional/theme.nix
     ./optional/vesktop.nix
     ./optional/vscodium.nix
   ];
@@ -31,10 +31,6 @@
     gtkIconThemePackage = pkgs.gruvbox-plus-icons;
     gtkCursorThemeName = "Bibata-Modern-Classic";
     gtkCursorThemePackage = pkgs.bibata-cursors;
-    #fontName = "Fira Sans";
-    #fontPackage = pkgs.fira-sans;
-    #monospaceFontName = "Fira Code Nerd Font";
-    #monospaceFontPackage = pkgs.fira-code;
   };
 
   monitors = [
