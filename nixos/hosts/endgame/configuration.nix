@@ -26,8 +26,6 @@
     ./disks.nix
     # Import the specific hardware-configuration.nix for this host.
     ./hardware-configuration.nix
-    # Import theme.
-    # ./theme.nix
     # Import my global nixos host configs. These are configs
     # I apply to all my hosts.
     ../../config/global
