@@ -20,7 +20,6 @@
       experimental-features = [
         "nix-command"
         "flakes"
-        "ca-derivations"
       ];
       warn-dirty = false;
     };
@@ -56,6 +55,7 @@
   # Global persists for anything that could be global
   # or optional for nixos configs, like Steam.
   home.persistence."/persist" = {
+    hideMounts = true;
     directories = [
       "Development"
       "Documents"
@@ -75,6 +75,7 @@
       ".local/share/Steam"
       ".local/share/direnv"
       ".steam"
+      ".cache/virt-manager"
       {
         directory = ".ssh";
         mode = "0700";

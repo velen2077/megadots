@@ -7,6 +7,7 @@
 
   environment.persistence."/persist" = {
     directories = [
+      "/var/cache/libvirt"
       "/var/lib/libvirt"
       "/var/lib/qemu"
     ];

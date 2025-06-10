@@ -3,71 +3,134 @@
   lib,
   pkgs,
   ...
-}: {
-  home = {
-    packages = with pkgs; [
-      gnomeExtensions.appindicator
-      gnomeExtensions.user-themes
-    ];
-  };
+}: let
+  generateGnomeMonitorXml = monitorsList: let
+    # Simple helper to parse "X,Y" position string.
+    # If 'auto' is used, it defaults to 0,0 for now as GNOME's 'auto' logic is complex.
+    parsePosition = positionString:
+      if positionString == "auto"
+      then {
+        x = 0;
+        y = 0;
+      }
+      else let
+        parts = lib.splitString "," positionString;
+        x = builtins.stringToNumber (lib.elemAt parts 0);
+        y = builtins.stringToNumber (lib.elemAt parts 1);
+      in {inherit x y;};
 
-  dconf.settings = {
-    # Don't try to suspend while plugged in.
-    "org/gnome/settings-daemon/plugins/power" = {
-      sleep-inactive-ac-type = "nothing";
-    };
-    #
+    # Filter out disabled monitors.
+    enabledMonitors = lib.filter (m: m.enabled) monitorsList;
 
-    "org/gnome/desktop/interface" = {
-      # gtk4 theme/scheme.
-      color-scheme = "prefer-dark";
-      accent-color = "slate";
-      show-battery-percentage = true;
-    };
-
-    # Enable minimise, maximise buttons.
-    "org/gnome/desktop/wm/preferences" = {
-      button-layout = ":appmenu,minimize,maximize,close";
-    };
-
-    # Wayland Mutter tweaks.
-    "org/gnome/mutter" = {
-      edge-tiling = true;
-      dynamic-workspaces = true;
-    };
-    "org/gnome/desktop/wm/preferences" = {
-      resize-with-right-button = true;
-    };
-    "org/gnome/desktop/interface" = {
-      enable-hot-corners = true;
-    };
-
-    # Touchpad support and config.
-    "org/gnome/desktop/peripherals/touchpad" = {
-      tap-to-click = true;
-      natural-scroll = false;
-    };
-
-    # Extension config.
-    "org/gnome/shell" = {
-      disable-user-extensions = false;
-      enabled-extensions = with pkgs.gnomeExtensions; [
-        appindicator.extensionUuid
-        user-themes.extensionUuid
+    # Map each enabled monitor to its XML representation.
+    logicalMonitorsXml =
+      lib.map
+      (monitor: let
+        position = parsePosition monitor.position;
+      in
+        "<logicalmonitor>"
+        + "<x>${toString position.x}</x>"
+        + "<y>${toString position.y}</y>"
+        # GNOME expects scale as a float string (e.g., "1.0", "1.25", "2.0") using a comma for decimals.
+        + "<scale>${lib.strings.replaceStrings ["."] [","] monitor.scale}</scale>"
+        + "<primary>${
+          if monitor.primary
+          then "true"
+          else "false"
+        }</primary>"
+        + "<monitor>"
+        + "<monitorspec>"
+        + "<connector>${monitor.name}</connector>"
+        + "<vendor>${monitor.make}</vendor>"
+        + "<product>${monitor.model}</product>"
+        + "<serial>${monitor.serial}</serial>"
+        + "</monitorspec>"
+        + "<mode>"
+        + "<width>${toString monitor.width}</width>"
+        + "<height>${toString monitor.height}</height>"
+        + "<rate>${toString monitor.refreshRate}</rate>"
+        + "</mode>"
+        + "</monitor>"
+        + "</logicalmonitor>")
+      enabledMonitors;
+  in ''
+    <monitors version="2">
+      <configuration>
+        <layoutmode>physical</layoutmode>
+        ${lib.concatStrings logicalMonitorsXml}
+      </configuration>
+    </monitors>
+  '';
+in {
+  config = {
+    home = {
+      packages = with pkgs; [
+        gnomeExtensions.appindicator
+        gnomeExtensions.user-themes
       ];
-      #favorite-apps = [ "org.gnome.Nautilus.desktop" "kitty.desktop" "chromium-browser.desktop" "code.desktop" ];
-      last-selected-power-profile = "performance";
     };
-  };
 
-  home.persistence."/persist" = {
-    directories = [
-      "/var/lib/AccountsService"
-      ".config/autostart"
-      ".local/share/gvfs-metadata"
-      ".local/share/gnome-shell"
-    ];
-    files = [
-    ];
+    dconf.settings = {
+      # Don't try to suspend while plugged in.
+      "org/gnome/settings-daemon/plugins/power" = {
+        sleep-inactive-ac-type = "nothing";
+      };
+
+      "org/gnome/desktop/interface" = {
+        # gtk4 theme/scheme.
+        color-scheme = "prefer-dark";
+        # accent-color = "slate";
+        show-battery-percentage = true;
+      };
+
+      # Enable minimise, maximise buttons.
+      "org/gnome/desktop/wm/preferences" = {
+        button-layout = ":appmenu,minimize,maximize,close";
+      };
+
+      # Wayland Mutter tweaks.
+      "org/gnome/mutter" = {
+        edge-tiling = true;
+        dynamic-workspaces = true;
+      };
+      "org/gnome/desktop/wm/preferences" = {
+        resize-with-right-button = true;
+      };
+      "org/gnome/desktop/interface" = {
+        enable-hot-corners = true;
+      };
+
+      # Touchpad support and config.
+      "org/gnome/desktop/peripherals/touchpad" = {
+        tap-to-click = true;
+        natural-scroll = true;
+      };
+
+      # Extension config.
+      "org/gnome/shell" = {
+        disable-user-extensions = false;
+        enabled-extensions = with pkgs.gnomeExtensions; [
+          appindicator.extensionUuid
+          user-themes.extensionUuid
+        ];
+        # favorite-apps = [ "org.gnome.Nautilus.desktop" "kitty.desktop" "chromium-browser.desktop" "code.desktop" ];
+        last-selected-power-profile = "performance";
+      };
+    };
+
+    home.persistence."/persist" = {
+      directories = [
+        ".config/autostart"
+        ".local/share/gvfs-metadata"
+        ".local/share/gnome-shell"
+      ];
+      # Removed .config/monitors.xml from persistence as it's generated by Nix.
+      # files = [ ".config/monitors.xml" ];
+    };
+
+    # This is the core part that generates the monitors.xml file for GNOME.
+    # It directly uses the 'config.monitors' option that is populated by your
+    # separate monitor module.
+    xdg.configFile."monitors.xml".text = generateGnomeMonitorXml config.monitors;
   };
 }

@@ -13,6 +13,18 @@ in {
             type = types.str;
             example = "DP-1";
           };
+          make = mkOption {
+            type = types.str;
+            example = "ASUS";
+          };
+          model = mkOption {
+            type = types.str;
+            example = "VG27AQ";
+          };
+          serial = mkOption {
+            type = types.str;
+            example = "SFK0823";
+          };
           primary = mkOption {
             type = types.bool;
             default = false;
@@ -26,8 +38,8 @@ in {
             example = 1080;
           };
           refreshRate = mkOption {
-            type = types.int;
-            default = 60;
+            type = types.str;
+            default = "60";
           };
           position = mkOption {
             type = types.str;
