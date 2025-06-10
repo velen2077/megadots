@@ -75,6 +75,7 @@
       ".local/share/Steam"
       ".local/share/direnv"
       ".steam"
+      ".cache/virt-manager"
       {
         directory = ".ssh";
         mode = "0700";
