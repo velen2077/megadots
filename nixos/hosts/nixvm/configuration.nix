@@ -19,15 +19,14 @@
   imports = [
     # Import the relevant common hardware modules from the hardware flake
     # for this specific host.
-    inputs.hardware.nixosModules.common-cpu-amd
-    inputs.hardware.nixosModules.common-gpu-amd
-    inputs.hardware.nixosModules.common-pc-ssd
+    inputs.hardware.nixosModules.microsoft-surface-pro-intel
+
     # Import the disko disk configuration for this host.
     ./disks.nix
     # Import the specific hardware-configuration.nix for this host.
     ./hardware-configuration.nix
     # Import theme.
-    ./theme.nix
+    # ./theme.nix
     # Import my global nixos host configs. These are configs
     # I apply to all my hosts.
     ../../config/global
@@ -36,11 +35,9 @@
     # it gets moved to global.
     ../../config/optional/cachyos.nix
     ../../config/optional/ephemeral-btrfs.nix
-    ../../config/optional/gaming.nix
     ../../config/optional/gnome.nix
     ../../config/optional/graphics.nix
     ../../config/optional/pipewire.nix
-    ../../config/optional/virt-manager.nix
     ../../config/optional/wireless.nix
     # Import my user configs.
     ../../config/users/velen2077
@@ -54,8 +51,8 @@
     efi.canTouchEfiVariables = true;
     timeout = 30;
     systemd-boot = {
-      configurationLimit = 10;
       enable = true;
+      configurationLimit = 10;
     };
   };
 
