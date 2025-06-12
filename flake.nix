@@ -43,6 +43,8 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Spicetify customised Spotify client.
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
   };
 
   outputs = {

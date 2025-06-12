@@ -14,6 +14,7 @@
     ./optional/alacritty.nix
     ./optional/firefox.nix
     ./optional/gnome.nix
+    ./optional/spicetify.nix
     ./optional/vscodium.nix
   ];
 

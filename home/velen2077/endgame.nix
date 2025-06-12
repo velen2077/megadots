@@ -18,6 +18,7 @@
     ./optional/firefox.nix
     ./optional/gnome.nix
     ./optional/signal-desktop.nix
+    ./optional/spicetify.nix
     ./optional/vesktop.nix
     ./optional/vscodium.nix
   ];
