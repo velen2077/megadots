@@ -67,6 +67,10 @@ I use the following structure to organise my configurations.
 
 ## mega-thanks
 
+<p align="center">
+  <img src="assets/images/tomasaku.jpg" alt="megadots by velen2077" width="300px"/>
+</p>
+
 I learn by doing. None of this would be possible without the copious ammounts of developers and repos that share their content freely for others like me to disect and study. There are many, but to name a few - shout outs go to:
 
 [ryan4yin](https://github.com/ryan4yin/) for their [awesome book](https://nixos-and-flakes.thiscute.world/) on NixOS (if you haven't started here, then give it a whirl - it really was great) and the [i3 Kickstarter repo](https://github.com/ryan4yin/nix-config/blob/i3-kickstarter/). Both excellent resources to help me understand the power of NixOS.
