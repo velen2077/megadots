@@ -35,6 +35,7 @@
     ../../config/optional/ephemeral-btrfs.nix
     ../../config/optional/gnome.nix
     ../../config/optional/graphics.nix
+    ../../config/optional/minecraft.nix
     ../../config/optional/pipewire.nix
     ../../config/optional/wireless.nix
     # Import my user configs.
