@@ -17,7 +17,7 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/disk/by-id/your-disk-id-here"; # TODO: Replace with output of `ls -l /dev/disk/by-id`
+        device = "/dev/disk/by-id/nvme-KBG40ZPZ512G_TOSHIBA_MEMORY_89R201INNLAP";
         content = {
           type = "gpt";
           partitions = {
