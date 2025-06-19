@@ -10,7 +10,9 @@
 
   home.persistence."/persist" = {
     directories = [
+      ".cursor"
       ".config/cursor"
+      ".config/Cursor"
     ];
     files = [
     ];
