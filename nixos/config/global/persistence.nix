@@ -23,6 +23,9 @@
       ++ lib.optionals config.services.udisks2.enable ["/var/lib/udisks2"]
       ++ lib.optionals config.services.upower.enable ["/var/lib/upower"];
     files = [
+      # The machine-id is a unique identifier for the system, generated
+      # during installation. Persisting it is crucial for services like
+      # systemd's journal to function correctly across reboots.
       "/etc/machine-id"
       "/etc/ssh/ssh_host_ed25519_key"
       "/etc/ssh/ssh_host_ed25519_key.pub"

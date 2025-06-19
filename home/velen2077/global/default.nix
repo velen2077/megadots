@@ -31,6 +31,9 @@
     };
   };
 
+  # This setting ensures that user-level systemd services are started correctly
+  # when using Home Manager with NixOS. It's a required boilerplate for
+  # proper integration.
   systemd.user.startServices = "sd-switch";
 
   programs = {
@@ -55,7 +58,7 @@
     nvd # Differ.
     nix-diff # Differ, more detailed.
     nix-output-monitor
-    nh # Nice wrapper for NixOS and HM.
+    nh # A nice wrapper for managing NixOS and Home Manager.
   ];
 
   # Global persists for anything that could be global
@@ -72,9 +75,9 @@
       ".openvpn"
       ".password-store"
       ".themes"
-      ".config/sops"
-      ".config/sops-nix"
       ".config/sunshine"
+      # dconf is a settings database used by GNOME and other applications.
+      # Persisting it ensures your desktop environment's settings are kept.
       ".config/dconf"
       ".local/share/nix"
       ".local/state"
@@ -91,14 +94,13 @@
         mode = "0700";
       }
       {
+        # GnuPG data, essential for encryption and signing.
         directory = ".gnupg";
         mode = "0700";
       }
       {
-        directory = ".nixops";
-        mode = "0700";
-      }
-      {
+        # Keyrings store passwords and other secrets for applications.
+        # Persisting this is important for not having to log in repeatedly.
         directory = ".local/share/keyrings";
         mode = "0700";
       }

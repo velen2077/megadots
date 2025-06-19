@@ -17,9 +17,6 @@
   # global configs (stuff shared between all hosts), optional configs, and
   # my user configs for any users I want added to this host.
   imports = [
-    # Import the relevant common hardware modules from the hardware flake
-    # for this specific host.
-    inputs.hardware.nixosModules.microsoft-surface-pro-intel
     # Import the disko disk configuration for this host.
     ./disks.nix
     # Import the specific hardware-configuration.nix for this host.
@@ -35,7 +32,6 @@
     ../../config/optional/gnome.nix
     ../../config/optional/graphics.nix
     ../../config/optional/pipewire.nix
-    ../../config/optional/wireless.nix
     # Import my user configs.
     ../../config/users/velen2077
   ];
@@ -46,7 +42,7 @@
   # configuration.nix for each host.
   boot.loader = {
     efi.canTouchEfiVariables = true;
-    timeout = 30;
+    timeout = 0;
     systemd-boot = {
       enable = true;
       configurationLimit = 10;

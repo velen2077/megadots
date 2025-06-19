@@ -17,7 +17,7 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/nvme0n1";
+        device = "/dev/disk/by-id/your-disk-id-here"; # TODO: Replace with output of `ls -l /dev/disk/by-id`
         content = {
           type = "gpt";
           partitions = {
@@ -36,6 +36,9 @@
               content = {
                 type = "luks";
                 name = "crypted";
+                # These options can improve performance on NVMe drives by adjusting
+                # how LUKS handles I/O operations. They are not essential but can
+                # provide a noticeable boost in disk speed.
                 extraOpenArgs = [
                   "--allow-discards"
                   "--perf-no_read_workqueue"

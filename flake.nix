@@ -78,12 +78,27 @@
     # Formatter for my nix files, available through 'nix fmt'.
     # Other options beside 'alejandra' include 'nixpkgs-fmt'.
     formatter = forAllSystems (pkgs: pkgs.alejandra);
+    # Dev shell for working on my config.
+    devShells = forAllSystems (system: let
+      pkgs = nixpkgs.legacyPackages.${system};
+    in {
+      default = pkgs.mkShell {
+        packages = [
+          pkgs.alejandra
+          pkgs.git
+        ];
+      };
+    });
     # NixOS configuration entrypoint. These are available
     # through 'nixos-rebuild --flake .#hostname'.
     nixosConfigurations = {
       # NixOS configuration for my host 'endgame'. My primary
       # desktop computer, running NixOS.
       endgame = lib.nixosSystem {
+        # The 'specialArgs' attribute allows you to pass extra arguments
+        # to all modules in this configuration. This is a convenient way
+        # to make your flake inputs (like `inputs` and `outputs`) available
+        # to your NixOS modules.
         specialArgs = {inherit inputs outputs;};
         modules = [
           # Import the primary configuration file for host.
@@ -93,6 +108,10 @@
       # NixOS configuration for my host 'flatmate'. My primary
       # laptop computer (Surface Pro 7), running NixOS.
       flatmate = lib.nixosSystem {
+        # The 'specialArgs' attribute allows you to pass extra arguments
+        # to all modules in this configuration. This is a convenient way
+        # to make your flake inputs (like `inputs` and `outputs`) available
+        # to your NixOS modules.
         specialArgs = {inherit inputs outputs;};
         modules = [
           # Import the primary configuration file for host.
@@ -101,6 +120,10 @@
       };
       # NixOS vm for testing my configs.
       nixvm = lib.nixosSystem {
+        # The 'specialArgs' attribute allows you to pass extra arguments
+        # to all modules in this configuration. This is a convenient way
+        # to make your flake inputs (like `inputs` and `outputs`) available
+        # to your NixOS modules.
         specialArgs = {inherit inputs outputs;};
         modules = [
           # Import the primary configuration file for host.

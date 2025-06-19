@@ -38,10 +38,6 @@
     # To make nix3 commands consistent with your flake
     registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
 
-    # This will add your inputs to the system's legacy channels
-    # Making legacy nix commands consistent as well, awesome!
-    nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
-
     settings = {
       # See https://jackson.dev/post/nix-reasonable-defaults/
       connect-timeout = 5;
@@ -66,22 +62,23 @@
       dates = "weekly";
       # Delete generations that haven't been activated in
       # over 30 days.
-      options = "--delete-older-than +30";
+      options = "--delete-older-than 30d";
     };
   };
 
+  # nix-ld provides a shim for ELF binaries to automatically find their
+  # shared library dependencies in the Nix store. This is essential for
+  # running pre-compiled binaries that are not packaged in Nixpkgs.
   programs.nix-ld = {
     enable = true;
   };
 
   # Apps installed on all hosts go here.
   environment.systemPackages = with pkgs; [
-    age
     alejandra
     fastfetch
     git
     just
-    sops
   ];
 
   # Enable adb and dconf for the host.
@@ -114,7 +111,9 @@
     ];
   };
 
-  # Increase open file limit for sudoers
+  # The default open file limit is often too low for modern applications,
+  # especially for development, gaming, and other intensive tasks. Increasing
+  # this limit prevents "too many open files" errors.
   security.pam.loginLimits = [
     {
       domain = "@wheel";
@@ -130,6 +129,7 @@
     }
   ];
 
-  # Cleanup stuff included by default
+  # Disabling speechd, the speech dispatcher daemon, as it's not
+  # needed for most desktop use cases and can consume resources.
   services.speechd.enable = lib.mkDefault false;
 }

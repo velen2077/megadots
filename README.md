@@ -2,6 +2,12 @@
   <img src="assets/images/megadots.png" alt="megadots by velen2077"/>
 </p>
 
+<p align="center">
+  <a href="https://nixos.org/"><img src="https://img.shields.io/badge/NixOS-25.05-blue?style=for-the-badge&logo=NixOS" alt="NixOS"></a>
+  <a href="https://github.com/nix-community/home-manager"><img src="https://img.shields.io/badge/Home--Manager-25.05-blue?style=for-the-badge&logo=Home-Assistant" alt="Home Manager"></a>
+  <a href="https://github.com/nix-community/impermanence"><img src="https://img.shields.io/badge/Impermanence-blue?style=for-the-badge&logo=NixOS" alt="Impermanence"></a>
+</p>
+
 # megadots
 
 My modular, flake-based repo for managing my systems using Nix and NixOS, flakes and Home Manager (as a NixOS module). I publish megadots to help others, as I found Github and other peoples repos (some shoutouts below!) extremely helpful to learn Nix/NixOS. Hopefully I can return the favour by publishing my own, for those who come after.
@@ -25,6 +31,46 @@ I am not an expert in Nix, NixOS, Home Manager or flakes. Nor am I a developer. 
 ## Usage
 
 This configuration has a multiple system entry points, with Home Manager configured as a NixOS module. At the moment, I am a single user managing multiple machines (I expect this to grow).
+
+### Getting Started
+
+To deploy a configuration, you can use the `nixos-rebuild` command with the appropriate flake output. For example, to deploy the `endgame` configuration on the local machine:
+
+```bash
+# To build the configuration
+nixos-rebuild build --flake .#endgame
+
+# To test the configuration
+nixos-rebuild test --flake .#endgame
+
+# To apply the configuration
+sudo nixos-rebuild switch --flake .#endgame
+```
+
+To deploy to a remote machine over SSH, you can use the `--flake` and `--target-host` flags:
+
+```bash
+nixos-rebuild switch --flake .#endgame --target-host velen2077@endgame --use-remote-sudo
+```
+
+### Customization
+
+To adapt this configuration for your own use, you'll need to create a new host and user.
+
+1.  **Create a new host directory** in `nixos/hosts`. You can copy an existing one (e.g., `nixos/hosts/nixvm`) as a template.
+2.  **Generate a new `hardware-configuration.nix`** on the target machine with `nixos-generate-config`.
+3.  **Update your `flake.nix`** to add a new `nixosConfigurations` entry for your new host.
+4.  **Create a new user directory** in `home/` and a corresponding entry in `nixos/config/users`.
+
+### Updating
+
+To update the flake inputs (e.g., `nixpkgs`), run the following command:
+
+```bash
+nix flake update
+```
+
+## Hosts
 
 | System | Description | Type | OS | CPU | GPU |
 |---|---|---|---|---|---|
