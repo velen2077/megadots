@@ -5,12 +5,12 @@
   ...
 }: {
   home.packages = with pkgs; [
-    obsidian
+    code-cursor
   ];
 
   home.persistence."/persist" = {
     directories = [
-      ".config/obsidian"
+      ".config/cursor"
     ];
     files = [
     ];

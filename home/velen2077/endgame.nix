@@ -12,13 +12,16 @@
     ./global
     # Optional configs to import for this user.
     ./optional/alacritty.nix
+    ./optional/code-cursor.nix
     ./optional/digikam.nix
     ./optional/element-desktop.nix
     ./optional/filen-desktop.nix
     ./optional/firefox.nix
     ./optional/gnome.nix
+    ./optional/obsidian.nix
     ./optional/signal-desktop.nix
     ./optional/spicetify.nix
+    ./optional/terraform.nix
     ./optional/vesktop.nix
     ./optional/vscodium.nix
   ];
