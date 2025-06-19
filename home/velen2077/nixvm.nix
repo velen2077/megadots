@@ -14,6 +14,7 @@
     ./optional/alacritty.nix
     ./optional/firefox.nix
     ./optional/gnome.nix
+    ./optional/obsidian.nix
     ./optional/spicetify.nix
     ./optional/terraform.nix
     ./optional/vscodium.nix
