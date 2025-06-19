@@ -15,6 +15,7 @@
     ./optional/firefox.nix
     ./optional/gnome.nix
     ./optional/spicetify.nix
+    ./optional/terraform.nix
     ./optional/vscodium.nix
   ];
 

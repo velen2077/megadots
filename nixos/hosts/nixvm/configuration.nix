@@ -20,7 +20,6 @@
     # Import the relevant common hardware modules from the hardware flake
     # for this specific host.
     inputs.hardware.nixosModules.microsoft-surface-pro-intel
-
     # Import the disko disk configuration for this host.
     ./disks.nix
     # Import the specific hardware-configuration.nix for this host.
@@ -35,7 +34,6 @@
     ../../config/optional/ephemeral-btrfs.nix
     ../../config/optional/gnome.nix
     ../../config/optional/graphics.nix
-    ../../config/optional/minecraft.nix
     ../../config/optional/pipewire.nix
     ../../config/optional/wireless.nix
     # Import my user configs.
