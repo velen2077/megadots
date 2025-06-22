@@ -57,6 +57,10 @@
     # Supported systems for my flake packages, shell, etc. Included in
     # the Systems input and includes updated NixOS supported systems.
     lib = nixpkgs.lib // home-manager.lib;
+    myLib = import ../lib {
+      inherit lib;
+      inherit (builtins) builtins;
+    };
     forAllSystems = nixpkgs.lib.genAttrs [
       # I'm only using x86_64-linux at the moment but if that changes
       # I'll need to add additional system architectures here.
