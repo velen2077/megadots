@@ -22,7 +22,7 @@ nixvm-deploy:
 
 # Perform a rebuild of nixvm.
 nixvm-rebuild:
-    nixos-rebuild switch --flake .#nixvm --target-host velen2077@nixvm --use-remote-sudo
+    nixos-rebuild switch --flake .#nixvm --target-host velen2077@nixvm --sudo
 
 # ███████╗███╗   ██╗██████╗  ██████╗  █████╗ ███╗   ███╗███████╗     ██████╗ ██████╗ ███████╗
 # ██╔════╝████╗  ██║██╔══██╗██╔════╝ ██╔══██╗████╗ ████║██╔════╝    ██╔═══██╗██╔══██╗██╔════╝
@@ -37,7 +37,7 @@ endgame-deploy:
 
 # Perform a rebuild of endgame.
 endgame-rebuild:
-    nixos-rebuild switch --flake .#endgame --target-host velen2077@endgame --use-remote-sudo
+    nixos-rebuild switch --flake .#endgame --target-host velen2077@endgame --sudo
 
 # Perform a rebuild of endgame.
 endgame-rebuild-locally:
@@ -56,4 +56,4 @@ flatmate-deploy:
 
 # Perform a rebuild of flatmate.
 flatmate-rebuild:
-    nixos-rebuild switch --flake .#flatmate --target-host velen2077@flatmate --use-remote-sudo
+    nixos-rebuild switch --flake .#flatmate --target-host velen2077@flatmate --sudo

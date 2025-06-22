@@ -1,14 +1,18 @@
 # This is a placeholder for COSMIC Desktop Environment settings
 # managed by Home Manager.
 #
-# Once official Home Manager modules are available for COSMIC,
-# their options can be added here.
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
-  # Example of what might go here in the future:
-  # programs.cosmic-terminal.enable = true;
+# The nixos-cosmic flake does not currently provide a Home Manager
+# module, but this file is ready for when it does.
+{...}: {
+  # You could add user packages or theme files here in the future.
+  home.persistence."/persist" = {
+    directories = [
+      ".config/cosmic"
+      ".local/state/cosmic"
+      ".local/state/cosmic-comp"
+      ".local/state/pop-launcher"
+    ];
+    files = [
+    ];
+  };
 }

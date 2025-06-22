@@ -13,8 +13,8 @@
     # Optional configs to import for this user.
     ./optional/alacritty.nix
     ./optional/code-cursor.nix
+    ./optional/cosmic.nix
     ./optional/firefox.nix
-    ./optional/gnome.nix
     ./optional/obsidian.nix
     ./optional/spicetify.nix
     ./optional/terraform.nix

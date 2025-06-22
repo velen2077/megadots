@@ -47,7 +47,7 @@
   # configuration.nix for each host.
   boot.loader = {
     efi.canTouchEfiVariables = true;
-    timeout = 10;
+    timeout = 15;
     systemd-boot = {
       enable = true;
       configurationLimit = 10;
