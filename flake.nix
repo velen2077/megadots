@@ -58,7 +58,7 @@
     # the Systems input and includes updated NixOS supported systems.
     lib = nixpkgs.lib // home-manager.lib;
     # Import my custom library.
-    myLib = import ../lib {
+    mylib = import ./lib {
       inherit lib;
       inherit (builtins) builtins;
     };
@@ -67,6 +67,7 @@
       # I'll need to add additional system architectures here.
       "x86_64-linux"
     ];
+    specialArgs = {inherit inputs outputs mylib;};
   in {
     inherit lib;
     # Import my nixos modules. These modules should not be confused with
@@ -100,11 +101,7 @@
       # NixOS configuration for my host 'endgame'. My primary
       # desktop computer, running NixOS.
       endgame = lib.nixosSystem {
-        # The 'specialArgs' attribute allows you to pass extra arguments
-        # to all modules in this configuration. This is a convenient way
-        # to make your flake inputs (like `inputs` and `outputs`) available
-        # to your NixOS modules.
-        specialArgs = {inherit inputs outputs;};
+        inherit specialArgs;
         modules = [
           # Import the primary configuration file for host.
           ./nixos/hosts/endgame/configuration.nix
@@ -113,11 +110,7 @@
       # NixOS configuration for my host 'flatmate'. My primary
       # laptop computer (Surface Pro 7), running NixOS.
       flatmate = lib.nixosSystem {
-        # The 'specialArgs' attribute allows you to pass extra arguments
-        # to all modules in this configuration. This is a convenient way
-        # to make your flake inputs (like `inputs` and `outputs`) available
-        # to your NixOS modules.
-        specialArgs = {inherit inputs outputs;};
+        inherit specialArgs;
         modules = [
           # Import the primary configuration file for host.
           ./nixos/hosts/flatmate/configuration.nix
@@ -125,11 +118,7 @@
       };
       # NixOS vm for testing my configs.
       nixvm = lib.nixosSystem {
-        # The 'specialArgs' attribute allows you to pass extra arguments
-        # to all modules in this configuration. This is a convenient way
-        # to make your flake inputs (like `inputs` and `outputs`) available
-        # to your NixOS modules.
-        specialArgs = {inherit inputs outputs;};
+        inherit specialArgs;
         modules = [
           # Import the primary configuration file for host.
           ./nixos/hosts/nixvm/configuration.nix

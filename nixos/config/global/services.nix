@@ -1,4 +1,11 @@
 {
+  config,
+  inputs,
+  lib,
+  outputs,
+  pkgs,
+  ...
+}: {
   # Disabling speechd, the speech dispatcher daemon, as it's not
   # needed for most desktop use cases and can consume resources.
   services.speechd.enable = lib.mkDefault false;
