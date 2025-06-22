@@ -57,6 +57,7 @@
     # Supported systems for my flake packages, shell, etc. Included in
     # the Systems input and includes updated NixOS supported systems.
     lib = nixpkgs.lib // home-manager.lib;
+    # Import my custom library.
     myLib = import ../lib {
       inherit lib;
       inherit (builtins) builtins;
