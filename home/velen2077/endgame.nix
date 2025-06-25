@@ -28,11 +28,11 @@
 
   theme = {
     enable = true;
-    base16SchemeName = "gruvbox-dark-pale";
-    image = ../../assets/wallpaper/robogirl.png;
+    base16SchemeName = "nord";
+    image = ../../assets/wallpaper/orbit.jpg;
     polarity = "dark";
-    gtkIconThemeName = "Gruvbox-Plus-Dark";
-    gtkIconThemePackage = pkgs.gruvbox-plus-icons;
+    gtkIconThemeName = "Colloid";
+    gtkIconThemePackage = pkgs.colloid-icon-theme;
     gtkCursorThemeName = "Bibata-Modern-Classic";
     gtkCursorThemePackage = pkgs.bibata-cursors;
   };

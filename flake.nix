@@ -115,15 +115,6 @@
           ./nixos/hosts/endgame/configuration.nix
         ];
       };
-      # NixOS configuration for my host 'flatmate'. My primary
-      # laptop computer (Surface Pro 7), running NixOS.
-      flatmate = lib.nixosSystem {
-        inherit specialArgs;
-        modules = [
-          # Import the primary configuration file for host.
-          ./nixos/hosts/flatmate/configuration.nix
-        ];
-      };
       # NixOS vm for testing my configs.
       nixvm = lib.nixosSystem {
         inherit specialArgs;

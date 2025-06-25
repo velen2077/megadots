@@ -5,7 +5,6 @@
 <p align="center">
   <a href="https://nixos.org/"><img src="https://img.shields.io/badge/NixOS-25.05-blue?style=for-the-badge&logo=NixOS" alt="NixOS"></a>
   <a href="https://github.com/nix-community/home-manager"><img src="https://img.shields.io/badge/Home--Manager-25.05-blue?style=for-the-badge&logo=Home-Assistant" alt="Home Manager"></a>
-  <a href="https://github.com/nix-community/impermanence"><img src="https://img.shields.io/badge/Impermanence-blue?style=for-the-badge&logo=NixOS" alt="Impermanence"></a>
 </p>
 
 # megadots
@@ -61,6 +60,7 @@ To adapt this configuration for your own use, you'll need to create a new host a
 2.  **Generate a new `hardware-configuration.nix`** on the target machine with `nixos-generate-config`.
 3.  **Update your `flake.nix`** to add a new `nixosConfigurations` entry for your new host.
 4.  **Create a new user directory** in `home/` and a corresponding entry in `nixos/config/users`.
+4.  **Create a new host file** in `home/$USER` for the Home Manager config for that specific host and user.
 
 ### Updating
 
@@ -75,7 +75,6 @@ nix flake update
 | System | Description | Type | OS | CPU | GPU |
 |---|---|---|---|---|---|
 | endgame | My personal desktop | Custom build | NixOS | AMD Ryzen 7800X3D | AMD 9070XT |
-| flatmate | My personal laptop | Microsoft Surface Pro 7 | NixOS | Intel Core i7-1065G7 | Intel Iris Plus G7 |
 | nixvm | My test VM | QEMU VM | NixOS | Host passthrough | OpenGL/3D accelerated |
 
 I have a single user that I manage through Home Manager (velen2077). You may add additional users or rename mine to inherit my existing settings - though don't forget to change my hashedPassword to something of your own otherwise you won't be able to log in.
@@ -105,17 +104,12 @@ I use the following structure to organise my configurations.
 │   │   └── users         # Optional user settings to apply on selected systems with options.
 │   └── hosts             # NixOS hosts managed by megadots.
 │       └── endgame       # The configuration for my primary desktop system.
-│       └── flatmate      # The configuration for my primary laptop system.
 │       └── nixvm         # The configuration for my test VM.
 ├── overlays              # Overlays folder containing any patches or overrides.
 ├── pkgs                  # Pkgs folder for storing any custom packaged apps.
 ```
 
 ## mega-thanks
-
-<p align="center">
-  <img src="assets/images/tomasaku.jpg" alt="megadots by velen2077" width="300px"/>
-</p>
 
 I learn by doing. None of this would be possible without the copious ammounts of developers and repos that share their content freely for others like me to disect and study. There are many, but to name a few - shout outs go to:
 
