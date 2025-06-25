@@ -41,13 +41,25 @@
   # since some systems will dual boot with Windows. For
   # that reason, I keep the boot loader settings in the
   # configuration.nix for each host.
-  boot.loader = {
-    efi.canTouchEfiVariables = true;
-    timeout = 15;
-    systemd-boot = {
-      enable = true;
-      configurationLimit = 10;
+  boot = {
+    loader = {
+      efi.canTouchEfiVariables = true;
+      timeout = 15;
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 10;
+      };
     };
+    kernelParams = [
+      "quiet"
+      "loglevel=3"
+      "systemd.show_status=auto"
+      "udev.log_level=3"
+      "rd.udev.log_level=3"
+      "vt.global_cursor_default=0"
+    ];
+    consoleLogLevel = 0;
+    initrd.verbose = false;
   };
 
   # Host specific apps go here. These will only be

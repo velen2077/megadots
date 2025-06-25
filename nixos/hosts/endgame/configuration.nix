@@ -48,30 +48,42 @@
   # since some systems will dual boot with Windows. For
   # that reason, I keep the boot loader settings in the
   # configuration.nix for each host.
-  boot.loader = {
-    efi.canTouchEfiVariables = true;
-    timeout = 15;
-    systemd-boot = {
-      enable = true;
-      configurationLimit = 10;
-      windows = {
-        "windows" = let
-          # To determine the name of the windows boot drive, boot into edk2 first, then run
-          # `map -c` to get drive aliases, and try out running `FS1:`, then `ls EFI` to check
-          # which alias corresponds to which EFI partition.
-          boot-drive = "FS2";
-        in {
-          title = "Windows";
-          efiDeviceHandle = boot-drive;
-          sortKey = "y_windows";
+  boot = {
+    loader = {
+      efi.canTouchEfiVariables = true;
+      timeout = 15;
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 10;
+        windows = {
+          "windows" = let
+            # To determine the name of the windows boot drive, boot into edk2 first, then run
+            # `map -c` to get drive aliases, and try out running `FS1:`, then `ls EFI` to check
+            # which alias corresponds to which EFI partition.
+            boot-drive = "FS2";
+          in {
+            title = "Windows";
+            efiDeviceHandle = boot-drive;
+            sortKey = "y_windows";
+          };
         };
+        # edk2 can be used to determine the Windows boot-drive value.
+        # I disable it after I've got the code as it is no longer
+        # needed, but I like to leave it in my configs.
+        edk2-uefi-shell.enable = false;
+        edk2-uefi-shell.sortKey = "z_edk2";
       };
-      # edk2 can be used to determine the Windows boot-drive value.
-      # I disable it after I've got the code as it is no longer
-      # needed, but I like to leave it in my configs.
-      edk2-uefi-shell.enable = false;
-      edk2-uefi-shell.sortKey = "z_edk2";
     };
+    kernelParams = [
+      "quiet"
+      "loglevel=3"
+      "systemd.show_status=auto"
+      "udev.log_level=3"
+      "rd.udev.log_level=3"
+      "vt.global_cursor_default=0"
+    ];
+    consoleLogLevel = 0;
+    initrd.verbose = false;
   };
 
   # Host specific apps go here. These will only be
