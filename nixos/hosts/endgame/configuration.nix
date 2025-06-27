@@ -2,6 +2,7 @@
   inputs,
   outputs,
   pkgs,
+  lib,
   ...
 }: {
   # Set the host-specific hostname here.
@@ -74,16 +75,6 @@
         edk2-uefi-shell.sortKey = "z_edk2";
       };
     };
-    kernelParams = [
-      "quiet"
-      "loglevel=3"
-      "systemd.show_status=auto"
-      "udev.log_level=3"
-      "rd.udev.log_level=3"
-      "vt.global_cursor_default=0"
-    ];
-    consoleLogLevel = 0;
-    initrd.verbose = false;
   };
 
   # Host specific apps go here. These will only be
