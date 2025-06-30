@@ -39,6 +39,7 @@
     ../../config/optional/gnome.nix
     ../../config/optional/graphics.nix
     ../../config/optional/pipewire.nix
+    ../../config/optional/razer.nix
     ../../config/optional/virt-manager.nix
     ../../config/optional/wireless.nix
     # Import my user configs.
@@ -81,5 +82,6 @@
   # installed on this host.
   environment.systemPackages = with pkgs; [
     hello
+    lact
   ];
 }
