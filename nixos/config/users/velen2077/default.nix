@@ -22,6 +22,7 @@ in {
       "network"
       "plugdev"
       "podman"
+      "openrazer"
       "video"
       "wheel"
     ];

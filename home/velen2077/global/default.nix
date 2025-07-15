@@ -79,10 +79,13 @@
       # dconf is a settings database used by GNOME and other applications.
       # Persisting it ensures your desktop environment's settings are kept.
       ".config/dconf"
+      ".config/openrazer"
+      ".config/polychromatic"
       ".local/share/nix"
       ".local/state"
       ".local/share/Steam"
       ".local/share/direnv"
+      ".local/share/PrismLauncher"
       ".steam"
       ".cache/virt-manager"
       {

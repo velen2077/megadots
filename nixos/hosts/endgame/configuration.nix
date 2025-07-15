@@ -38,6 +38,7 @@
     ../../config/optional/gaming.nix
     ../../config/optional/gnome.nix
     ../../config/optional/graphics.nix
+    ../../config/optional/minecraft.nix
     ../../config/optional/pipewire.nix
     ../../config/optional/razer.nix
     ../../config/optional/virt-manager.nix
@@ -76,12 +77,21 @@
         edk2-uefi-shell.sortKey = "z_edk2";
       };
     };
+    kernelParams = [];
   };
+
+  hardware.amdgpu.initrd.enable = true; # load amdgpu kernelModules in stage 1.
+  hardware.amdgpu.opencl.enable = true; # OpenCL support - general compute API for gpu
+  hardware.amdgpu.amdvlk.enable = true; # additional, alternative drivers.
 
   # Host specific apps go here. These will only be
   # installed on this host.
   environment.systemPackages = with pkgs; [
     hello
     lact
+    clinfo # opencl testing
+    vulkan-tools # vulkaninfo
+    ipmiview
+    unetbootin
   ];
 }

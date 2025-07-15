@@ -10,7 +10,10 @@
   hardware.openrazer = {
     enable = true;
   };
+  services.ratbagd.enable = true;
   environment.systemPackages = with pkgs; [
+    openrazer-daemon
+    polychromatic
     razer-cli
     razergenie
   ];

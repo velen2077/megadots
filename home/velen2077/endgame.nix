@@ -21,6 +21,7 @@
     ./optional/obsidian.nix
     ./optional/signal-desktop.nix
     ./optional/spicetify.nix
+    ./optional/syncthing.nix
     ./optional/terraform.nix
     ./optional/vesktop.nix
     ./optional/vscodium.nix
