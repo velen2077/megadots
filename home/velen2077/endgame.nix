@@ -18,6 +18,7 @@
     ./optional/filen-desktop.nix
     ./optional/firefox.nix
     ./optional/gnome.nix
+    ./optional/hugo.nix
     ./optional/obsidian.nix
     ./optional/signal-desktop.nix
     ./optional/spicetify.nix

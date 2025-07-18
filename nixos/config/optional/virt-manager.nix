@@ -1,11 +1,14 @@
 {pkgs, ...}: {
-  virtualisation.libvirtd = {
-    enable = true;
-    qemu = {
-      ovmf.enable = true;
-      package = pkgs.qemu_full;
+  virtualisation = {
+    # Enable libvirtd and Docker
+    libvirtd = {
+      enable = true;
+      nss.enable = true;
+      qemuPackage = pkgs.qemu;
+      qemu.ovmf.enable = true;
     };
   };
+
   programs.virt-manager = {
     enable = true;
     package = pkgs.virt-manager;
