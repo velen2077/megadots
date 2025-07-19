@@ -35,6 +35,7 @@
     ../../config/optional/pipewire.nix
     # Import my user configs.
     ../../config/users/velen2077
+    ../../config/users/tom
   ];
 
   # Boot loader settings are usually unique to my hosts
