@@ -112,7 +112,7 @@
         inherit specialArgs;
         modules = [
           # Import the primary configuration file for host.
-          ./nixos/hosts/endgame/configuration.nix
+          ./hosts/nixos/endgame/configuration.nix
         ];
       };
       # NixOS vm for testing my configs.
@@ -120,7 +120,7 @@
         inherit specialArgs;
         modules = [
           # Import the primary configuration file for host.
-          ./nixos/hosts/nixvm/configuration.nix
+          ./hosts/nixos/nixvm/configuration.nix
         ];
       };
     };

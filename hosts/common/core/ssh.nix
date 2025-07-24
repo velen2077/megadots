@@ -39,7 +39,7 @@ in {
   programs.ssh = {
     # Each hosts public key.
     knownHosts = lib.genAttrs hosts (hostname: {
-      publicKeyFile = ../../hosts/${hostname}/keys/ssh_host_ed25519_key.pub;
+      publicKeyFile = ../../nixos/${hostname}/keys/ssh_host_ed25519_key.pub;
       extraHostNames =
         [
           "${hostname}.${domain}"

@@ -9,35 +9,26 @@
   imports = [
     # Import my global Home Manager configs. These are configs
     # I apply to all my Home Manager users.
-    ./global
+    ./common/core
     # Optional configs to import for this user.
-    ./optional/alacritty.nix
-    ./optional/code-cursor.nix
-    ./optional/digikam.nix
-    ./optional/element-desktop.nix
-    ./optional/filen-desktop.nix
-    ./optional/firefox.nix
-    ./optional/gnome.nix
-    ./optional/hugo.nix
-    ./optional/obsidian.nix
-    ./optional/signal-desktop.nix
-    ./optional/spicetify.nix
-    ./optional/syncthing.nix
-    ./optional/terraform.nix
-    ./optional/vesktop.nix
-    ./optional/vscodium.nix
+    ./common/opttional/alacritty.nix
+    ./common/opttional/code-cursor.nix
+    ./common/opttional/digikam.nix
+    ./common/opttional/element-desktop.nix
+    ./common/opttional/filen-desktop.nix
+    ./common/opttional/firefox.nix
+    ./common/opttional/gnome.nix
+    ./common/opttional/hugo.nix
+    ./common/opttional/obsidian.nix
+    ./common/opttional/signal-desktop.nix
+    ./common/opttional/spicetify.nix
+    ./common/opttional/syncthing.nix
+    ./common/opttional/terraform.nix
+    ./common/opttional/vesktop.nix
+    ./common/opttional/vscodium.nix
+    # Import my theme.
+    ./common/themes/nord.nix
   ];
-
-  theme = {
-    enable = true;
-    base16SchemeName = "nord";
-    image = ../../assets/wallpaper/orbit.jpg;
-    polarity = "dark";
-    gtkIconThemeName = "Colloid";
-    gtkIconThemePackage = pkgs.colloid-icon-theme;
-    gtkCursorThemeName = "Bibata-Modern-Classic";
-    gtkCursorThemePackage = pkgs.bibata-cursors;
-  };
 
   monitors = [
     {

@@ -29,22 +29,22 @@
     ./hardware-configuration.nix
     # Import my global nixos host configs. These are configs
     # I apply to all my hosts.
-    ../../config/global
+    ../../common/core
     # Optional configs to import for this host. If an optional
     # config becomes global, and needs to apply to all my hosts,
     # it gets moved to global.
-    ../../config/optional/cachyos.nix
-    ../../config/optional/ephemeral-btrfs.nix
-    ../../config/optional/gaming.nix
-    ../../config/optional/gnome.nix
-    ../../config/optional/graphics.nix
-    ../../config/optional/minecraft.nix
-    ../../config/optional/pipewire.nix
-    ../../config/optional/razer.nix
-    ../../config/optional/virt-manager.nix
-    ../../config/optional/wireless.nix
+    ../../common/optional/cachyos.nix
+    ../../common/optional/ephemeral-btrfs.nix
+    ../../common/optional/gaming.nix
+    ../../common/optional/gnome.nix
+    ../../common/optional/graphics.nix
+    ../../common/optional/minecraft.nix
+    ../../common/optional/pipewire.nix
+    ../../common/optional/razer.nix
+    ../../common/optional/virt-manager.nix
+    ../../common/optional/wireless.nix
     # Import my user configs.
-    ../../config/users/velen2077
+    ../../common/users/velen2077
   ];
 
   # Boot loader settings are usually unique to my hosts

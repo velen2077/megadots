@@ -9,29 +9,20 @@
   imports = [
     # Import my global Home Manager configs. These are configs
     # I apply to all my Home Manager users.
-    ./global
+    ./common/core
     # Optional configs to import for this user.
-    ./optional/alacritty.nix
-    ./optional/code-cursor.nix
+    ./common/optional/alacritty.nix
+    ./common/optional/code-cursor.nix
     #./optional/cosmic.nix
-    ./optional/firefox.nix
-    ./optional/gnome.nix
-    ./optional/obsidian.nix
-    ./optional/spicetify.nix
-    ./optional/terraform.nix
-    ./optional/vscodium.nix
+    ./common/optional/firefox.nix
+    ./common/optional/gnome.nix
+    ./common/optional/obsidian.nix
+    ./common/optional/spicetify.nix
+    ./common/optional/terraform.nix
+    ./common/optional/vscodium.nix
+    # Import my theme.
+    ./common/themes/nord.nix
   ];
-
-  theme = {
-    enable = true;
-    base16SchemeName = "nord";
-    image = ../../assets/wallpaper/orbit.jpg;
-    polarity = "dark";
-    gtkIconThemeName = "Colloid";
-    gtkIconThemePackage = pkgs.colloid-icon-theme;
-    gtkCursorThemeName = "Bibata-Modern-Classic";
-    gtkCursorThemePackage = pkgs.bibata-cursors;
-  };
 
   monitors = [
     {

@@ -23,19 +23,18 @@
     ./hardware-configuration.nix
     # Import my global nixos host configs. These are configs
     # I apply to all my hosts.
-    ../../config/global
+    ../../common/core
     # Optional configs to import for this host. If an optional
     # config becomes global, and needs to apply to all my hosts,
     # it gets moved to global.
-    ../../config/optional/cachyos.nix
+    ../../common/optional/cachyos.nix
     #../../config/optional/cosmic.nix
-    ../../config/optional/ephemeral-btrfs.nix
-    ../../config/optional/gnome.nix
-    ../../config/optional/graphics.nix
-    ../../config/optional/pipewire.nix
+    ../../common/optional/ephemeral-btrfs.nix
+    ../../common/optional/gnome.nix
+    ../../common/optional/graphics.nix
+    ../../common/optional/pipewire.nix
     # Import my user configs.
-    ../../config/users/velen2077
-    ../../config/users/tom
+    ../../common/users/velen2077
   ];
 
   # Boot loader settings are usually unique to my hosts
