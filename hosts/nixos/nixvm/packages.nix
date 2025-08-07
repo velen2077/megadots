@@ -1,0 +1,94 @@
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: {
+  #----------------------------------------------------------------------------#
+  # SYSTEM PACKAGES                                                             #
+  #----------------------------------------------------------------------------#
+  environment.systemPackages = with pkgs; [
+    # Core Development Tools
+    vim # terminal text editor
+    neovim # modern vim-based text editor
+    gcc # GNU Compiler Collection
+    cmake # cross-platform build system generator
+    gnumake # build automation tool
+    git # version control system
+
+    # Programming Languages
+    python3 # python programming language
+    nodejs # JavaScript runtime environment
+    go # go programming language
+    rustup # rust toolchain installer
+    lua # lua programming language
+    luarocks # package manager for Lua modules
+
+    # Terminal Utilities
+    kitty # GPU-accelerated terminal emulator
+    fzf # command-line fuzzy finder
+    fastfetch # system information tool
+    starship # customizable shell prompt
+    tmux # terminal multiplexer
+    btop # resource monitor with graphs
+    fd # fast alternative to 'find'
+    ripgrep # fast alternative to grep
+    jq # command-line JSON processor
+    unzip # zip file extraction utility
+    ollama # running local llms
+
+    # File Management
+    nemo # graphical file manager
+    yazi # terminal file manager
+
+    # System Tools
+    nvtopPackages.full # GPU process monitor
+    lm_sensors # hardware monitoring utilities
+    pciutils # PCI utilities for device inspection
+    bluez # bluetooth protocol stack
+
+    # Wayland Tools
+    rofi-wayland # application launcher and window switcher
+    xclip # command line interface to X clipboard
+    wl-clipboard # wayland clipboard utilities
+
+    # Media & Viewers
+    mupdf # PDF viewer
+    mpv # video player
+    gimp # image editor
+
+    # Screenshot & Recording
+    grim # screenshot utility for wayland
+    slurp # region selector for wayland
+
+    # Desktop Environment
+    pavucontrol # PulseAudio volume control
+    easyeffects # pipewire equalizer
+    gowall # convert wallpaper to the theme
+    pasystray # audio settings in tray
+    cava # audio visualizer
+
+    # Gaming
+    mangohud # performance overlay for games
+
+    # Communication & Entertainment
+    thunderbird # email client
+
+    # System Libraries
+    gsettings-desktop-schemas # GSettings desktop schemas
+    glib # low-level core library for GNOME
+    libnotify # notification library
+    socat # listen to events on sockets
+
+    # Network Tools
+    networkmanagerapplet # network manager GUI
+
+    libsForQt5.qtstyleplugin-kvantum # qt-theme framework
+  ];
+
+  #----------------------------------------------------------------------------#
+  # FONTS                                                                       #
+  #----------------------------------------------------------------------------#
+  fonts.packages = builtins.filter pkgs.lib.isDerivation (builtins.attrValues pkgs.nerd-fonts);
+}

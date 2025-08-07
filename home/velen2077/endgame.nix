@@ -11,21 +11,21 @@
     # I apply to all my Home Manager users.
     ./common/core
     # Optional configs to import for this user.
-    ./common/opttional/alacritty.nix
-    ./common/opttional/code-cursor.nix
-    ./common/opttional/digikam.nix
-    ./common/opttional/element-desktop.nix
-    ./common/opttional/filen-desktop.nix
-    ./common/opttional/firefox.nix
-    ./common/opttional/gnome.nix
-    ./common/opttional/hugo.nix
-    ./common/opttional/obsidian.nix
-    ./common/opttional/signal-desktop.nix
-    ./common/opttional/spicetify.nix
-    ./common/opttional/syncthing.nix
-    ./common/opttional/terraform.nix
-    ./common/opttional/vesktop.nix
-    ./common/opttional/vscodium.nix
+    ./common/optional/alacritty.nix
+    ./common/optional/code-cursor.nix
+    ./common/optional/digikam.nix
+    ./common/optional/element-desktop.nix
+    ./common/optional/filen-desktop.nix
+    ./common/optional/firefox.nix
+    ./common/optional/gnome.nix
+    ./common/optional/hugo.nix
+    ./common/optional/obsidian.nix
+    ./common/optional/signal-desktop.nix
+    ./common/optional/spicetify.nix
+    ./common/optional/syncthing.nix
+    ./common/optional/terraform.nix
+    ./common/optional/vesktop.nix
+    ./common/optional/vscodium.nix
     # Import my theme.
     ./common/themes/nord.nix
   ];

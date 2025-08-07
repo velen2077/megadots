@@ -21,6 +21,7 @@
     ./disks.nix
     # Import the specific hardware-configuration.nix for this host.
     ./hardware-configuration.nix
+    ./packages.nix
     # Import my global nixos host configs. These are configs
     # I apply to all my hosts.
     ../../common/core
@@ -30,11 +31,15 @@
     ../../common/optional/cachyos.nix
     #../../config/optional/cosmic.nix
     ../../common/optional/ephemeral-btrfs.nix
-    ../../common/optional/gnome.nix
+    #../../common/optional/gnome.nix
     ../../common/optional/graphics.nix
     ../../common/optional/pipewire.nix
+    ../../common/optional/gaming.nix
     # Import my user configs.
     ../../common/users/velen2077
+    # Import my desktop.
+    # ../../common/optional/hyprland.nix
+    ../../common/optional/niri.nix
   ];
 
   # Boot loader settings are usually unique to my hosts
@@ -50,21 +55,5 @@
         configurationLimit = 10;
       };
     };
-    kernelParams = [
-      "quiet"
-      "loglevel=3"
-      "systemd.show_status=auto"
-      "udev.log_level=3"
-      "rd.udev.log_level=3"
-      "vt.global_cursor_default=0"
-    ];
-    consoleLogLevel = 0;
-    initrd.verbose = false;
   };
-
-  # Host specific apps go here. These will only be
-  # installed on this host.
-  environment.systemPackages = with pkgs; [
-    hello
-  ];
 }

@@ -7,6 +7,10 @@
   pkgs,
   ...
 }: {
+  security = {
+    rtkit.enable = true;
+    polkit.enable = true;
+  };
   # Enable passwordless sudo for members
   # of wheel group.
   security.sudo = {

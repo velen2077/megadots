@@ -15,10 +15,21 @@
     hideMounts = true;
     directories =
       [
-        "/var/lib/systemd"
-        "/var/lib/nixos"
         "/var/log"
         "/etc/NetworkManager/system-connections"
+        "/etc/nixos"
+        "/etc/wireguard"
+
+        "/var/cache/tuigreet" # Persist tuigreet sessions
+        "/var/db/sudo/lectured" # Remember lectured sudo users
+        "/var/lib/nixos"
+        # "/var/lib/docker" # handled by ext4 fs mount for docker from /btr_pool/@dumps/docker-volume.img
+        "/var/lib/alsa"
+        "/var/lib/systemd"
+
+        # Systemd requires /usr dir to be populated
+        # See: https://github.com/nix-community/impermanence/issues/253
+        "/usr/systemd-placeholder"
       ]
       ++ lib.optionals config.services.udisks2.enable ["/var/lib/udisks2"]
       ++ lib.optionals config.services.upower.enable ["/var/lib/upower"];

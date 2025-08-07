@@ -9,8 +9,7 @@
   imports =
     [
       inputs.impermanence.homeManagerModules.impermanence
-      ./fish.nix
-      ./git.nix
+      ../features/cli
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);
 
