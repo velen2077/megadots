@@ -78,7 +78,7 @@
         };
       };
     };
-
+    # font-family: "DepartureMono Nerd Font", monospace;
     style = ''
       * {
         border: none;
@@ -92,8 +92,9 @@
 
       window#waybar {
         background-color: alpha(#${config.theme.colors.base00}, 0.0);
-        color: #${config.theme.colors.base05};
-        font-family: "DepartureMono Nerd Font", monospace;
+        color: #${config.theme.colors.base02};
+        font-family: "Roboto", monospace;
+        font-weight: bold;
       }
 
       tooltip {

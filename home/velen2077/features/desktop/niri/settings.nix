@@ -5,6 +5,27 @@
   ...
 }: let
   opacity = lib.toHexString (((builtins.ceil (config.stylix.opacity.desktop * 100)) * 255) / 100);
+  enabledMonitors = builtins.filter (m: m.enabled) config.monitors;
+  # Map each monitor by its name
+  outputs = lib.genAttrs (map (m: m.name) enabledMonitors) (
+    name: let
+      monitor = lib.findFirst (m: m.name == name) (throw "Monitor not found") enabledMonitors;
+    in {
+      scale = monitor.scale;
+      mode = {
+        width = monitor.width;
+        height = monitor.height;
+        refresh = monitor.refreshRate;
+      };
+      position =
+        if monitor.position == "auto"
+        then null
+        else {
+          x = 0; # You may want to calculate dynamic positions here
+          y = 0;
+        };
+    }
+  );
 in {
   xdg.portal = {
     enable = true;
@@ -30,15 +51,8 @@ in {
         DISPLAY = ":0";
         NIXOS_OZONE_WL = "1";
       };
-      outputs."Virtual-1".scale = 1.0;
-      outputs."Virtual-1".mode.width = 1920;
-      outputs."Virtual-1".mode.height = 1080;
-      outputs."Virtual-1".mode.refresh = 60.000;
-      outputs."Virtual-1".position.x = 0;
-      outputs."Virtual-1".position.y = 0;
-      #outputs."eDP-2".position.x = 0;
-      #outputs."eDP-2".position.y = 0;
-      #outputs."eDP-2".scale = 2.0;
+      # Monitor config.
+      outputs = outputs;
       prefer-no-csd = true;
       layout = {
         gaps = 5;
@@ -53,6 +67,9 @@ in {
           inactive = {
             color = "#${base03}${opacity}";
           };
+        };
+        struts = {
+          top = -5;
         };
         focus-ring.enable = false;
       };

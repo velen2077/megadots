@@ -10,8 +10,9 @@
 
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
     polarity = "dark";
+    #image = ../../../../../assets/wallpaper/overwatch.png;
 
     targets = {
       firefox = {

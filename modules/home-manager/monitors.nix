@@ -38,16 +38,16 @@ in {
             example = 1080;
           };
           refreshRate = mkOption {
-            type = types.str;
-            default = "60";
+            type = types.float;
+            default = 60.000;
           };
           position = mkOption {
             type = types.str;
             default = "auto";
           };
           scale = mkOption {
-            type = types.str;
-            default = "1";
+            type = types.float;
+            default = 1.0;
           };
           enabled = mkOption {
             type = types.bool;

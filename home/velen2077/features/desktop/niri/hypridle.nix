@@ -4,28 +4,30 @@
   lib,
   ...
 }: {
+  # Enabling hypridle to handle idle-related actions like screen locking.
   services.hypridle = {
     enable = true;
     settings = {
       general = {
-        after_sleep_cmd = "hyprctl dispatch dpms on";
+        # This runs right before the system goes to sleep.
+        # I include it to make sure the screen is locked before suspend,
+        # even though I'm not currently using suspend.
+        before_sleep_cmd = "hyprlock";
+        # This is the command I want to run when the system is idle
+        # for a certain period — in this case, it locks the screen.
+        lock_cmd = "hyprlock";
+        # Setting this to false so that applications (like video players)
+        # that ask to inhibit idle actions are respected.
         ignore_dbus_inhibit = false;
-        lock_cmd = "pidof hyprlock || hyprlock";
       };
-
+      # Define what should happen after a period of inactivity.
       listener = [
         {
-          timeout = 300;
+          # Trigger after 900 seconds (15 minutes) of no user input.
+          timeout = 900;
+          # When the timeout is reached, lock the screen using hyprlock.
           on-timeout = "hyprlock";
-        }
-        {
-          timeout = 600;
-          on-timeout = "hyprctl dispatch dpms off";
-          on-resume = "hyprctl dispatch dpms on";
-        }
-        {
-          timeout = 700;
-          on-timeout = "systemctl suspend";
+          # Not using on-resume here, but it could be added if needed.
         }
       ];
     };

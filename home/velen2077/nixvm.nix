@@ -25,15 +25,21 @@
     ./features/desktop/niri
   ];
 
+  theme = {
+    wallpaper = ../../assets/wallpaper/overwatch.jpg;
+  };
+
   monitors = [
     {
-      name = "DP-2";
-      make = "AUS";
-      model = "VG27A";
-      serial = "LALMQS176787";
-      width = 2560;
-      height = 1440;
-      refreshRate = "143.972";
+      enabled = true;
+      name = "Virtual-1";
+      make = "Red Hat, Inc.";
+      model = "QEMU Monitor";
+      serial = "VM";
+      width = 1920;
+      height = 1080;
+      refreshRate = 60.000;
+      scale = 1.00;
       workspace = "1";
       primary = true;
     }

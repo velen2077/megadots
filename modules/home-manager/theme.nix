@@ -44,6 +44,16 @@
       default = {};
     };
 
+    wallpaper = lib.mkOption {
+      type = lib.types.nullOr lib.types.path;
+      default = null;
+      description = ''
+        Optional path to a wallpaper image to use in tools like hyprpaper or swaybg.
+        If unset, no wallpaper will be applied.
+      '';
+      example = ./wallpapers/forest.jpg;
+    };
+
     # default scheme is gruvbox
     colors = lib.mkOption {
       type = lib.types.submodule {

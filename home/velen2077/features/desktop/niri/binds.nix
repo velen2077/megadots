@@ -67,7 +67,7 @@
         action.spawn = ["swayosd-client" "--brightness" "lower"];
       };
 
-      "Mod+X".action.close-window = {};
+      "Mod+Q".action.close-window = {};
 
       "Mod+Left".action.focus-column-left = {};
       "Mod+Down".action.focus-window-down = {};
@@ -87,8 +87,8 @@
       "Mod+Shift+K".action.move-window-up = {};
       "Mod+Shift+L".action.move-column-right = {};
 
-      "Mod+Shift+Q".action.switch-focus-between-floating-and-tiling = {};
-      "Mod+Q".action.toggle-window-floating = {};
+      "Mod+Shift+B".action.switch-focus-between-floating-and-tiling = {};
+      "Mod+B".action.toggle-window-floating = {};
 
       # Alternative commands that move across workspaces when reaching
       # the first or last window in a column.

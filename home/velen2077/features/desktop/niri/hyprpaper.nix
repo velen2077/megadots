@@ -11,10 +11,10 @@
       splash = false;
       splash_offset = 2.0;
 
-      preload = ["${../../../../../assets/wallpaper/gruvbox-battlefield.png}"];
+      preload = ["${config.theme.wallpaper}"];
 
       wallpaper = [
-        ",${../../../../../assets/wallpaper/gruvbox-battlefield.png}"
+        ",${config.theme.wallpaper}"
       ];
     };
   };

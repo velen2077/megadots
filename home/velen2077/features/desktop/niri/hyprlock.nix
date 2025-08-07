@@ -14,7 +14,7 @@
 
       background = lib.mkForce [
         {
-          path = "${../../../../../assets/wallpaper/robogirl.png}";
+          path = "${config.theme.wallpaper}";
           blur_passes = 3;
           blur_size = 10;
         }

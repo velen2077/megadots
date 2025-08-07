@@ -14,4 +14,21 @@
     git
     just
   ];
+
+  fonts.packages = with pkgs;
+    [
+      dejavu_fonts
+      fira-code
+      hack-font
+      ibm-plex
+      inconsolata
+      jetbrains-mono
+      liberation_ttf
+      noto-fonts
+      roboto
+      roboto-mono
+      source-code-pro
+      ttf_bitstream_vera
+    ]
+    ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
 }
