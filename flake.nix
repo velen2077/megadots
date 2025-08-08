@@ -1,9 +1,9 @@
 {
-  # For those who come after.
   description = "megadots - a NixOS and Home Manager configuration repo by velen2077.";
 
-  # Extra substitutors and keys for any input in my config
-  # that needs one. Chaotic is a good example.
+  # Configure Nix to use additional binary caches and their public keys.
+  # This speeds up builds by allowing Nix to download pre-built packages
+  # from these caches.
   nixConfig = {
     extra-substituters = [
       "https://chaotic-nyx.cachix.org/"
@@ -15,44 +15,49 @@
     ];
   };
 
+  # Define all the flake inputs (dependencies) for the configuration.
   inputs = {
-    # Nixpkgs. By default, I'm using unstable. This can be overuled
-    # on a per-package basis using the stable-packages overlay.
+    # Nixpkgs is the primary source of packages. It is set to the
+    # unstable channel by default.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # A stable version of Nixpkgs for specific packages.
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
-    # Common hardware input.
+    # Common hardware definitions for NixOS.
     hardware.url = "github:nixos/nixos-hardware";
-    # Impermanence for nixos.
+    # A list of available Nix systems, such as x86_64-linux
+    # and aarch64-linux.
+    systems.url = "github:nix-systems/default-linux";
+    # Manages impermanent file system configurations.
     impermanence.url = "github:nix-community/impermanence/home-manager-v2";
-    # Home Manager for managing my dotfiles and user config.
+    # Home Manager is used to manage user-specific configurations
+    # and dotfiles.
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Chaotic inputs for CachyOS and Zen kernels.
+    # Chaotic provides a Nixpkgs overlay with additional packages,
+    # often with CachyOS or Zen kernels.
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    # Disko disk partitioning.
+    # A Nix module for declarative disk partitioning.
     disko = {
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Sylix for theming.
+    # A Nix module for system-wide theming.
     stylix.url = "github:nix-community/stylix";
-    # Firefox addons to support my Firefox
-    # Home Manager module. These allow installation
-    # of Firefox Extensions such as uBlock Origin.
+    # Provides Firefox extensions as Nix packages.
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Spicetify customised Spotify client.
+    # A Nix flake for customising the Spotify client with Spicetify.
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
-    # COSMIC Desktop Environment.
+    # A flake for the COSMIC desktop environment.
     nixos-cosmic = {
       url = "github:lilyinstarlight/nixos-cosmic";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # niri Window Manager.
+    # A flake for the niri Wayland window manager.
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -63,70 +68,76 @@
     self,
     nixpkgs,
     home-manager,
-    nixos-cosmic,
+    systems,
     ...
   } @ inputs: let
+    # Inherit outputs from the current flake.
     inherit (self) outputs;
-    # Supported systems for my flake packages, shell, etc. Included in
-    # the Systems input and includes updated NixOS supported systems.
+    # Combine the Nixpkgs and Home Manager libraries for
+    # unified function access.
     lib = nixpkgs.lib // home-manager.lib;
-    # Import my custom library.
-    mylib = import ./lib {
-      inherit lib;
-      inherit (builtins) builtins;
-    };
-    forAllSystems = nixpkgs.lib.genAttrs [
-      # I'm only using x86_64-linux at the moment but if that changes
-      # I'll need to add additional system architectures here.
-      "x86_64-linux"
-    ];
-    specialArgs = {inherit inputs outputs mylib;};
+    # A helper function to apply a function across all
+    # supported systems.
+    forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
+    # A set of Nixpkgs packages for each supported system,
+    # with unfree packages enabled.
+    pkgsFor = lib.genAttrs (import systems) (
+      system:
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        }
+    );
   in {
     inherit lib;
-    # Import my nixos modules. These modules should not be confused with
-    # nixos configuration files. These are typically custom modules that
-    # I may want to share in the future.
+    # Expose custom NixOS modules for the configuration.
     nixosModules = import ./modules/nixos;
-    # Same goes with home-manager modules. This is not my per user configs
-    # but custom modules with options I may wish to share.
+    # Expose custom Home Manager modules for user
+    # configurations.
     homeManagerModules = import ./modules/home-manager;
-    # Import my custom packages and modifications, exported as overlays.
+    # Expose custom packages as overlays.
     overlays = import ./overlays {inherit inputs outputs;};
-    # My custom packages accessible through 'nix build', 'nix shell', etc.
-    packages = forAllSystems (pkgs: import ./pkgs {inherit pkgs;});
-    # Formatter for my nix files, available through 'nix fmt'.
-    # Other options beside 'alejandra' include 'nixpkgs-fmt'.
-    formatter = forAllSystems (pkgs: pkgs.alejandra);
-    # Dev shell for working on my config.
-    devShells = forAllSystems (system: let
+    # Build custom packages from the local
+    # `pkgs` directory.
+    packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
+    # Specify the Nix file formatter to be used
+    # by `nix fmt`.
+    formatter = forEachSystem (pkgs: pkgs.alejandra);
+    # Define a development shell with specific tools
+    # for working on the flake, such as `alejandra`
+    # for formatting and `git` for version control.
+    devShells = forEachSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system};
     in {
       default = pkgs.mkShell {
         packages = [
+          # Packages to include in devShell.
           pkgs.alejandra
           pkgs.git
         ];
       };
     });
-    # NixOS configuration entrypoint. These are available
-    # through 'nixos-rebuild --flake .#hostname'.
+    # Define system configurations for each host.
     nixosConfigurations = {
-      # NixOS configuration for my host 'endgame'. My primary
-      # desktop computer, running NixOS.
+      # The configuration for the primary desktop
+      # computer, named 'endgame'.
       endgame = lib.nixosSystem {
-        inherit specialArgs;
         modules = [
-          # Import the primary configuration file for host.
           ./hosts/nixos/endgame/configuration.nix
         ];
+        specialArgs = {
+          inherit inputs outputs;
+        };
       };
-      # NixOS vm for testing my configs.
+      # The configuration for a virtual machine
+      # used for testing, named 'nixvm'.
       nixvm = lib.nixosSystem {
-        inherit specialArgs;
         modules = [
-          # Import the primary configuration file for host.
           ./hosts/nixos/nixvm/configuration.nix
         ];
+        specialArgs = {
+          inherit inputs outputs;
+        };
       };
     };
   };
