@@ -9,14 +9,11 @@ if [ "$#" -gt 0 ]; then
         reboot)
             reboot
             ;;
-        sleep)
-            hyprlock & systemctl suspend
-            ;;
         lock)
             pidof hyprlock || hyprlock
             ;;
         logout)
-            hyprctl dispatch exit
+            niri msg action quit --skip-confirmation
             ;;
     esac
     # Exit without output to make rofi close
@@ -28,7 +25,6 @@ declare -A options
 
 options[shutdown]=system-shutdown
 options[reboot]=system-reboot
-options[sleep]=system-suspend
 options[lock]=system-lock-screen
 options[logout]=system-log-out
 

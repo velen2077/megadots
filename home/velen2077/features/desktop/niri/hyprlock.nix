@@ -8,7 +8,6 @@
     enable = true;
     settings = {
       general = {
-        grace = 5;
         hide_cursor = true;
       };
       background = lib.mkForce [

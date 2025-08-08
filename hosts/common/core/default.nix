@@ -10,6 +10,7 @@
       ./fish.nix
       ./hardware.nix
       ./locale.nix
+      ./nix.nix
       ./packages.nix
       ./persistence.nix
       ./security.nix
@@ -23,13 +24,6 @@
   home-manager.backupFileExtension = "backup";
   home-manager.extraSpecialArgs = {
     inherit inputs outputs;
-  };
-
-  nixpkgs = {
-    overlays = builtins.attrValues outputs.overlays;
-    config = {
-      allowUnfree = true;
-    };
   };
 
   hardware.enableRedistributableFirmware = true;

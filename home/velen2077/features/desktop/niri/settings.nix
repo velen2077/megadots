@@ -89,7 +89,9 @@ in {
       ];
 
       input = {
-        keyboard.xkb.layout = "uk";
+        keyboard = {
+          xkb.layout = "gb";
+        };
         touchpad = {
           tap = true;
           click-method = "clickfinger";

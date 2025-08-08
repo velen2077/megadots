@@ -26,13 +26,22 @@
     registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
 
     settings = {
+      extra-substituters = [
+        "https://niri.cachix.org/"
+      ];
+      extra-trusted-public-keys = [
+        "niri.cachix.org-1:P72D+G6LgqKj7e9xYnL0M125bV7D57T9zYJ5K24Jq4I="
+      ];
       # See https://jackson.dev/post/nix-reasonable-defaults/
       connect-timeout = 5;
       log-lines = 25;
       min-free = 128000000; # 128MB
       max-free = 1000000000; # 1GB
 
-      trusted-users = ["@wheel"];
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
       # Deduplicate and optimize nix store
       auto-optimise-store = true;
       warn-dirty = false;
