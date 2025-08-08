@@ -11,7 +11,6 @@
         grace = 5;
         hide_cursor = true;
       };
-
       background = lib.mkForce [
         {
           path = "${config.theme.wallpaper}";
@@ -19,7 +18,6 @@
           blur_size = 10;
         }
       ];
-
       input-field = lib.mkForce [
         {
           size = "200, 50";
@@ -38,7 +36,6 @@
           shadow_boost = 3;
         }
       ];
-
       label = [
         {
           monitor = "";
@@ -51,7 +48,6 @@
           shadow_passes = 5;
           shadow_size = 10;
         }
-
         {
           monitor = "";
           text = "cmd[update:1000] echo \"$TIME\"";

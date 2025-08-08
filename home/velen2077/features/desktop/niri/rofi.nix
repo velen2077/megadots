@@ -9,7 +9,6 @@
       font: "DepartureMono Nerd Font 24";
     }
 
-
     window {
       location: center;
       anchor: center;

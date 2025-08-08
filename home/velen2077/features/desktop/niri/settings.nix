@@ -6,7 +6,6 @@
 }: let
   opacity = lib.toHexString (((builtins.ceil (config.stylix.opacity.desktop * 100)) * 255) / 100);
   enabledMonitors = builtins.filter (m: m.enabled) config.monitors;
-  # Map each monitor by its name
   outputs = lib.genAttrs (map (m: m.name) enabledMonitors) (
     name: let
       monitor = lib.findFirst (m: m.name == name) (throw "Monitor not found") enabledMonitors;
@@ -21,7 +20,7 @@
         if monitor.position == "auto"
         then null
         else {
-          x = 0; # You may want to calculate dynamic positions here
+          x = 0;
           y = 0;
         };
     }
@@ -98,19 +97,7 @@ in {
       };
       spawn-at-startup = [
         {command = ["${pkgs.xwayland-satellite}/bin/xwayland-satellite"];}
-        #"${lib.getExe config.default-application.terminal}"
-        #"${lib.getExe config.default-application.browser}"
-        # TODO: does not show-up
-        #"${pkgs.telegram-desktop}/bin/telegram-desktop -startintray"
-        # "ironbar"
-        # "${pkgs.swww}/bin/swww-daemon"
-        #"${pkgs.swaybg}/bin/swaybg -i /home/kpbaks/Pictures/wallpapers/spacehawks.png"
-        # "${pkgs.copyq}/bin/copyq"
-        # "${pkgs.eww}/bin/eww daemon"
-        # "${pkgs.birdtray}/bin/birdtray"
         {command = ["waybar"];}
-        # FIXME: does not work
-        # "${pkgs.obs-studio}/bin/obs --minimize-to-tray"
       ];
     };
   };

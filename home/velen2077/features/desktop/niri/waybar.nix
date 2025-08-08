@@ -93,7 +93,7 @@
       window#waybar {
         background-color: alpha(#${config.theme.colors.base00}, 0.0);
         color: #${config.theme.colors.base02};
-        font-family: "Roboto", monospace;
+        font-family: "DepartureMono Nerd Font", monospace;
         font-weight: bold;
       }
 
