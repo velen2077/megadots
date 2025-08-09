@@ -35,6 +35,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Secure Boot for NixOS.
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Chaotic provides a Nixpkgs overlay with additional packages,
     # often with CachyOS or Zen kernels.
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
@@ -69,6 +74,7 @@
     nixpkgs,
     home-manager,
     systems,
+    lanzaboote,
     ...
   } @ inputs: let
     # Inherit outputs from the current flake.

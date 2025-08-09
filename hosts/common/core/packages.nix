@@ -38,8 +38,10 @@
     pciutils # PCI utilities for device inspection.
     python3 # Python programming language.
     ripgrep # Fast alternative to grep.
+    sbctl # Secure Boot utils.
     slurp # Region selector for wayland.
     socat # Listen to events on sockets.
+    swtpm # Software-based TPM emulator for vm's.
     tmux # Terminal multiplexer.
     unzip # Zip file extraction utility.
     vim # Terminal text editor.

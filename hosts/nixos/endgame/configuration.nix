@@ -36,7 +36,6 @@
     ../../common/optional/cachyos.nix
     ../../common/optional/ephemeral-btrfs.nix
     ../../common/optional/gaming.nix
-    ../../common/optional/gnome.nix
     ../../common/optional/graphics.nix
     ../../common/optional/minecraft.nix
     ../../common/optional/pipewire.nix
@@ -45,6 +44,8 @@
     ../../common/optional/wireless.nix
     # Import my user configs.
     ../../common/users/velen2077
+    # Import my desktop.
+    ../../common/optional/gnome.nix
   ];
 
   # Boot loader settings are usually unique to my hosts

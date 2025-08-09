@@ -6,6 +6,7 @@
   imports =
     [
       inputs.home-manager.nixosModules.home-manager
+      inputs.lanzaboote.nixosModules.lanzaboote
       ./firewall.nix
       ./fish.nix
       ./hardware.nix
@@ -25,9 +26,4 @@
   home-manager.extraSpecialArgs = {
     inherit inputs outputs;
   };
-
-  hardware.enableRedistributableFirmware = true;
-
-  # Cleanup stuff included by default
-  services.speechd.enable = false;
 }

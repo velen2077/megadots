@@ -8,26 +8,21 @@
 }: {
   imports = [
     # Import my global Home Manager configs. These are configs
-    # I apply to all my Home Manager users.
-    ./common/core
-    # Optional configs to import for this user.
-    ./common/optional/alacritty.nix
-    ./common/optional/code-cursor.nix
-    ./common/optional/digikam.nix
-    ./common/optional/element-desktop.nix
-    ./common/optional/filen-desktop.nix
-    ./common/optional/firefox.nix
-    ./common/optional/gnome.nix
-    ./common/optional/hugo.nix
-    ./common/optional/obsidian.nix
-    ./common/optional/signal-desktop.nix
-    ./common/optional/spicetify.nix
-    ./common/optional/syncthing.nix
-    ./common/optional/terraform.nix
-    ./common/optional/vesktop.nix
-    ./common/optional/vscodium.nix
-    # Import my theme.
-    ./common/themes/nord.nix
+    # I apply to all my Home Manager users and all sit within
+    # the cli subfolder..
+    ./global
+    # Import my features for the user on this host. This can
+    # either be the folder itself (all contents imported via
+    # the included default.nix) or individual nix files wihin
+    # each feature subfolder if I want to be selective.
+    ./features/comms
+    ./features/development
+    ./features/gaming
+    ./features/media
+    ./features/productivity
+    ./features/theme
+    # Import my desktop/window manager/compositor.
+    ./features/desktop/gnome
   ];
 
   monitors = [

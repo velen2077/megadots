@@ -21,7 +21,6 @@
     ./disks.nix
     # Import the specific hardware-configuration.nix for this host.
     ./hardware-configuration.nix
-    #./packages.nix
     # Import my global nixos host configs. These are configs
     # I apply to all my hosts.
     ../../common/core
@@ -38,7 +37,6 @@
     # Import my user configs.
     ../../common/users/velen2077
     # Import my desktop.
-    # ../../common/optional/hyprland.nix
     ../../common/optional/niri.nix
   ];
 
