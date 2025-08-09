@@ -23,7 +23,6 @@
         "/var/cache/tuigreet" # Persist tuigreet sessions
         "/var/db/sudo/lectured" # Remember lectured sudo users
         "/var/lib/nixos"
-        "/var/lib/sbctl"
         # "/var/lib/docker" # handled by ext4 fs mount for docker from /btr_pool/@dumps/docker-volume.img
         "/var/lib/alsa"
         "/var/lib/systemd"

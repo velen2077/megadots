@@ -6,7 +6,6 @@
   imports =
     [
       inputs.home-manager.nixosModules.home-manager
-      inputs.lanzaboote.nixosModules.lanzaboote
       ./firewall.nix
       ./fish.nix
       ./hardware.nix
