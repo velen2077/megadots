@@ -22,8 +22,12 @@
     ./features/productivity
     ./features/theme
     # Import my desktop/window manager/compositor.
-    ./features/desktop/gnome
+    ./features/desktop/niri
   ];
+
+  theme = {
+    wallpaper = ../../assets/wallpaper/overwatch.jpg;
+  };
 
   monitors = [
     {

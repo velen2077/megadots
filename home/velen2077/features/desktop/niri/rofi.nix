@@ -138,7 +138,7 @@ in {
   programs.rofi = {
     enable = true;
     extraConfig = {
-      modi = "drun,combi,powermenu:${../../../../../assets/scripts/powermenu.sh}";
+      modi = "drun,combi,powermenu:powermenu";
       show-icons = true;
       "display-drun" = "->";
       "display-powermenu" = "<-";

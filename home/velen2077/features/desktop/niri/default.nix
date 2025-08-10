@@ -8,6 +8,7 @@
     ./mako.nix
     ./qt.nix
     ./rofi.nix
+    ./scripts.nix
     ./settings.nix
     ./waybar.nix
   ];

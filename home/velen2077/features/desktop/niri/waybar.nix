@@ -10,7 +10,7 @@
         layer = "bottom";
         position = "top";
 
-        modules-left = ["hyprland/workspaces"];
+        modules-left = ["niri/workspaces"];
         modules-center = [];
         modules-right = [
           "custom/cpu"
@@ -25,11 +25,10 @@
 
         spacing = config.theme.spacing.s;
 
-        "hyprland/workspaces" = {
+        "niri/workspaces" = {
           format = "{name}";
-          on-scroll-up = "hyprctl dispatch workspace e+1";
-          on-scroll-down = "hyprctl dispatch workspace e-1";
-          cursor = 60;
+          on-scroll-up = "niri msg action focus-workspace-up";
+          on-scroll-down = "niri msg action focus-workspace-up";
         };
 
         "custom/separator" = {
@@ -49,7 +48,7 @@
 
         "custom/cpu" = {
           format = "CPU: {text}°C";
-          exec = "bash ${../../../../../assets/scripts/cpu-temp.sh}";
+          exec = "cpu-temp";
           return-type = "json";
           interval = 1;
           cursor = 68;
@@ -58,7 +57,7 @@
 
         "custom/gpu" = {
           format = "GPU: {text}°C";
-          exec = "bash ${../../../../../assets/scripts/gpu-temp.sh}";
+          exec = "gpu-temp";
           return-type = "json";
           interval = 1;
           cursor = 68;
