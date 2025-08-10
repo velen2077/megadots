@@ -32,13 +32,13 @@
   monitors = [
     {
       enabled = true;
-      name = "HDMI-1";
+      name = "HDMI-A-2";
       make = "AUS";
       model = "VG27A";
       serial = "LALMQS176787";
       width = 2560;
       height = 1440;
-      refreshRate = 143.972;
+      refreshRate = 144.006;
       scale = 1.00;
       workspace = "1";
       primary = true;

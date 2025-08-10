@@ -1,4 +1,5 @@
 {
+  # For those who come after.
   description = "megadots - a NixOS and Home Manager configuration repo by velen2077.";
 
   # Configure Nix to use additional binary caches and their public keys.
