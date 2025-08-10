@@ -22,7 +22,8 @@ I am not an expert in Nix, NixOS, Home Manager or flakes. Nor am I a developer. 
 ## Features
 - **NixOS** system configuration on mulitple hosts.
 - **Home Manager** user configuration for my user.
-- **Impermanence** with LUKS encrypted btrfs snapshot and rollback.
+- **Optional Impermanence** with LUKS encrypted btrfs snapshot and rollback.
+- **Optional Secure Boot** with lanzaboote, including support for dual boot with Windows.
 - **Flakes** and modular configs.
 - **Disko** for disk partioning and preperation.
 - **Chaotic** inputs for CachyOS kernel.
@@ -69,6 +70,39 @@ To update the flake inputs (e.g., `nixpkgs`), run the following command:
 ```bash
 nix flake update
 ```
+### Configuring Secure Boot
+
+To enable Secure Boot for a host, there are a few manual steps that have to happen, focussed around generating encryption keys and enrolling them in to the UEFI firmware for Secure Boot.
+
+1. Build the host with lanzaboote added as an optional config.
+2. Run the following command to generate keys for the host:
+   
+```bash
+sudo sbctl create-keys
+```
+3. Reboot the host and enter the UEFI firmware configuration.
+4. Enable Secure Boot and make sure it is in 'Setup Mode'. For my MSI motherboard, there isn't a specifc 'Setup Mode' option. Instead, I select 'Factory Keys' = 'disabled' and 'Secure Boot Mode' = 'Custom'. After rebooting and entering the UEFI firmware again, I can then go in to the newly added custom option and select 'Delete all UEFI vars'.
+5. Reboot the host again.
+6. Run the following command:
+
+```bash
+sudo sbctl verify
+```
+7. Ensure there are verified signatures. They will appear with a green tick.
+8. Run the following command to enroll the keys:
+
+```bash
+# --microsoft ensures that Microsoft keys are enrolled by default so that we can dual boot with Windows if needed.
+sudo sbctl enroll-keys --microsoft
+```
+9. Reboot the host again and enter the UEFI firmware.
+10. Change the Secure Boot mode to 'Standard' - effectively bringing it out of Setup Mode.
+11. Save changes and reboot the host.
+12. Verify Secure Boot is enabled by running the following command:
+```bash
+sudo sbctl status
+```
+13. You should see that Secure Boot is listed as enabled (user).
 
 ## Hosts
 
@@ -93,16 +127,16 @@ I use the following structure to organise my configurations.
 ├── home                  # Home folder that contains a folder for each Home Manager user.
 │   └── velen2077         # My primary user, managed by Home Manager.
 │       ├── global        # Global Home Manager configs, all imported and applied to the user.
-│       └── optional      # Optional Home Manager configs, selectively imported per user.
+│       └── features      # Optional Home Manager configs, selectively imported per user.
 ├── modules               # Modules folder, containing a subfolder for both NixOS and Home Manager.
 │   ├── home-manager      # Custom-written and sharable Home Manager modules.
 │   └── nixos             # Custom-written and sharable NixOS modules.
-├── nixos                 # NixOS configs, containing a subfolder for each host and a config folder.
-│   ├── config            # NixOS config files for system configs.
-│   │   ├── global        # Global system configs, to apply on every system.
+├── hosts                 # NixOS configs, containing a subfolder for each host and a config folder.
+│   ├── common            # NixOS config files for system configs.
+│   │   ├── core          # Global system configs, to apply on every system.
 │   │   ├── optional      # Optional system configs, selectively imported per host.
 │   │   └── users         # Optional user settings to apply on selected systems with options.
-│   └── hosts             # NixOS hosts managed by megadots.
+│   └── nixos             # NixOS hosts managed by megadots.
 │       └── endgame       # The configuration for my primary desktop system.
 │       └── nixvm         # The configuration for my test VM.
 ├── overlays              # Overlays folder containing any patches or overrides.
