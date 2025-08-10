@@ -4,8 +4,10 @@
     libvirtd = {
       enable = true;
       nss.enable = true;
-      qemuPackage = pkgs.qemu;
-      qemu.ovmf.enable = true;
+      qemu = {
+        package = pkgs.qemu;
+        ovmf.enable = true;
+      };
     };
   };
 
