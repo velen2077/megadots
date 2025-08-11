@@ -27,7 +27,7 @@ I am not an expert in Nix, NixOS, Home Manager or flakes. Nor am I a developer. 
 - :snowflake: **Flakes** and modular configs.
 - :floppy_disk: **Disko** for disk partioning and preperation.
 - :anger: **Chaotic** inputs for CachyOS kernel.
-- :paintbrush: **Custom theme module** for Home Manager themeing to try and centralise all user theme customisation.
+- :paintbrush: **Custom theme module** for themeing to centralise all theme customisation.
 
 ## Usage
 
