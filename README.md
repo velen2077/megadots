@@ -20,13 +20,14 @@ This is my personal system configuration repo that I use to build systems and ho
 I am not an expert in Nix, NixOS, Home Manager or flakes. Nor am I a developer. Outside of my consultancy job (in a technical field so not completely in the dark), I'm a tinkerer. I'd been feeling a little burnt out and in need of something to learn in my downtime, and this project came along at the perfect time, and has genuinely brought some fun back in to computing for me. Just like the days of old, going to the local monthly computer market and picking up a fresh copy of a new Linux distro on a wad of floppies and taking it for a spin.
 
 ## Features
-- **NixOS** system configuration on mulitple hosts.
+- :snowflake: **NixOS** system configuration on mulitple hosts.
 - **Home Manager** user configuration for my user.
 - **Optional Impermanence** with LUKS encrypted btrfs snapshot and rollback.
 - **Optional Secure Boot** with lanzaboote, including support for dual boot with Windows.
 - **Flakes** and modular configs.
 - **Disko** for disk partioning and preperation.
 - **Chaotic** inputs for CachyOS kernel.
+- **Custom theme module** for Home Manager themeing to try and centralise all user theme customisation.
 
 ## Usage
 
@@ -62,7 +63,6 @@ To adapt this configuration for your own use, you'll need to create a new host a
 3.  **Update your `flake.nix`** to add a new `nixosConfigurations` entry for your new host.
 4.  **Create a new user directory** in `home/` and a corresponding entry in `nixos/config/users`.
 4.  **Create a new host file** in `home/$USER` for the Home Manager config for that specific host and user.
-5.  **Custom theme module** for Home Manager themeing to try and centralise all user theme customisation.
 
 ### Updating
 
