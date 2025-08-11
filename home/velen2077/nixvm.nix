@@ -20,14 +20,48 @@
     ./features/gaming
     ./features/media
     ./features/productivity
-    ./features/theme
     # Import my desktop/window manager/compositor.
     ./features/desktop/niri
   ];
 
   theme = {
-    wallpaper = ../../assets/wallpaper/overwatch.jpg;
+    # The wallpaper for the user.
+    wallpaper = ../../assets/wallpaper/gruvbox-wave.png;
+
+    # Stylix configuration.
+    stylix = {
+      enable = true;
+      base16Scheme = "rose-pine";
+      polarity = "dark";
+      disableTargets = [];
+      firefoxProfiles = ["default"];
+    };
+
+    # GTK configuration.
+    gtk = {
+      enable = true;
+      iconTheme = {
+        name = "Gruvbox-Plus-Dark";
+        package = pkgs.gruvbox-plus-icons;
+      };
+    };
+
+    # QT configuration.
+    qt = {
+      enable = true;
+    };
+
+    # Cursor configuration.
+    cursor = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Classic";
+      size = 22;
+    };
   };
+
+  # User specific theme fixes that don't need to
+  # be a part of my theme module.
+  stylix.targets.waybar.addCss = false;
 
   monitors = [
     {

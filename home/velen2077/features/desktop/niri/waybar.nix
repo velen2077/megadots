@@ -14,6 +14,7 @@
         modules-center = [];
         modules-right = [
           "custom/cpu"
+          "cpu"
           "custom/separator"
           "custom/gpu"
           "custom/separator"
@@ -46,11 +47,17 @@
           format = "[{capacity}%] 󰿟";
         };
 
+        "cpu" = {
+          interval = 1;
+          format = "{usage}%";
+          max-length = 10;
+        };
+
         "custom/cpu" = {
           format = "CPU: {text}°C";
           exec = "cpu-temp";
           return-type = "json";
-          interval = 1;
+          interval = 5;
           cursor = 68;
           tooltip = false;
         };
@@ -59,7 +66,7 @@
           format = "GPU: {text}°C";
           exec = "gpu-temp";
           return-type = "json";
-          interval = 1;
+          interval = 5;
           cursor = 68;
           tooltip = false;
         };
@@ -90,10 +97,9 @@
       }
 
       window#waybar {
-        background-color: alpha(#${config.theme.colors.base00}, 0.0);
-        color: #${config.theme.colors.base02};
+        background-color: alpha(#${config.theme.colors.base00}, 0.5);
+        color: #${config.theme.colors.base05};
         font-family: "DepartureMono Nerd Font", monospace;
-        font-weight: bold;
       }
 
       tooltip {
@@ -109,12 +115,12 @@
         all: unset;
         padding: 0px ${toString config.theme.spacing.s}px;
         background-color: transparent;
-        color: #${config.theme.colors.base02};
+        color: #${config.theme.colors.base05};
       }
 
       #workspaces button.active {
         background-color: transparent;
-        color: #${config.theme.colors.base0D};
+        color: #${config.theme.colors.base08};
       }
 
       #workspaces button.urgent {

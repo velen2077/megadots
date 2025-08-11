@@ -59,8 +59,8 @@ in {
           enable = true;
           active = {
             gradient = {
-              to = "#${base0D}${opacity}";
-              from = "#${base0E}${opacity}";
+              to = "#${base0A}${opacity}";
+              from = "#${base08}${opacity}";
             };
           };
           inactive = {

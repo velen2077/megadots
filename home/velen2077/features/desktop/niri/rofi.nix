@@ -90,7 +90,7 @@
 
     element selected.normal {
       background-color: inherit;
-      text-color: #${config.theme.colors.base0D};
+      text-color: #${config.theme.colors.base08};
     }
 
     element selected.urgent {
@@ -100,7 +100,7 @@
 
     element selected.active {
       background-color: inherit;
-      text-color: #${config.theme.colors.base0D};
+      text-color: #${config.theme.colors.base08};
     }
 
     element-text {

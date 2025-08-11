@@ -62,6 +62,7 @@ To adapt this configuration for your own use, you'll need to create a new host a
 3.  **Update your `flake.nix`** to add a new `nixosConfigurations` entry for your new host.
 4.  **Create a new user directory** in `home/` and a corresponding entry in `nixos/config/users`.
 4.  **Create a new host file** in `home/$USER` for the Home Manager config for that specific host and user.
+5.  **Custom theme module** for Home Manager themeing to try and centralise all user theme customisation.
 
 ### Updating
 
