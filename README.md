@@ -20,14 +20,14 @@ This is my personal system configuration repo that I use to build systems and ho
 I am not an expert in Nix, NixOS, Home Manager or flakes. Nor am I a developer. Outside of my consultancy job (in a technical field so not completely in the dark), I'm a tinkerer. I'd been feeling a little burnt out and in need of something to learn in my downtime, and this project came along at the perfect time, and has genuinely brought some fun back in to computing for me. Just like the days of old, going to the local monthly computer market and picking up a fresh copy of a new Linux distro on a wad of floppies and taking it for a spin.
 
 ## Features
-- :snowflake: **NixOS** system configuration on mulitple hosts.
-- **Home Manager** user configuration for my user.
-- **Optional Impermanence** with LUKS encrypted btrfs snapshot and rollback.
-- **Optional Secure Boot** with lanzaboote, including support for dual boot with Windows.
-- **Flakes** and modular configs.
-- **Disko** for disk partioning and preperation.
-- **Chaotic** inputs for CachyOS kernel.
-- **Custom theme module** for Home Manager themeing to try and centralise all user theme customisation.
+- :desktop_computer: **NixOS** system configuration on mulitple hosts.
+- :house: **Home Manager** user configuration for my user.
+- :camera_flash: **Optional Impermanence** with LUKS encrypted btrfs snapshot and rollback.
+- :cop: **Optional Secure Boot** with lanzaboote, including support for dual boot with Windows.
+- :snowflake: **Flakes** and modular configs.
+- :floppy_disk: **Disko** for disk partioning and preperation.
+- :anger: **Chaotic** inputs for CachyOS kernel.
+- :paintbrush: **Custom theme module** for Home Manager themeing to try and centralise all user theme customisation.
 
 ## Usage
 
