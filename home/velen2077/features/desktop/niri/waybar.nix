@@ -109,6 +109,7 @@
         all: unset;
         padding: 0px ${toString config.theme.spacing.s}px;
         background-color: transparent;
+        color: #${config.theme.colors.base02};
       }
 
       #workspaces button.active {

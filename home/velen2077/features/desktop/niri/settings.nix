@@ -73,6 +73,14 @@ in {
         focus-ring.enable = false;
       };
 
+      workspaces = {
+        "01-web" = {name = "web";};
+        "02-code" = {name = "code";};
+        "03-virt" = {name = "virt";};
+        "04-chat" = {name = "chat";};
+        "05-music" = {name = "music";};
+      };
+
       window-rules = [
         {
           draw-border-with-background = false;
@@ -85,6 +93,51 @@ in {
             bottom-right = r;
           };
           clip-to-geometry = true;
+        }
+        {
+          matches = [
+            {
+              at-startup = true;
+              app-id = "^firefox$";
+            }
+          ];
+          open-on-workspace = "web";
+        }
+        {
+          matches = [
+            {
+              at-startup = true;
+              app-id = "^codium$";
+            }
+          ];
+          open-on-workspace = "code";
+        }
+        {
+          matches = [
+            {
+              at-startup = true;
+              app-id = "^virt-manager$";
+            }
+          ];
+          open-on-workspace = "virt";
+        }
+        {
+          matches = [
+            {
+              at-startup = true;
+              app-id = "^vesktop$";
+            }
+          ];
+          open-on-workspace = "chat";
+        }
+        {
+          matches = [
+            {
+              at-startup = true;
+              app-id = "^spotify$";
+            }
+          ];
+          open-on-workspace = "music";
         }
       ];
 
