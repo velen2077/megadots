@@ -11,14 +11,12 @@
         position = "top";
 
         modules-left = ["niri/workspaces"];
-        modules-center = [];
+        modules-center = ["clock"];
         modules-right = [
           "custom/cpu"
           "cpu"
           "custom/separator"
           "custom/gpu"
-          "custom/separator"
-          "clock"
           "custom/separator"
           "battery"
           "tray"

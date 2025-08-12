@@ -28,18 +28,52 @@
 in {
   xdg.portal = {
     enable = true;
-    config = {
-      common.default = [
-        "gnome"
-      ];
-      niri = {
-        default = "gnome";
-        "org.freedesktop.impl.portal.FileChooser" = "gtk";
-      };
-      obs.default = ["gnome"];
-    };
-    extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    extraPortals = [pkgs.xdg-desktop-portal-gnome];
+    configPackages = [pkgs.niri];
   };
+  # Some services, like blueman-applet, require a `tray` target. Typically Home
+  # Manager sets this target in WM modules, but it's not set up for Niri yet.
+  systemd.user.targets.tray = {
+    Unit = {
+      After = ["niri.service"];
+    };
+    Install = {
+      WantedBy = ["niri.service"];
+    };
+  };
+
+  home.packages = with pkgs; [
+    xwayland-satellite
+  ];
+
+  # Switch from `Install.WantedBy = [ "graphical-session.target" ]` as defined
+  # in the service file provided by the xwayland-satellite package. This links
+  # xwayland-satellite to niri specifically, and schedules it so that there is
+  # a wayland session available when it starts.
+  systemd.user.services.xwayland-satellite = {
+    Unit = {
+      Description = "Xwayland outside your Wayland";
+      BindsTo = "graphical-session.target";
+      PartOf = "graphical-session.target";
+      After = "graphical-session.target";
+      Requisite = "graphical-session.target";
+    };
+    Service = {
+      Type = "notify";
+      NotifyAccess = "all";
+      ExecStart = "${pkgs.xwayland-satellite}/bin/xwayland-satellite";
+      StandardOutput = "journal";
+    };
+    Install.WantedBy = ["niri.service"];
+  };
+
+  # Use Gnome Keyring as SSH agent.
+  services.gnome-keyring = {
+    enable = true;
+    components = ["pkcs11" "secrets" "ssh"];
+  };
+  home.sessionVariables.SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/keyring/ssh";
+
   programs.niri = {
     settings = {
       hotkey-overlay.skip-at-startup = true;
@@ -79,6 +113,7 @@ in {
         "03-virt" = {name = "virt";};
         "04-chat" = {name = "chat";};
         "05-music" = {name = "music";};
+        "05-gaming" = {name = "gaming";};
       };
 
       window-rules = [
@@ -101,6 +136,7 @@ in {
               app-id = "^firefox$";
             }
           ];
+          open-maximized = true;
           open-on-workspace = "web";
         }
         {
@@ -110,6 +146,7 @@ in {
               app-id = "^codium$";
             }
           ];
+          open-maximized = true;
           open-on-workspace = "code";
         }
         {
@@ -128,6 +165,7 @@ in {
               app-id = "^vesktop$";
             }
           ];
+          open-maximized = true;
           open-on-workspace = "chat";
         }
         {
@@ -137,7 +175,18 @@ in {
               app-id = "^spotify$";
             }
           ];
+          open-maximized = true;
           open-on-workspace = "music";
+        }
+        {
+          matches = [
+            {
+              at-startup = true;
+              app-id = "^steam$";
+            }
+          ];
+          open-maximized = true;
+          open-on-workspace = "gaming";
         }
       ];
 

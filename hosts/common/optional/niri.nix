@@ -21,13 +21,16 @@
 
   # NOTE: Only enable these if the nixosModules does not work
   # security.pam.services.swaylock = {};
-  # xdg.portal = {
-  #   enable = true;
-  #   extraPortals = with pkgs; [
-  #     xdg-desktop-portal-gtk
-  #     xdg-desktop-portal-gnome
-  #   ];
-  # };
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-gnome
+    ];
+  };
+
+  # Needed for hyprlock
+  security.pam.services.hyprlock = {};
 
   services = {
     gnome.gnome-keyring.enable = true;

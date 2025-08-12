@@ -5,15 +5,16 @@
   ...
 }: {
   imports = [
-    ./gtk.nix
-    ./hypridle.nix
-    ./hyprlock.nix
-    ./hyprpaper.nix
-    ./mako.nix
-    ./qt.nix
-    ./rofi.nix
-    ./waybar.nix
+    ./hypridle/hypridle.nix
+    ./hyprlock/hyprlock.nix
+    ./hyprpaper/hyprpaper.nix
+    ./mako/mako.nix
+    ./rofi/rofi.nix
+    ./scripts/scripts.nix
+    ./waybar/waybar.nix
   ];
+
+  home.packages = with pkgs; [hyprpolkitagent];
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -76,8 +77,8 @@
         layout = "dwindle";
         allow_tearing = false;
 
-        "col.active_border" = lib.mkForce "rgb(${config.theme.colors.base03})";
-        "col.inactive_border" = lib.mkForce "rgb(${config.theme.colors.base01})";
+        "col.active_border" = lib.mkForce "rgb(${config.theme.colors.base08})";
+        "col.inactive_border" = lib.mkForce "rgb(${config.theme.colors.base03})";
       };
 
       # Decoration
@@ -184,7 +185,7 @@
 
         # Layout bindings
         "$mod, SLASH, layoutmsg, togglesplit"
-        "$mod, COMMA, exec, bash ${../../../../assets/scripts/hypr-group.sh}"
+        #"$mod, COMMA, exec, bash ${../../../../assets/scripts/hypr-group.sh}"
         "$mod, j, changegroupactive, b"
         "$mod, k, changegroupactive, f"
         "$mod CTRL, F, fullscreen"
@@ -221,14 +222,14 @@
 
       # Media keys
       bindl = [
-        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ${../../../../assets/scripts/volume-notify.sh}"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%- && ${../../../../assets/scripts/volume-notify.sh}"
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+ && ${../../../../assets/scripts/volume-notify.sh}"
-        ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle && ${../../../../assets/scripts/volume-notify.sh}"
-        ", XF86MonBrightnessDown, exec, brightnessctl set 5%- && ${../../../../assets/scripts/brightness-notify.sh}"
-        ", XF86MonBrightnessUp, exec, brightnessctl set 5%+ && ${../../../../assets/scripts/brightness-notify.sh}"
+        #", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ${../../../../assets/scripts/volume-notify.sh}"
+        #", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%- && ${../../../../assets/scripts/volume-notify.sh}"
+        #", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+ && ${../../../../assets/scripts/volume-notify.sh}"
+        #", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle && ${../../../../assets/scripts/volume-notify.sh}"
+        #", XF86MonBrightnessDown, exec, brightnessctl set 5%- && ${../../../../assets/scripts/brightness-notify.sh}"
+        #", XF86MonBrightnessUp, exec, brightnessctl set 5%+ && ${../../../../assets/scripts/brightness-notify.sh}"
 
-        ", switch:on:Lid Switch, exec, hyprlock & systemctl suspend"
+        #", switch:on:Lid Switch, exec, hyprlock & systemctl suspend"
       ];
 
       # Mouse wheel workspace switching
@@ -239,14 +240,13 @@
 
       # Startup applications
       exec-once = [
+        "systemctl --user start hyprpolkitagent"
         "waybar"
         "nm-applet"
-        "blueman-applet"
       ];
 
       # Environment variables
       env = [
-        "XCURSOR_THEME,capitaine-cursors"
         "XCURSOR_SIZE,16"
       ];
     };

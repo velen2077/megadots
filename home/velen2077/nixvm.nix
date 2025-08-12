@@ -26,14 +26,15 @@
 
   theme = {
     # The wallpaper for the user.
-    wallpaper = ../../assets/wallpaper/gruvbox-wave.png;
+    wallpaper = ../../assets/wallpaper/overwatch.jpg;
+    borderWidth = 4;
 
     # Stylix configuration.
     stylix = {
       enable = true;
       base16Scheme = "rose-pine";
       polarity = "dark";
-      disableTargets = [];
+      disableTargets = ["hyprlock" "rofi"];
       firefoxProfiles = ["default"];
     };
 

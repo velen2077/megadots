@@ -1,15 +1,13 @@
 {
   imports = [
     ./binds.nix
-    #./gtk.nix
-    ./hypridle.nix
-    ./hyprlock.nix
-    ./hyprpaper.nix
-    ./mako.nix
-    #./qt.nix
-    ./rofi.nix
-    ./scripts.nix
     ./settings.nix
-    ./waybar.nix
+    ./hypridle/hypridle.nix
+    ./hyprlock/hyprlock.nix
+    ./hyprpaper/hyprpaper.nix
+    ./mako/mako.nix
+    ./rofi/rofi.nix
+    ./scripts/scripts.nix
+    ./waybar/waybar.nix
   ];
 }
