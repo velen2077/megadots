@@ -8,8 +8,18 @@
 }: {
   # Disabling speechd, the speech dispatcher daemon, as it's not
   # needed for most desktop use cases and can consume resources.
-  services.speechd.enable = lib.mkForce false;
-  # thermald helps prevent CPU's from overheating.
-  services.thermald.enable = true;
-  services.upower.enable = true;
+  services = {
+    # thermald helps prevent CPU's from overheating.
+    thermald.enable = true;
+    upower.enable = true;
+    # needed for GNOME services outside of GNOME Desktop
+    dbus.packages = with pkgs; [
+      gcr
+      gnome-settings-daemon
+      libsecret
+    ];
+
+    gnome.gnome-keyring.enable = true;
+    gvfs.enable = true;
+  };
 }

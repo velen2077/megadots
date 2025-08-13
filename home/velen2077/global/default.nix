@@ -10,6 +10,7 @@
     [
       inputs.impermanence.homeManagerModules.impermanence
       ../features/cli
+      ../features/system
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);
 

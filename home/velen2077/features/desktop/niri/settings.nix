@@ -26,54 +26,6 @@
     }
   );
 in {
-  xdg.portal = {
-    enable = true;
-    extraPortals = [pkgs.xdg-desktop-portal-gnome];
-    configPackages = [pkgs.niri];
-  };
-  # Some services, like blueman-applet, require a `tray` target. Typically Home
-  # Manager sets this target in WM modules, but it's not set up for Niri yet.
-  systemd.user.targets.tray = {
-    Unit = {
-      After = ["niri.service"];
-    };
-    Install = {
-      WantedBy = ["niri.service"];
-    };
-  };
-
-  home.packages = with pkgs; [
-    xwayland-satellite
-  ];
-
-  # Switch from `Install.WantedBy = [ "graphical-session.target" ]` as defined
-  # in the service file provided by the xwayland-satellite package. This links
-  # xwayland-satellite to niri specifically, and schedules it so that there is
-  # a wayland session available when it starts.
-  systemd.user.services.xwayland-satellite = {
-    Unit = {
-      Description = "Xwayland outside your Wayland";
-      BindsTo = "graphical-session.target";
-      PartOf = "graphical-session.target";
-      After = "graphical-session.target";
-      Requisite = "graphical-session.target";
-    };
-    Service = {
-      Type = "notify";
-      NotifyAccess = "all";
-      ExecStart = "${pkgs.xwayland-satellite}/bin/xwayland-satellite";
-      StandardOutput = "journal";
-    };
-    Install.WantedBy = ["niri.service"];
-  };
-
-  # Use Gnome Keyring as SSH agent.
-  services.gnome-keyring = {
-    enable = true;
-    components = ["pkcs11" "secrets" "ssh"];
-  };
-  home.sessionVariables.SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/keyring/ssh";
-
   programs.niri = {
     settings = {
       hotkey-overlay.skip-at-startup = true;
@@ -81,16 +33,51 @@ in {
         enable = true;
       };
       environment = {
+        CLUTTER_BACKEND = "wayland";
         DISPLAY = ":0";
+        GDK_BACKEND = "wayland,x11";
+        MOZ_ENABLE_WAYLAND = "1";
         NIXOS_OZONE_WL = "1";
+        QT_QPA_PLATFORM = "wayland;xcb";
+        QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+        SDL_VIDEODRIVER = "wayland";
+      };
+      spawn-at-startup = [
+        {command = ["${pkgs.xwayland-satellite}/bin/xwayland-satellite"];}
+        {command = ["waybar"];}
+      ];
+      input = {
+        keyboard.xkb.layout = "gb";
+        touchpad = {
+          click-method = "button-areas";
+          dwt = true;
+          dwtp = true;
+          natural-scroll = true;
+          scroll-method = "two-finger";
+          tap = true;
+          tap-button-map = "left-right-middle";
+          middle-emulation = true;
+          accel-profile = "adaptive";
+        };
+        focus-follows-mouse = {
+          enable = false;
+          max-scroll-amount = "90%";
+        };
+        warp-mouse-to-focus.enable = true;
+        workspace-auto-back-and-forth = true;
       };
       # Monitor config.
       outputs = outputs;
+      overview = {
+        workspace-shadow.enable = false;
+        backdrop-color = "transparent";
+      };
       prefer-no-csd = true;
       layout = {
-        gaps = 5;
-        border = with config.lib.stylix.colors; {
+        focus-ring.enable = false;
+        border = with config.theme.colors; {
           enable = true;
+          width = config.theme.spacing.xs;
           active = {
             gradient = {
               to = "#${base0A}${opacity}";
@@ -101,108 +88,36 @@ in {
             color = "#${base03}${opacity}";
           };
         };
+        shadow = {
+          enable = false;
+        };
+        preset-column-widths = [
+          {proportion = 0.25;}
+          {proportion = 0.5;}
+          {proportion = 0.75;}
+          {proportion = 1.0;}
+        ];
+        default-column-width = {proportion = 0.5;};
+
+        gaps = config.theme.spacing.xs;
         struts = {
+          left = 0;
+          right = 0;
           top = -5;
+          bottom = 0;
         };
-        focus-ring.enable = false;
-      };
 
-      workspaces = {
-        "01-web" = {name = "web";};
-        "02-code" = {name = "code";};
-        "03-virt" = {name = "virt";};
-        "04-chat" = {name = "chat";};
-        "05-music" = {name = "music";};
-        "05-gaming" = {name = "gaming";};
-      };
-
-      window-rules = [
-        {
-          draw-border-with-background = false;
-          geometry-corner-radius = let
-            r = 5.0;
-          in {
-            top-left = r;
-            top-right = r;
-            bottom-left = r;
-            bottom-right = r;
-          };
-          clip-to-geometry = true;
-        }
-        {
-          matches = [
-            {
-              at-startup = true;
-              app-id = "^firefox$";
-            }
-          ];
-          open-maximized = true;
-          open-on-workspace = "web";
-        }
-        {
-          matches = [
-            {
-              at-startup = true;
-              app-id = "^codium$";
-            }
-          ];
-          open-maximized = true;
-          open-on-workspace = "code";
-        }
-        {
-          matches = [
-            {
-              at-startup = true;
-              app-id = "^virt-manager$";
-            }
-          ];
-          open-on-workspace = "virt";
-        }
-        {
-          matches = [
-            {
-              at-startup = true;
-              app-id = "^vesktop$";
-            }
-          ];
-          open-maximized = true;
-          open-on-workspace = "chat";
-        }
-        {
-          matches = [
-            {
-              at-startup = true;
-              app-id = "^spotify$";
-            }
-          ];
-          open-maximized = true;
-          open-on-workspace = "music";
-        }
-        {
-          matches = [
-            {
-              at-startup = true;
-              app-id = "^steam$";
-            }
-          ];
-          open-maximized = true;
-          open-on-workspace = "gaming";
-        }
-      ];
-
-      input = {
-        keyboard = {
-          xkb.layout = "gb";
-        };
-        touchpad = {
-          tap = true;
-          click-method = "clickfinger";
+        tab-indicator = {
+          hide-when-single-tab = true;
+          place-within-column = true;
+          position = "left";
+          corner-radius = 20.0;
+          gap = -12.0;
+          gaps-between-tabs = 10.0;
+          width = 4.0;
+          length.total-proportion = 0.1;
         };
       };
-      spawn-at-startup = [
-        {command = ["${pkgs.xwayland-satellite}/bin/xwayland-satellite"];}
-        {command = ["waybar"];}
-      ];
     };
   };
 }
