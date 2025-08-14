@@ -28,9 +28,7 @@
     # config becomes global, and needs to apply to all my hosts,
     # it gets moved to global.
     ../../common/optional/cachyos.nix
-    #../../config/optional/cosmic.nix
     ../../common/optional/ephemeral-btrfs.nix
-    #../../common/optional/gnome.nix
     ../../common/optional/graphics.nix
     ../../common/optional/lanzaboote.nix
     ../../common/optional/pipewire.nix
@@ -38,7 +36,7 @@
     # Import my user configs.
     ../../common/users/velen2077
     # Import my desktop.
-    ../../common/optional/niri.nix
+    ../../common/optional/gnome.nix
   ];
 
   # Boot loader settings are usually unique to my hosts

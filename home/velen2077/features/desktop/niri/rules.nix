@@ -41,9 +41,10 @@
     {
       matches = [
         {
-          app-id = "^virt-manager$";
+          app-id = "^.virt-manager-wrapped$";
         }
       ];
+      open-maximized = true;
       open-on-workspace = "virt";
     }
     {

@@ -21,7 +21,7 @@
     ./features/media
     ./features/productivity
     # Import my desktop/window manager/compositor.
-    ./features/desktop/niri
+    ./features/desktop/gnome
   ];
 
   theme = {
@@ -34,7 +34,7 @@
       enable = true;
       base16Scheme = "rose-pine";
       polarity = "dark";
-      disableTargets = ["hyprlock" "rofi"];
+      disableTargets = ["hyprlock" "rofi" "hyprland"];
       firefoxProfiles = ["default"];
     };
 
@@ -42,8 +42,8 @@
     gtk = {
       enable = true;
       iconTheme = {
-        name = "Gruvbox-Plus-Dark";
-        package = pkgs.gruvbox-plus-icons;
+        name = "Adwaita";
+        package = pkgs.adwaita-icon-theme;
       };
     };
 

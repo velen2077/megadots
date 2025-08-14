@@ -4,16 +4,16 @@
     if [ "$#" -gt 0 ]; then
         case $1 in
             shutdown)
-                shutdown now
+                systemctl poweroff
                 ;;
             reboot)
-                reboot
+                systemctl reboot
                 ;;
             lock)
                 pidof hyprlock || hyprlock
                 ;;
             logout)
-                niri msg action quit --skip-confirmation
+                hyprctl dispatch exit
                 ;;
         esac
         # Exit without output to make rofi close

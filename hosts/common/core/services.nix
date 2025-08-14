@@ -13,13 +13,15 @@
     thermald.enable = true;
     upower.enable = true;
     # needed for GNOME services outside of GNOME Desktop
-    dbus.packages = with pkgs; [
-      gcr
-      gnome-settings-daemon
-      libsecret
-    ];
+    # dbus.enable = true;
+    #dbus.packages = with pkgs; [
+    #  gcr
+    #  gnome-settings-daemon
+    #  libsecret
+    #  seahorse
+    #];
 
-    gnome.gnome-keyring.enable = true;
+    # gnome.gnome-keyring.enable = true;
     gvfs.enable = true;
   };
 }

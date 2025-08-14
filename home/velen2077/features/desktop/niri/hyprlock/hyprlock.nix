@@ -10,8 +10,6 @@
       general = {
         ignore_empty_input = true;
         hide_cursor = true;
-        no_fade_in = true;
-        pam_module = "hyprlock"; # Set up in system config
       };
       background = lib.mkForce [
         {

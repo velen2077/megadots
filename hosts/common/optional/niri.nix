@@ -20,7 +20,7 @@
   };
 
   # Needed for hyprlock.
-  security.pam.services.hyprlock = {};
+  #security.pam.services.hyprlock = {};
   security.pam.services.gdm.enableGnomeKeyring = true;
   security.pam.services.gdm-password.enableGnomeKeyring = true;
   environment.systemPackages = [pkgs.libsecret];

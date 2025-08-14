@@ -11,14 +11,12 @@
         position = "top";
 
         modules-left = ["hyprland/workspaces"];
-        modules-center = [];
+        modules-center = ["clock"];
         modules-right = [
           "custom/cpu"
           "cpu"
           "custom/separator"
           "custom/gpu"
-          "custom/separator"
-          "clock"
           "custom/separator"
           "battery"
           "tray"
@@ -27,9 +25,20 @@
         spacing = config.theme.spacing.s;
 
         "hyprland/workspaces" = {
-          format = "{name}";
-          on-scroll-up = "niri msg action focus-workspace-up";
-          on-scroll-down = "niri msg action focus-workspace-up";
+          format = "{icon}";
+          format-icons = {
+            "1" = "web";
+            "2" = "code";
+            "3" = "virt";
+            "4" = "chat";
+            "5" = "music";
+            "6" = "game";
+          };
+          persistent-workspaces = {
+            "*" = 6;
+          };
+          #on-scroll-up = "niri msg action focus-workspace-up";
+          #on-scroll-down = "niri msg action focus-workspace-up";
         };
 
         "custom/separator" = {
