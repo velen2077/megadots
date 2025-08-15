@@ -20,10 +20,45 @@
     ./features/gaming
     ./features/media
     ./features/productivity
-    ./features/theme
     # Import my desktop/window manager/compositor.
     ./features/desktop/gnome
   ];
+
+  theme = {
+    # The wallpaper for the user.
+    wallpaper = ../../assets/wallpaper/overwatch.jpg;
+    borderWidth = 4;
+
+    # Stylix configuration.
+    stylix = {
+      enable = true;
+      base16Scheme = "rose-pine";
+      polarity = "dark";
+      disableTargets = [];
+      firefoxProfiles = ["default"];
+    };
+
+    # GTK configuration.
+    gtk = {
+      enable = true;
+      iconTheme = {
+        name = "Adwaita";
+        package = pkgs.adwaita-icon-theme;
+      };
+    };
+
+    # QT configuration.
+    qt = {
+      enable = true;
+    };
+
+    # Cursor configuration.
+    cursor = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Classic";
+      size = 22;
+    };
+  };
 
   monitors = [
     {
