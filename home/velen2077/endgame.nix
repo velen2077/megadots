@@ -28,7 +28,7 @@
   monitors = [
     {
       enabled = true;
-      name = "HDMI-1";
+      name = "HDMI-A-1";
       make = "AUS";
       model = "VG27A";
       serial = "LALMQS176787";

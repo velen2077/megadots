@@ -58,15 +58,6 @@
     # A Nix flake for customising the Spotify client with Spicetify.
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     # A flake for the COSMIC desktop environment.
-    nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    # A flake for the niri Wayland window manager.
-    niri = {
-      url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
