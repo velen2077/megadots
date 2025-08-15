@@ -90,7 +90,7 @@
 
     element selected.normal {
       background-color: inherit;
-      text-color: #${config.theme.colors.base08};
+      text-color: #${config.theme.colors.base0D};
     }
 
     element selected.urgent {
@@ -100,7 +100,7 @@
 
     element selected.active {
       background-color: inherit;
-      text-color: #${config.theme.colors.base08};
+      text-color: #${config.theme.colors.base0D};
     }
 
     element-text {
@@ -138,7 +138,7 @@ in {
   programs.rofi = {
     enable = true;
     extraConfig = {
-      modi = "drun,combi,powermenu:powermenu";
+      modi = "drun,combi,powermenu:${../../../../../assets/scripts/powermenu.sh}";
       show-icons = true;
       "display-drun" = "->";
       "display-powermenu" = "<-";

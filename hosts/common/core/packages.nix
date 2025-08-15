@@ -10,19 +10,12 @@
   environment.systemPackages = with pkgs; [
     alejandra # A code formatter for nix.
     btop # Resource monitor with graphs.
-    cava # Audio visualizer.
     easyeffects # Pipewire equalizer.
     fastfetch # System information tool.
     fd # Fast alternative to 'find'.
     fzf # Command-line fuzzy finder.
-    glib # Low-level core library for GNOME.
     jq # Command-line JSON processor.
     just # A command runner for project-specific commands.
-    libnotify # Notification library.
-    libsForQt5.qtstyleplugin-kvantum # Qt-theme framework.
-    lm_sensors # Hardware monitoring utilities.
-    mangohud # Performance overlay for games.
-    nvtopPackages.full # GPU process monitor.
     pciutils # PCI utilities for device inspection.
     ripgrep # Fast alternative to grep.
     sbctl # Secure Boot utils.

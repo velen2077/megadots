@@ -28,13 +28,9 @@
     settings = {
       extra-substituters = [
         "https://niri.cachix.org/"
-        "https://chaotic-nyx.cachix.org/"
-        "https://cosmic.cachix.org/"
       ];
       extra-trusted-public-keys = [
         "niri.cachix.org-1:P72D+G6LgqKj7e9xYnL0M125bV7D57T9zYJ5K24Jq4I="
-        "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
-        "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
       ];
       # See https://jackson.dev/post/nix-reasonable-defaults/
       connect-timeout = 5;

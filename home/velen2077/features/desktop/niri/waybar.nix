@@ -10,13 +10,14 @@
         layer = "bottom";
         position = "top";
 
-        modules-left = ["niri/workspaces"];
-        modules-center = ["clock"];
+        modules-left = ["hyprland/workspaces"];
+        modules-center = [];
         modules-right = [
           "custom/cpu"
-          "cpu"
           "custom/separator"
           "custom/gpu"
+          "custom/separator"
+          "clock"
           "custom/separator"
           "battery"
           "tray"
@@ -24,10 +25,11 @@
 
         spacing = config.theme.spacing.s;
 
-        "niri/workspaces" = {
+        "hyprland/workspaces" = {
           format = "{name}";
-          on-scroll-up = "niri msg action focus-workspace-up";
-          on-scroll-down = "niri msg action focus-workspace-up";
+          on-scroll-up = "hyprctl dispatch workspace e+1";
+          on-scroll-down = "hyprctl dispatch workspace e-1";
+          cursor = 60;
         };
 
         "custom/separator" = {
@@ -45,26 +47,20 @@
           format = "[{capacity}%] 󰿟";
         };
 
-        "cpu" = {
-          interval = 1;
-          format = "{usage}%";
-          max-length = 10;
-        };
-
         "custom/cpu" = {
           format = "CPU: {text}°C";
-          exec = "cpu-temp";
+          exec = "bash ${../../../../../assets/scripts/cpu-temp.sh}";
           return-type = "json";
-          interval = 5;
+          interval = 1;
           cursor = 68;
           tooltip = false;
         };
 
         "custom/gpu" = {
           format = "GPU: {text}°C";
-          exec = "gpu-temp";
+          exec = "bash ${../../../../../assets/scripts/gpu-temp.sh}";
           return-type = "json";
-          interval = 5;
+          interval = 1;
           cursor = 68;
           tooltip = false;
         };
@@ -95,9 +91,10 @@
       }
 
       window#waybar {
-        background-color: alpha(#${config.theme.colors.base00}, 0.5);
-        color: #${config.theme.colors.base05};
+        background-color: alpha(#${config.theme.colors.base00}, 0.0);
+        color: #${config.theme.colors.base02};
         font-family: "DepartureMono Nerd Font", monospace;
+        font-weight: bold;
       }
 
       tooltip {
@@ -113,12 +110,11 @@
         all: unset;
         padding: 0px ${toString config.theme.spacing.s}px;
         background-color: transparent;
-        color: #${config.theme.colors.base05};
       }
 
       #workspaces button.active {
         background-color: transparent;
-        color: #${config.theme.colors.base08};
+        color: #${config.theme.colors.base0D};
       }
 
       #workspaces button.urgent {

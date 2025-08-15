@@ -8,16 +8,24 @@
   ...
 }: {
   security = {
-    # allow wayland lockers to unlock the screen
-    # pam.services.hyprlock.text = "auth include login";
-
-    # don't ask for password for wheel group
-    sudo.wheelNeedsPassword = false;
-  };
-
-  security = {
     rtkit.enable = true;
     polkit.enable = true;
+  };
+  # Enable passwordless sudo for members
+  # of wheel group.
+  security.sudo = {
+    enable = true;
+    extraRules = [
+      {
+        commands = [
+          {
+            command = "ALL";
+            options = ["NOPASSWD"];
+          }
+        ];
+        groups = ["wheel"];
+      }
+    ];
   };
 
   # The default open file limit is often too low for modern applications,

@@ -11,6 +11,5 @@
   programs = {
     adb.enable = true;
     dconf.enable = true;
-    #seahorse.enable = true;
   };
 }

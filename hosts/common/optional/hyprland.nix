@@ -1,75 +1,71 @@
 {
-  inputs,
   config,
+  lib,
   pkgs,
   ...
 }: {
   programs = {
+    uwsm = {
+      enable = true;
+      waylandCompositors = {
+        hyprland = {
+          prettyName = "Hyprland";
+          comment = "Hyprland compositor managed by UWSM";
+        };
+      };
+    };
+
     hyprland = {
       enable = true;
-      xwayland.enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.default;
-      portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
+      withUWSM = true;
     };
   };
 
-  nix.settings = {
-    substituters = ["https://hyprland.cachix.org"];
-    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-  };
-
-  xdg.portal = with pkgs; {
-    enable = true;
-    xdgOpenUsePortal = true;
-    config = {
-      hyprland.default = ["hyprland"];
+  services = {
+    gnome.gnome-keyring.enable = true;
+    blueman.enable = true;
+    envfs.enable = true;
+    displayManager.gdm.enable = true;
+    libinput = {
+      enable = true;
+      mouse = {
+        accelProfile = "flat";
+        accelSpeed = "0";
+      };
+      touchpad = {
+        accelProfile = "flat";
+        accelSpeed = "0";
+      };
     };
-    extraPortals = [
-      # pkgs.xdg-desktop-portal-gtk
-    ];
-  };
-
-  services.greetd = {
-    enable = true;
-    restart = false;
-
-    settings = {
-      default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --asterisks --cmd Hyprland --time-format '%F %R'";
-        user = "greeter";
+    keyd = {
+      enable = true;
+      keyboards = {
+        default = {
+          ids = ["*"];
+          settings = {
+            main = {
+              rightcontrol = "rightmeta";
+            };
+            otherlayer = {};
+          };
+        };
       };
     };
   };
 
-  services.gnome.gnome-keyring.enable = true;
-
-  security.pam.services = {
-    greetd.enableGnomeKeyring = true;
-    greetd-password.enableGnomeKeyring = true;
-    login.enableGnomeKeyring = true;
+  environment.variables = {
+    QT_STYLE_OVERRIDE = "kvantum";
   };
 
-  systemd.services.greetd.serviceConfig = {
-    Type = "idle";
-    StandardInput = "tty";
-    StandardOutput = "tty";
-    StandardError = "journal"; # Without this errors will spam on screen
-    # Without these bootlogs will spam on screen
-    TTYReset = true;
-    TTYVHangup = true;
-    TTYVTDisallocate = true;
-  };
+  environment.sessionVariables = {
+    XCURSOR_PATH = [
+      "${pkgs.capitaine-cursors}/share/icons"
+    ];
+    NIXOS_OZONE_WL = "1";
 
-  environment.systemPackages = with pkgs; [
-    brightnessctl
-    wayland
-    wl-clipboard
-  ];
+    MANGOHUD = "1"; # for mangohud
 
-  # Configure xwayland
-  services.xserver = {
-    displayManager.startx = {
-      enable = true;
-    };
+    LUA_PATH = "${pkgs.luarocks}/share/lua/5.1/?.lua;${pkgs.luarocks}/share/lua/5.1/?/init.lua;;";
+    LUA_CPATH = "${pkgs.luarocks}/lib/lua/5.1/?.so;;";
   };
 }

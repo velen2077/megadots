@@ -20,7 +20,6 @@
 
   # Update the xkb layout to British.
   services.xserver = {
-    enable = true;
     xkb.layout = "gb";
   };
 

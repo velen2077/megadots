@@ -27,6 +27,8 @@
       "Mod+Return".action.spawn = "alacritty";
       "Mod+D".action.spawn = ["rofi" "-show" "drun"];
       "Mod+P".action.spawn = ["rofi" "-show" "powermenu"];
+      "Mod+N".action.spawn = ["swaync-client" "-t" "-sw"];
+      "Super+Alt+L".action.spawn = "swaylock";
       "Mod+Y".action.spawn = ["keepmenu"];
       "Mod+Shift+Y".action.spawn = ["keepmenu" "-a" "{PASSWORD}"];
       "Mod+Ctrl+Y".action.spawn = ["keepmenu" "-a" "{USERNAME}"];

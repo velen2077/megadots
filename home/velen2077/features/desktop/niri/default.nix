@@ -1,27 +1,14 @@
-{pkgs, ...}: {
+{
   imports = [
     ./binds.nix
-    ./rules.nix
+    ./gtk.nix
+    ./hypridle.nix
+    ./hyprlock.nix
+    ./hyprpaper.nix
+    ./mako.nix
+    ./qt.nix
+    ./rofi.nix
     ./settings.nix
-    ./hypridle/hypridle.nix
-    ./hyprlock/hyprlock.nix
-    ./hyprpaper/hyprpaper.nix
-    ./mako/mako.nix
-    ./rofi/rofi.nix
-    ./scripts/scripts.nix
-    ./waybar/waybar.nix
+    ./waybar.nix
   ];
-
-  home = {
-    packages = with pkgs; [
-      seatd
-      jaq
-    ];
-  };
-
-  home.sessionVariables = {
-    QT_QPA_PLATFORM = "wayland";
-    SDL_VIDEODRIVER = "wayland";
-    XDG_SESSION_TYPE = "wayland";
-  };
 }
