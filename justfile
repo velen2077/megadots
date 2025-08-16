@@ -42,3 +42,11 @@ endgame-rebuild:
 # Perform a rebuild of endgame.
 endgame-rebuild-locally:
     sudo nixos-rebuild switch --flake .#endgame
+
+# Perform a clean deploy to flatmate.
+flatmate-deploy:
+    nix --extra-experimental-features 'nix-command flakes' run github:nix-community/nixos-anywhere -- --disko-mode disko --flake .#flatmate --target-host nixos@flatmate
+
+# Perform a rebuild of flatmate.
+flatmate-rebuild:
+    nixos-rebuild switch --flake .#flatmate --target-host velen2077@flatmate --sudo

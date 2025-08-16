@@ -11,7 +11,7 @@ in {
   users.mutableUsers = false;
   users.users.velen2077 = {
     isNormalUser = true;
-    shell = pkgs.fish;
+    shell = pkgs.zsh;
     extraGroups = ifTheyExist [
       "audio"
       "docker"

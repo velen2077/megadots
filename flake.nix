@@ -137,6 +137,16 @@
           inherit inputs outputs;
         };
       };
+      # The configuration for my Surface Pro 7
+      # mobile device 'flatmate'.
+      flatmate = lib.nixosSystem {
+        modules = [
+          ./hosts/nixos/flatmate/configuration.nix
+        ];
+        specialArgs = {
+          inherit inputs outputs;
+        };
+      };
     };
   };
 }

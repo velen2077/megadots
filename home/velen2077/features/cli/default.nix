@@ -3,6 +3,8 @@
     ./alacritty.nix
     ./fish.nix
     ./git.nix
+    ./kitty.nix
+    ./zsh.nix
   ];
   home.packages = with pkgs; [
     comma # Install and run programs by sticking a , before them

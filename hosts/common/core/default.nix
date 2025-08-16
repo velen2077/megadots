@@ -16,6 +16,7 @@
       ./security.nix
       ./ssh.nix
       ./systemd-initrd.nix
+      ./zsh.nix
     ]
     ++ (builtins.attrValues outputs.nixosModules);
 
