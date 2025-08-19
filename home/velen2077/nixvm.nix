@@ -20,8 +20,9 @@
     ./features/gaming
     ./features/media
     ./features/productivity
+    ./features/services
     # Import my desktop/window manager/compositor.
-    ./features/desktop/gnome
+    #./features/desktop/niri
   ];
 
   theme = {

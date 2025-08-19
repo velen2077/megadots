@@ -16,11 +16,11 @@
   nix = {
     package = lib.mkDefault pkgs.nix;
     settings = {
-      extra-substituters = [
+      substituters = [
         "https://niri.cachix.org/"
       ];
-      extra-trusted-public-keys = [
-        "niri.cachix.org-1:P72D+G6LgqKj7e9xYnL0M125bV7D57T9zYJ5K24Jq4I="
+      trusted-public-keys = [
+        "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
       ];
       experimental-features = [
         "nix-command"

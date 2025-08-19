@@ -6,13 +6,15 @@
   # This speeds up builds by allowing Nix to download pre-built packages
   # from these caches.
   nixConfig = {
-    extra-substituters = [
+    substituters = [
       "https://chaotic-nyx.cachix.org/"
       "https://cosmic.cachix.org/"
+      "https://niri.cachix.org/"
     ];
-    extra-trusted-public-keys = [
+    trusted-public-keys = [
       "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
       "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
+      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
     ];
   };
 
@@ -47,6 +49,11 @@
     # A Nix module for declarative disk partitioning.
     disko = {
       url = "github:nix-community/disko/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # niri wm
+    niri = {
+      url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # A Nix module for system-wide theming.

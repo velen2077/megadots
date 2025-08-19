@@ -8,6 +8,7 @@
       inputs.home-manager.nixosModules.home-manager
       ./firewall.nix
       ./fish.nix
+      ./gnupg.nix
       ./hardware.nix
       ./locale.nix
       ./nix.nix
