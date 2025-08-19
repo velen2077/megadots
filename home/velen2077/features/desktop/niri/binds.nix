@@ -21,7 +21,8 @@
     #"super+Control+Return".action = spawn apps.appLauncher;
     "super+E".action = spawn "nemo";
 
-    "super+f".action = fullscreen-window;
+    "Mod+F".action.maximize-column = {};
+    "Mod+Shift+F".action.fullscreen-window = {};
     "super+t".action = toggle-window-floating;
 
     "control+shift+1".action = screenshot;

@@ -26,10 +26,14 @@
     registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
 
     settings = {
-      substituters = [
+      extra-substituters = [
+        "https://chaotic-nyx.cachix.org/"
+        "https://cosmic.cachix.org/"
         "https://niri.cachix.org/"
       ];
-      trusted-public-keys = [
+      extra-trusted-public-keys = [
+        "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+        "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
         "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
       ];
       # See https://jackson.dev/post/nix-reasonable-defaults/

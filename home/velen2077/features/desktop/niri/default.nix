@@ -13,15 +13,15 @@
 
   home.packages = with pkgs; [
     # screenshot
-    grim
-    slurp
-    seatd
-    jaq
-    swww
+    #grim
+    #slurp
+    #seatd
+    #jaq
+    #swww
     # utils
-    wl-clipboard
-    brightnessctl
-    pavucontrol
+    #wl-clipboard
+    #brightnessctl
+    #pavucontrol
   ];
 
   # make stuff work on wayland

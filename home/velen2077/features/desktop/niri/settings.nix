@@ -8,6 +8,7 @@
     #package = pkgs.niri;
 
     settings = {
+      animations.enable = false;
       xwayland-satellite = {
         enable = true;
       };
@@ -40,18 +41,21 @@
           };
         };
 
-        gaps = 6;
+        gaps = 4;
 
         struts = {
-          left = 20;
-          right = 20;
-          top = 20;
-          bottom = 20;
+          left = 4;
+          right = 4;
+          top = 4;
+          bottom = 4;
         };
+
+        center-focused-column = "on-overflow";
+        default-column-width = {proportion = 0.5;};
       };
 
       input = {
-        keyboard.xkb.layout = "de";
+        keyboard.xkb.layout = "uk";
         touchpad = {
           click-method = "button-areas";
           dwt = true;
@@ -81,11 +85,6 @@
           };
         };
       };
-
-      #cursor = {
-      #  size = 20;
-      #  theme = "Adwaita";
-      #};
 
       environment = {
         CLUTTER_BACKEND = "wayland";
