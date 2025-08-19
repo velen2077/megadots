@@ -5,14 +5,11 @@
   ...
 }: {
   imports = [inputs.niri.nixosModules.niri];
+
+  # Setup the niri unstable package.
   nixpkgs.overlays = [inputs.niri.overlays.niri];
-
-  programs.niri = {
-    enable = true;
-    package = pkgs.niri-unstable;
-  };
-
-  #niri-flake.cache.enable = false;
+  programs.niri.enable = true;
+  programs.niri.package = pkgs.niri-unstable;
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 

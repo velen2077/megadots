@@ -6,7 +6,6 @@
 # Wayland config
 {
   imports = [
-    inputs.niri.homeModules.niri
     ./binds.nix
     ./rules.nix
     ./settings.nix

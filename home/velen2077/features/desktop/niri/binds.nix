@@ -1,74 +1,43 @@
 {
+  lib,
   config,
   pkgs,
   ...
 }: {
-  programs.niri.settings.binds = with config.lib.niri.actions; let
-    set-volume = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@";
-    brillo = spawn "${pkgs.brillo}/bin/brillo" "-q" "-u" "300000";
-    playerctl = spawn "${pkgs.playerctl}/bin/playerctl";
-  in {
-    "XF86AudioMute".action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle";
-    "XF86AudioMicMute".action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle";
+  programs.niri.settings.binds = with config.lib.niri.actions; {
+    # Quickshell Keybinds Start
+    "super+Control+Return".action = spawn ["qs" "ipc" "call" "globalIPC" "toggleLauncher"];
+    # Quickshell Keybinds End
 
-    "XF86AudioPlay".action = playerctl "play-pause";
-    "XF86AudioStop".action = playerctl "pause";
-    "XF86AudioPrev".action = playerctl "previous";
-    "XF86AudioNext".action = playerctl "next";
+    #"xf86audioraisevolume".action = volume-up;
+    #"xf86audiolowervolume".action = volume-down;
 
-    "XF86AudioRaiseVolume".action = set-volume "5%+";
-    "XF86AudioLowerVolume".action = set-volume "5%-";
+    "control+super+xf86audioraisevolume".action = spawn "brightness" "up";
+    "control+super+xf86audiolowervolume".action = spawn "brightness" "down";
 
-    "XF86MonBrightnessUp".action = brillo "-A" "5";
-    "XF86MonBrightnessDown".action = brillo "-U" "5";
+    "super+q".action = close-window;
+    "super+b".action = spawn "firefox";
+    "super+Return".action = spawn "kitty";
+    #"super+Control+Return".action = spawn apps.appLauncher;
+    "super+E".action = spawn "nemo";
 
-    "Print".action.screenshot-screen = {write-to-disk = true;};
-    "Mod+Shift+Alt+S".action = screenshot-window;
-    "Mod+Shift+S".action.screenshot = {show-pointer = false;};
-    "Mod+D".action = spawn "${pkgs.anyrun}/bin/anyrun";
-    "Mod+Return".action = spawn "${pkgs.ghostty}/bin/ghostty";
-    "Ctrl+Alt+L".action = spawn "sh -c pgrep hyprlock || hyprlock";
+    "super+f".action = fullscreen-window;
+    "super+t".action = toggle-window-floating;
 
-    "Mod+U".action = spawn "env XDG_CURRENT_DESKTOP=gnome gnome-control-center";
+    "control+shift+1".action = screenshot;
+    "control+shift+2".action = screenshot-window {write-to-disk = true;};
 
-    "Mod+Q".action = close-window;
-    "Mod+S".action = switch-preset-column-width;
-    "Mod+F".action = maximize-column;
+    "super+Left".action = focus-column-left;
+    "super+Right".action = focus-column-right;
+    "super+Down".action = focus-workspace-down;
+    "super+Up".action = focus-workspace-up;
 
-    "Mod+1".action = set-column-width "25%";
-    "Mod+2".action = set-column-width "50%";
-    "Mod+3".action = set-column-width "75%";
-    "Mod+4".action = set-column-width "100%";
-    # "Mod+Shift+F".action = fullscreen-window;
-    "Mod+Shift+F".action = expand-column-to-available-width;
-    "Mod+Space".action = toggle-window-floating;
-    "Mod+W".action = toggle-column-tabbed-display;
+    "super+Shift+Left".action = move-column-left;
+    "super+Shift+Right".action = move-column-right;
+    "super+Shift+Down".action = move-column-to-workspace-down;
+    "super+Shift+Up".action = move-column-to-workspace-up;
 
-    "Mod+Comma".action = consume-window-into-column;
-    "Mod+Period".action = expel-window-from-column;
-    "Mod+C".action = center-visible-columns;
-    "Mod+Tab".action = switch-focus-between-floating-and-tiling;
-
-    "Mod+Minus".action = set-column-width "-10%";
-    "Mod+Plus".action = set-column-width "+10%";
-    "Mod+Shift+Minus".action = set-window-height "-10%";
-    "Mod+Shift+Plus".action = set-window-height "+10%";
-
-    "Mod+H".action = focus-column-left;
-    "Mod+L".action = focus-column-right;
-    "Mod+J".action = focus-window-or-workspace-down;
-    "Mod+K".action = focus-window-or-workspace-up;
-    "Mod+Left".action = focus-column-left;
-    "Mod+Right".action = focus-column-right;
-    "Mod+Down".action = focus-workspace-down;
-    "Mod+Up".action = focus-workspace-up;
-
-    "Mod+Shift+H".action = move-column-left;
-    "Mod+Shift+L".action = move-column-right;
-    "Mod+Shift+K".action = move-column-to-workspace-up;
-    "Mod+Shift+J".action = move-column-to-workspace-down;
-
-    "Mod+Shift+Ctrl+J".action = move-column-to-monitor-down;
-    "Mod+Shift+Ctrl+K".action = move-column-to-monitor-up;
+    "super+1".action = focus-workspace "web";
+    "super+2".action = focus-workspace "code";
   };
 }
