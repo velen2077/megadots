@@ -8,14 +8,4 @@
   };
   users.defaultUserShell = pkgs.zsh;
   environment.shells = with pkgs; [zsh];
-
-  environment.persistence."/persist" = {
-    directories = [
-    ];
-    files = [
-      ".zshrc"
-      ".zshenv"
-      ".zsh_history"
-    ];
-  };
 }

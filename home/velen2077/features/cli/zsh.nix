@@ -49,4 +49,14 @@
   home.sessionVariables = {
     SPACESHIP_EXIT_CODE_SHOW = "true";
   };
+
+  home.persistence."/persist" = {
+    directories = [
+    ];
+    files = [
+      ".zshrc"
+      ".zshenv"
+      ".zsh_history"
+    ];
+  };
 }
