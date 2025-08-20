@@ -36,7 +36,7 @@
     # Import my user configs.
     ../../common/users/velen2077
     # Import my desktop.
-    ../../common/optional/niri.nix
+    ../../common/optional/cosmic.nix
   ];
 
   # Boot loader settings are usually unique to my hosts
