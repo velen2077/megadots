@@ -110,6 +110,7 @@ sudo sbctl status
 | System | Description | Type | OS | CPU | GPU |
 |---|---|---|---|---|---|
 | endgame | My personal desktop | Custom build | NixOS | AMD Ryzen 7800X3D | AMD 9070XT |
+| flatmate | My mobile workstation | Surface Pro 7 | NixOS | Intel i7-1065G7 | Intel iGPU |
 | nixvm | My test VM | QEMU VM | NixOS | Host passthrough | OpenGL/3D accelerated |
 
 I have a single user that I manage through Home Manager (velen2077). You may add additional users or rename mine to inherit my existing settings - though don't forget to change my hashedPassword to something of your own otherwise you won't be able to log in.
