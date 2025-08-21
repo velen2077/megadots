@@ -54,8 +54,6 @@
     directories = [
     ];
     files = [
-      ".zshrc"
-      ".zshenv"
       ".zsh_history"
     ];
   };

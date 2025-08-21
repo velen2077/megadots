@@ -58,16 +58,16 @@
     };
     # extensions
     ExtensionSettings = {
-      "uBlock0@raymondhill.net" = {
+      "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
         installation_mode = "normal_installed";
-        install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+        install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
         updates_disabled = false;
         default_area = "navbar";
         private_browsing = true;
       };
-      "78272b6fa58f4a1abaac99321d503a20@proton.me" = {
+      "uBlock0@raymondhill.net" = {
         installation_mode = "normal_installed";
-        install_url = "https://addons.mozilla.org/firefox/downloads/latest/proton-pass/latest.xpi";
+        install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
         updates_disabled = false;
         default_area = "navbar";
         private_browsing = true;
@@ -96,10 +96,7 @@
 
   programs.firefox.profiles.default = {
     isDefault = true;
-    extensions.packages = with inputs.firefox-addons.packages."x86_64-linux"; [
-      ublock-origin
-      proton-pass
-    ];
+
     search = {
       force = true;
       default = "ddg";
