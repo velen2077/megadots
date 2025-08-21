@@ -75,16 +75,17 @@ nix flake update
 
 To enable Secure Boot for a host, there are a few manual steps that have to happen, focussed around generating encryption keys and enrolling them in to the UEFI firmware for Secure Boot.
 
-1. Build the host with lanzaboote added as an optional config.
+1. Build the host without lanzaboote (just comment it out in the configuration.nix).
 2. Run the following command to generate keys for the host:
    
 ```bash
 sudo sbctl create-keys
 ```
-3. Reboot the host and enter the UEFI firmware configuration.
-4. Enable Secure Boot and make sure it is in 'Setup Mode'. For my MSI motherboard, there isn't a specifc 'Setup Mode' option. Instead, I select 'Factory Keys' = 'disabled' and 'Secure Boot Mode' = 'Custom'. After rebooting and entering the UEFI firmware again, I can then go in to the newly added custom option and select 'Delete all UEFI vars'.
-5. Reboot the host again.
-6. Run the following command:
+3. Rebuild the host with lanzaboote added as an optional config (uncomment it from configuration.nix).
+4. Reboot the host and enter the UEFI firmware configuration.
+5. Enable Secure Boot and make sure it is in 'Setup Mode'. For my MSI motherboard, there isn't a specifc 'Setup Mode' option. Instead, I select 'Factory Keys' = 'disabled' and 'Secure Boot Mode' = 'Custom'. After rebooting and entering the UEFI firmware again, I can then go in to the newly added custom option and select 'Delete all UEFI vars'.
+6. Reboot the host again.
+7. Run the following command:
 
 ```bash
 sudo sbctl verify
