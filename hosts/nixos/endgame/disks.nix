@@ -79,10 +79,10 @@
                         "compress=zstd"
                         "noatime"
                       ];
-                      "/swap" = {
-                        mountpoint = "/.swapvol";
-                        swap.swapfile.size = "48G";
-                      };
+                      #"/swap" = {
+                      #  mountpoint = "/.swapvol";
+                      #  swap.swapfile.size = "48G";
+                      #};
                     };
                   };
                 };
