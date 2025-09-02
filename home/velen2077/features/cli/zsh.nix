@@ -40,7 +40,7 @@
       };
       hostname = {
         ssh_only = false;
-        format = "[$hostname]($style)";
+        format = "[$hostname]($style) ";
       };
       username.show_always = true;
     };
