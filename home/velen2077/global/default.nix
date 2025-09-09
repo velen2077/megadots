@@ -8,9 +8,17 @@
 }: {
   imports =
     [
+      # Import the Home Manager impermanence module in case
+      # we have it declared for our system.
       inputs.impermanence.homeManagerModules.impermanence
+      # Import all cli features for this user on this host.
+      # You can be granular here if you don't want to import
+      # all features. Just specify the nix files individually
+      # if needed. I import the folder so that the default.nix
+      # imports all features in the folder.
       ../features/cli
     ]
+    # Include any custom Home Manager modules I have defined.
     ++ (builtins.attrValues outputs.homeManagerModules);
 
   nix = {
@@ -50,6 +58,7 @@
     git.enable = true;
   };
 
+  # Set up my Home Manager instance.
   home = {
     username = lib.mkDefault "velen2077";
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
@@ -60,10 +69,12 @@
     };
   };
 
+  # Include some packages by default. I typically
+  # include anything I need to work with nix.
   home.packages = with pkgs; [
     nixd # Nix LSP.
     alejandra # Nix formatter.
-    nixfmt-rfc-style
+    nixfmt-rfc-style # Another nix formatter.
     nvd # Differ.
     nix-diff # Differ, more detailed.
     nix-output-monitor
@@ -85,8 +96,6 @@
       ".password-store"
       ".themes"
       ".config/sunshine"
-      # dconf is a settings database used by GNOME and other applications.
-      # Persisting it ensures your desktop environment's settings are kept.
       ".config/dconf"
       ".config/openrazer"
       ".config/polychromatic"
@@ -106,7 +115,6 @@
         mode = "0700";
       }
       {
-        # GnuPG data, essential for encryption and signing.
         directory = ".gnupg";
         mode = "0700";
       }
