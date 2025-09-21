@@ -22,7 +22,7 @@
     ./features/productivity
     ./features/services
     # Import my desktop/window manager/compositor.
-    ./features/desktop/gnome
+    ./features/desktop/cosmic
   ];
 
   theme = {

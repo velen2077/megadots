@@ -16,7 +16,7 @@
         # Sign all commits using ssh key
         commit.gpgsign = true;
         gpg.format = "ssh";
-        user.signingkey = "~/.ssh/id_ed25519.pub";
+        #user.signingkey = "~/.ssh/id_ed25519.pub";
       };
 
       #signing = {
@@ -33,8 +33,8 @@
         co = "checkout";
       };
 
-      userEmail = "velen2077@proton.me";
-      userName = "velen2077";
+      #userEmail = "velen2077@proton.me";
+      #userName = "velen2077";
     };
   };
 }

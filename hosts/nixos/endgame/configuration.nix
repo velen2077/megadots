@@ -41,7 +41,7 @@
     ../../common/optional/lanzaboote.nix
     ../../common/optional/minecraft.nix
     ../../common/optional/pipewire.nix
-    ../../common/optional/razer.nix
+    #../../common/optional/razer.nix
     ../../common/optional/virt-manager.nix
     # Import my user configs.
     ../../common/users/velen2077
